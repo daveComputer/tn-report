@@ -5,11 +5,11 @@
 %\documentclass[english]{tnreport} % If you are writing your report in english
 %\documentclass[contratpro]{tnreport} % If you are in contrat pro
 
-\def\reportTitle{Winter is Coming} % Titre du mémoire
-\def\reportLongTitle{Winter is Coming -- You know nothing Jon Snow} % Titre plus long du mémoire
+\def\reportTitle{Industrialisation de la chaîne de valeur d'une ESN} % Titre du mémoire
+\def\reportLongTitle{Industrialisation de la chaîne de valeur d'une ESN : développement du capital humain et innovation technologique} % Titre plus long du mémoire
 
-\def\reportAuthor{Jon Snow}
-\def\reportAuthorEmail{\email{jon@castleblack.com}} % Courriel de l'élève
+\def\reportAuthor{David Guichard}
+\def\reportAuthorEmail{\email{david.guichard@telecomnancy.eu}} % Courriel de l'élève
 
 % This is an example, for a report with several students as authors
 %\def\reportAuthor{Jon Snow\\ Samwell Tarly}
@@ -19,22 +19,22 @@
 \def\reportAuthorCity{code postal, VILLE} % Adresse (cont.) de l'élève
 \def\reportAuthorPhone{téléphone} % Téléphone de l'élève
 
-%\def\reportIndustrialSupervisor{Eddard Stark} % Prénom Nom de l'encadrant industriel
-\def\reportSupervisor{Eddard Stark} % Prénom Nom de l'encadrant industriel (en entreprise ou laboratoire)
-\def\reportAcademicSupervisor{Tyrion Lannister} % Prénom Nom de l'encadrant académique
+%\def\reportIndustrialSupervisor{Prénom Nom} % Prénom Nom de l'encadrant industriel
+\def\reportSupervisor{Nom de l'encadrant} % Prénom Nom de l'encadrant industriel (en entreprise ou laboratoire)
+\def\reportAcademicSupervisor{Nom du tuteur académique} % Prénom Nom de l'encadrant académique
 
 % For PIDR ?
 %\def\reportSupervisor{Eddard Stark} % Prénom Nom de l'encadrant industriel
 %\def\reportProjectCustomer{Projet réalisé pour l'équipe Night's Watch du laboratoire HBO}
 
-\def\reportCompany{Home Box Office} % Nom de l'entreprise d'accueil
+\def\reportCompany{Oxyl} % Nom de l'entreprise d'accueil
 \def\reportCompanyAddress{numéro, rue}  % Adresse de l'entreprise
 \def\reportCompanyCity{code postal, VILLE} % Adresse (cont.) de l'entreprise
 \def\reportCompanyPhone{téléphone} % Téléphone de l'entreprise
 \def\reportCompanyLogoPath{figures/anonymous_company-logo} % Logo de l'entreprise -- comment this definition to remove company logo
 %\def\reportSecondCompanyLogoPath{figures/logo.png} % Deuxième logo d'entreprise si besoin
 
-\def\place{Winterfell} % Ville pour la signature pour l'engagement anti-plagiat
+\def\place{Nancy} % Ville pour la signature pour l'engagement anti-plagiat
 \def\date{\today} % Date pour la signature de l'engagement anti-plagiat
 
 
@@ -43,7 +43,7 @@
 \maketitle
 \pagenumbering{roman}
 
-\insertAntiPlagiarismAgreement{Snow, Jon}{2014041022}{figures/anonymous_company-logo}{0.2}
+\insertAntiPlagiarismAgreement{Guichard, David}{n°étudiant}{figures/anonymous_company-logo}{0.2}
                             % {Nom, Prénom}{n°étu}{image signature}{scale signature} 
 % You may insert several agreement in case of multiple authors
 %\insertAntiPlagiarismAgreement{Tarly, Samwell}{2014031142}{figures/anonymous_company-logo}{0.2}
@@ -76,8 +76,22 @@ for this night and all the nights to come.''
 
 \cleardoublepage
 
-\section*{Avant-propos (optionnel)}
-\addcontentsline{toc}{chapter}{Avant-propos (optionnel)}
+\section*{Avant-propos}
+\addcontentsline{toc}{chapter}{Avant-propos}
+
+Ce Projet de Fin d'Études chez Oxyl s'inscrit au carrefour de mon parcours d'ingénieur et d'une vision professionnelle mûrement réfléchie.
+
+Dès le choix de ma spécialisation à TELECOM Nancy, j'ai délibérément privilégié la filière \textit{Logiciel Embarqué}. Ce choix stratégique répondait à une volonté de construire un socle de compétences bas-niveau et architectural solide, indispensable pour appréhender les systèmes complexes avec une réelle rigueur d'ingénierie.
+
+Cette passerelle entre socle logiciel et intelligence artificielle s'est dessinée dès mon stage de deuxième année au laboratoire CRAN, à travers la conception d'une architecture cognitive en \textit{Deep Learning} pour un bras robotique en cobotique industrielle. Elle s'est ensuite consolidée lors de mon semestre d'échange académique à Madrid, dédié à l'approfondissement théorique et pratique du \textit{Machine Learning}. Mon intégration chez Oxyl est venue parachever cette démarche, en mettant à profit cette double culture pour concevoir une usine logicielle optimisée par l'automatisation agentique.
+
+Ce mémoire marque ainsi une étape charnière : à l'avenir, j'envisage de poursuivre dans l'automatisation des processus d'entreprise par les systèmes agentiques. Une ambition guidée par la conviction que l'efficacité de l'IA appliquée dépend avant tout de la robustesse du socle en développement logiciel sur lequel elle s'appuie.
+
+\vspace{1cm}
+\begin{flushright}
+    \textit{David \textsc{Guichard}}\\
+    \textit{Le Plessis-Robinson, le 18 août 2026}
+\end{flushright}
 
 
 \cleardoublepage
@@ -90,177 +104,610 @@ for this night and all the nights to come.''
 \pagenumbering{arabic}
 \setcounter{page}{1}
 
-\chapter{Introduction}
+\chapter{Introduction Générale}
+\label{chap:introduction}
 
-Never resting pride and purpose, in his cups, sed do ever vigilant incididunt
-ut labore et dolore magna servant. Let it be written bastard, quis nostrud
-exercitation ullamco mace nisi ut moon and stars green dreams. Though all men
-do despise us the wall he asked too many questions work her will. Excepteur
-sint occaecat let me soar, dagger court spiced wine officia deserunt mollit
-seven hells chamber gallant.
+\section*{Contexte sectoriel : La métamorphose du modèle des ESN}
 
-Curabitur pretium tincidunt lacus. Tread lightly here mulled wine. Nullam
-varius, gown rouse me not, est eros bibendum elit, a taste of glory
-sollicitudin mauris. Death before disgrace gargoyles nibh euismod joust. None
-so wise we light the way. Suckling pig risus a elit. Mare's milk. Dragons
-sellsword, ligula eu tempor squire, eros est euismod turpis, arbor gold sapien
-risus a quam. Ours is the fury. Night's watch. Pellentesque malesuada nulla
-honeyed locusts. Honed and ready, the seven, greyscale eget, your grace, dirk.
-Ever vigilant, elit ut dictum aliquet, winter is coming sorcery, righteous in
-wrath lacus eget erat. Blood mollis maegi nunc. Summerwine arcu. Dagger
-consequat. In his cups, feast ironborn, tunic crimson, spiced wine, whore.
-Moon and stars, mollis quis, the wall, holdfast maester, orci. Old bear seven
-hells dictumst.
+Le secteur des Entreprises de Services du Numérique (ESN) traverse une phase de mutation structurelle sans précédent, impulsée par l'émergence et la maturation rapide de l'intelligence artificielle générative et des architectures agentiques. Historiquement, le modèle économique de l'ingénierie logicielle de prestation reposait en grande partie sur l'assistance technique en régie, valorisée au temps passé. Aujourd'hui, la dynamique du marché impose une transition accélérée vers des modèles au forfait et des engagements au résultat. Dans ce paradigme, les cycles de livraison sont drastiquement raccourcis, la prévisibilité des charges devient un enjeu critique de rentabilité, et la moindre dérive dans l'estimation des délais fait peser un risque direct sur la pérennité de la relation client.
+
+Parallèlement, l'automatisation progressive des phases élémentaires du cycle de développement logiciel (\textit{Software Development Life Cycle} -- SDLC) bouleverse la gestion des talents. Les tâches jadis confiées aux développeurs juniors sont de plus en plus prises en charge par des agents d'assistance au code, fermant l'accès aux missions traditionnelles d'intégration pour les profils en début de carrière. En outre, le marché fait face à une dichotomie marquée au sein de la clientèle : tandis qu'une fraction exige une vélocité accrue portée par l'IA, une part significative d'entreprises -- notamment dans les secteurs réglementés ou stratégiques -- interdit formellement l'utilisation d'outils d'IA tiers pour prévenir tout risque de fuite de données sensibles ou d'atteinte à la propriété intellectuelle. Pour une ESN, l'équation impose ainsi de maintenir une rigueur méthodologique humaine irréprochable tout en intégrant l'automatisation logicielle de pointe.
+
+\section*{L'écosystème Oxyl et sa stratégie d'innovation}
+
+Dans cet environnement concurrentiel tendu, \reportCompany{} a fait le choix stratégique de se positionner très tôt comme une entreprise pionnière sur l'intégration de l'intelligence artificielle dans ses processus d'ingénierie logicielle. L'ambition d'Oxyl repose sur une vision duale : acquérir une expertise de premier plan sur les systèmes agentiques pour concevoir des produits à haute valeur ajoutée, tout en décuplant la performance opérationnelle de ses propres consultants en mission.
+
+Cette posture d'innovation s'accompagne d'une politique de formation et de gestion du capital humain ciblée. Afin de maintenir une dynamique perpétuelle de veille technologique et de renouvellement intellectuel, Oxyl privilégie le recrutement par la continuité de stage de fin d'études. L'accueil d'élèves-ingénieurs permet d'éprouver en temps réel les dernières avancées académiques et techniques face aux exigences concrètes de la production industrielle.
+
+\section*{Le double défi d'ingénierie : Standardisation du capital humain et du capital technique}
+
+Pour concrétiser cette vision industrielle, le projet d'ingénierie mené durant ce stage s'articule autour de deux axes fondamentaux et complémentaires :
+
+\begin{enumerate}
+    \item \textbf{La standardisation et la valorisation du capital humain (Le volet compétences) :} Face aux exigences accrues des clients, l'excellence technique des collaborateurs doit être démontrable et certifiée. L'obtention de certifications reconnues par l'industrie -- à l'instar des titres Oracle (\textit{Oracle Certified Associate} -- OCA, \textit{Oracle Certified Professional} -- OCP) pour l'écosystème Java/JEE, ou de l'accréditation \textit{AWS Certified Cloud Practitioner} -- constitue un puissant gage de crédibilité. Pour soutenir cet impératif, une plateforme web sur-mesure a été conçue en Spring Core et Angular. Pensée à la fois comme un \textit{moyen} (un projet grandeur nature formant aux standards d'architecture) et comme un \textit{but} (un outil d'entraînement, de passage d'examens blancs et de suivi statistique pour les encadrants), cette plateforme structure la montée en compétences et la gouvernance pédagogique interne.
+    \item \textbf{La standardisation et l'indépendance du capital technique (Le volet Usine Logicielle) :} Pour automatiser les tâches répétitives du cycle de vie logiciel sans subir les aléas des solutions propriétaires, Oxyl a initié le développement d'une \og Usine Logicielle \fg{} agentique en TypeScript, régie par des spécifications formelles en Markdown (prompts, descriptions d'incidents et règles d'architecture logicielle propre). Face à la volatilité des coûts de facturation des jetons (\textit{tokens}), aux impératifs de confidentialité et à la diversité des infrastructures clientes, un enjeu architectural majeur est apparu : garantir l'agnosticité complète du moteur. Il s'agissait de découpler l'infrastructure d'exécution vis-à-vis des fournisseurs de modèles de langage (OpenAI, Anthropic Claude, Google, modèles locaux) et des gestionnaires de dépôts et de tickets (GitHub, GitLab, Gitea, Jira, Bitbucket).
+\end{enumerate}
+
+\section*{Problématique et objectifs du Projet de Fin d'Études}
+
+L'intersection entre l'exigence d'un socle d'ingénierie rigoureux et l'impératif d'industrialisation automatisée soulève la problématique centrale de ce mémoire :
+
+\begin{center}
+    \setlength{\fboxsep}{10pt}
+    \fbox{\parbox{0.9\textwidth}{\centering\bfseries\itshape
+    Dans un marché des ESN contraint par le passage au forfait et la transformation des métiers du développement par l'IA, comment concilier la standardisation du capital humain (gage de qualité et de maîtrise des fondamentaux) et l'industrialisation d'une usine logicielle agentique agnostique pour pérenniser la rentabilité et l'indépendance technologique de l'entreprise ?
+    }}
+\end{center}
+
+\section*{Cadre méthodologique et dynamique d'équipe}
+
+La réalisation de ces travaux s'est inscrite dans deux contextes méthodologiques complémentaires, illustrant la diversité des modes d'organisation en ingénierie logicielle :
+
+\begin{itemize}
+    \item \textbf{Le projet de la plateforme d'évaluation (Équipe de 4 stagiaires) :} Mené \textit{from scratch}, le projet a débuté selon des cycles Scrum hebdomadaires rythmés par des revues de code individuelles exigeantes, conditionnant la validation de chaque incrément. La phase finale sur le développement front-end s'est ensuite déroulée en semi-autonomie sous forme de flux Kanban (points quotidiens, découpage atomique des tâches). Cette configuration a constitué un exercice pratique immersif sur la gestion de la dette technique, l'arbitrage entre vélocité et maintenabilité, et le respect d'échéances strictes.
+    \item \textbf{Le projet Usine Logicielle (Organisation Agile d'entreprise) :} Intégré au sein d'une équipe structurée par un \textit{Scrum Master} avec un backlog rigoureusement priorisé, le travail a suivi des rituels réguliers (\textit{dailies}, synchronisations hebdomadaires). La culture de qualité logicielle y a été renforcée par une pratique intensive de la revue de code collective (une à deux sessions quotidiennes), permettant d'aligner en continu les décisions d'architecture et les principes de \textit{Clean Code}.
+\end{itemize}
+
+\section*{Synthèse des contributions personnelles}
+
+Bien que s'inscrivant dans une démarche collaborative, mes contributions d'ingénieur ont plus particulièrement porté sur :
+\begin{itemize}
+    \item Le développement \textit{full-stack} de la plateforme d'évaluation des compétences, notamment la modélisation des entités, les API de gestion des référentiels pédagogiques et l'implémentation des parcours de tests.
+    \item La conception et l'implémentation de la couche d'abstraction logicielle au sein de l'Usine Logicielle, spécifiquement l'interopérabilité des connecteurs de gestionnaires de code source (\textit{CodebaseProviders} : GitHub, GitLab, Gitea, Bitbucket) et des systèmes de suivi de tickets (\textit{BacklogProviders} : Jira, GitLab/GitHub Issues).
+    \item L'évaluation et la consolidation des patrons de conception (\textit{Design Patterns}) assurant l'extensibilité et la résilience du moteur face à l'hétérogénéité des écosystèmes clients.
+\end{itemize}
+
+\section*{Organisation du mémoire}
+
+Le présent mémoire est structuré en cinq chapitres qui retracent la démarche d'ingénierie adoptée :
+
+\begin{itemize}
+    \item Le \textbf{Chapitre~\ref{chap:cadre}} détaille le cadre de l'étude, en analysant l'écosystème d'Oxyl, le cycle de vie du consultant, les risques de dépendance technologique (\textit{vendor lock-in}) et la justification stratégique du couplage entre formation et automatisation.
+    \item Le \textbf{Chapitre~\ref{chap:quiz}} présente le premier volet consacré à la standardisation du capital humain, en détaillant l'architecture de la plateforme d'évaluation (Spring Core / Angular) et son rôle dans la maîtrise des fondamentaux d'ingénierie.
+    \item Le \textbf{Chapitre~\ref{chap:usine_ia}} aborde le second volet dédié au capital technique, à travers l'état de l'art sur l'industrialisation du SDLC par les agents autonomes, la théorie de l'abstraction logicielle et la gestion des contraintes opérationnelles (coûts et sécurité).
+    \item Le \textbf{Chapitre~\ref{chap:infra_agnostique}} décrit la mise en œuvre de l'infrastructure agnostique, détaillant les patrons de conception retenus, l'uniformisation des interfaces de programmation et les résultats expérimentaux obtenus.
+    \item Le \textbf{Chapitre~\ref{chap:analyse_critique}} propose une analyse critique et systémique du projet, mesurant les retours sur investissement, la réduction des dépendances propriétaires et les perspectives éthiques de l'IA appliquée au génie logiciel.
+    \item Enfin, la \textbf{Conclusion Générale} synthétisera les apports du projet et ouvrira sur l'évolution prospective du métier d'ingénieur logiciel.
+\end{itemize}
 
 \cleardoublepage
 
-\chapter{Présentation de l'entreprise}
+\chapter{Vers une industrialisation de la chaîne de valeur (Le cadre)}
+\label{chap:cadre}
 
-Moon-flower juice, craven pride and purpose, mulled wine suscipit mauris, gown
-trencher take the black risus. In convallis tellus a mauris. Milk of the poppy
-none so fierce. Work her will. Never resting arbor gold. Gallant hac lord of
-light. Baseborn facilisis diam at odio. Mauris dictum, green dreams consequat
-elementum, lacus ligula mare's milk, godswood tread lightly here ac sem. Donec
-turpis. Lamprey tourney crypt. Your grace lance eu mauris. Quisque gravida
-ipsum non fire. Beware our sting, scelerisque vitae, motley dagger, lobortis
-ac, chamber. Aliquam spiced wine risus. The seven let me soar. Etiam death
-before disgrace. Suspendisse odio. Gallant fleet. Our sun shines bright.
+\section{L'ESN comme \og usine \fg{} de talent et de code : Présentation d'Oxyl et du cycle de vie du consultant}
+\label{sec:usine_talent}
 
-None so dutiful sit amet, consectetur adipisicing dwarf, sed drink, your king
-commands it no song so sweet aliqua. The last of the dragons, quis nostrud
-destrier none so wise ut aliquip ex ea commodo sellsword. Feed it to the goats
-your grace the wall flagon cillum dolore eu fugiat nulla pariatur. Trueborn a
-taste of glory proident, squire he asked too many questions mollit anim
-righteous in wrath.
+Dans une économie numérique fortement concurrentielle et marquée par l'accélération technologique, le modèle traditionnel des Entreprises de Services du Numérique (ESN) est confronté à un impératif de transformation. Pour répondre aux exigences de rentabilité, de vélocité et d'excellence technique imposées par les donneurs d'ordre, \reportCompany{} a développé un modèle singulier assimilant l'entreprise à une véritable double \og usine \fg{} : d'une part une \og usine de talents \fg{}, chargée de recruter, former et standardiser les compétences d'ingénieurs à haut potentiel, et d'autre part une \og usine de code \fg{}, outillée pour industrialiser la production logicielle grâce aux architectures modernes et à l'automatisation agentique.
+
+\subsection{Présentation du Groupe Oxyl et positionnement stratégique}
+\label{subsec:presentation_oxyl}
+
+Fondée initialement en 1995 par Fabrice \textsc{Reby} et des élèves-ingénieurs de l'École Centrale de Lille sous le nom d'\textit{AlphaCSP}, l'entreprise s'est d'abord distinguée par son rôle de pionnière dans l'adoption industrielle des technologies Java/J2EE en France, en nouant des partenariats technologiques de premier plan avec des acteurs historiques tels qu'IBM, BEA Systems ou Borland. Précurseur également dans la diffusion des démarches agiles (notamment Scrum et eXtreme Programming) dès le début des années 2000, la société a fait évoluer sa structure et son identité pour devenir le \textbf{Groupe Oxyl} (Digital Makers).
+
+Aujourd'hui implanté à Arcueil en région parisienne, le groupe rassemble environ $200$~collaborateurs et a réalisé en 2024 un chiffre d'affaires consolidé de près de $20$~millions d'euros. Oxyl se positionne comme un cabinet de conseil en technologies et une ESN de niche à forte valeur ajoutée, axée sur la maîtrise approfondie du cycle de vie logiciel (\textit{Software Development Life Cycle} -- SDLC) : de la conception architecturale au déploiement continu en environnement Cloud, en passant par le développement et le maintien en condition opérationnelle (MCO).
+
+Sur le plan technique, Oxyl concentre son cœur de métier autour de deux écosystèmes majeurs et de leurs extensions industrielles :
+\begin{itemize}
+    \item \textbf{L'écosystème Java / JEE \& Spring :} architectures distribuées, microservices, optimisation des performances transactionnelles, mapping objet-relationnel et sécurité applicative ;
+    \item \textbf{L'écosystème JavaScript / TypeScript :} développement d'applications web réactives modernes (Angular, React, Vue.js, Node.js) ;
+    \item \textbf{L'ingénierie Cloud \& DevOps :} conteneurisation (Docker, Kubernetes), infrastructures as Code (Terraform, Ansible), pipelines CI/CD et services managés chez les principaux fournisseurs de Cloud public (Amazon Web Services, Microsoft Azure, Google Cloud Platform) ;
+    \item \textbf{L'intelligence artificielle et l'automatisation logicielle :} conception d'architectures agentiques, intégration de modèles de langage (LLM) dans les flux de développement et R\&D sur la résolution autonome de tickets.
+\end{itemize}
+
+Face aux grandes entreprises généralistes du secteur (telles que Capgemini, Sopra Steria ou Atos) et aux ESN de taille intermédiaire (comme Zenika ou Ippon Technologies), Oxyl fonde son avantage concurrentiel sur une triple différenciation :
+\begin{enumerate}
+    \item \textbf{Une hyper-spécialisation technique :} un positionnement volontairement ciblé sur un socle de technologies maîtrisées d'excellence, évitant la dispersion technologique ;
+    \item \textbf{Une excellence démontrable et certifiée :} la garantie pour les clients d'intégrer des ingénieurs dont le niveau théorique et pratique est validé et attesté par des certifications officielles dès le démarrage des missions ;
+    \item \textbf{Une agilité et une proximité opérationnelle :} la réactivité d'une structure à taille humaine alliée à un ancrage fort en région parisienne.
+\end{enumerate}
+
+Cette expertise s'exprime auprès d'un portefeuille de clients diversifiés, comprenant des grands comptes du secteur bancassurance et de la finance (Allianz Trade, BPCE - Casden, Société Générale, MyMoneyBank), des leaders de l'industrie et des services (Rexel, Lafarge, Eutelsat, JCDecaux, Vinci), ainsi que des éditeurs de logiciels et des startups technologiques (Finance Active, Wedia, PrimaSolutions, Hologarde, Wanaka).
+
+\subsection{Organisation structurelle et modèle d'entreprise libérée}
+\label{subsec:organisation_entreprise_liberee}
+
+Pour préserver l'agilité organisationnelle et stimuler l'engagement de ses collaborateurs, Oxyl s'est structurée autour des principes de l'\og entreprise libérée \fg{}. Ce paradigme managérial repose sur l'autonomie, la subsidiarité, la réduction des échelons hiérarchiques intermédiaires et la responsabilisation directe des ingénieurs dans les décisions techniques et la vie de l'entreprise.
+
+La culture d'Oxyl s'articule autour de trois valeurs cardinales :
+\begin{itemize}
+    \item \textbf{La Passion :} inspirée par la maxime de Confucius (\og \textit{Choisissez un travail que vous aimez et vous n'aurez pas à travailler un seul jour de votre vie} \fg{}), l'entreprise s'attache à recruter des profils sincèrement passionnés par l'ingénierie logicielle et l'innovation ;
+    \item \textbf{L'Excellence :} sur un marché exigeant, la qualité de prestation repose sur la rigueur technique, le respect des standards de conception (\textit{Clean Code}, patrons de conception) et une veille technologique continue ;
+    \item \textbf{Le Partage :} l'entraide mutuelle entre pairs, la transmission du savoir intergénérationnel et le partage de la valeur créée constituent le socle de la cohésion collective.
+\end{itemize}
+
+Sur le plan juridique et opérationnel, le groupe s'appuie sur une structure bicéphale synergique :
+\begin{itemize}
+    \item \textbf{Sylex (L'entité transverse de support) :} structure regroupant les fonctions centrales de l'entreprise (direction générale, administration des ventes, ressources humaines, gestion financière et comptable, prospection commerciale et logistique événementielle) ;
+    \item \textbf{Les entités Oxyl par promotion (Oxyl, Oxyl 16 à 23, Oxyl+) :} regroupement des consultants par promotion d'intégration, garantissant le maintien de cellules à échelle humaine afin de pérenniser les liens de confraternité et le sentiment d'appartenance.
+\end{itemize}
+
+La gouvernance opérationnelle s'organise autour d'une équipe de direction resserrée : M. Fabrice \textsc{Reby} (fondateur, apportant sa vision stratégique et son portefeuille commercial), Mme Selena \textsc{Hind-Woodward} (responsable du pôle administratif, RH, relations écoles et suivi des carrières), M. Georges \textsc{Coudray} (responsable du pôle commercial et du staffing des consultants), ainsi que M. Maxime \textsc{Bauer} (directeur technique, assurant l'encadrement technologique, la supervision des formations et le pilotage des projets internes de R\&D).
+
+\subsection{L'« usine de talents » : De la sélection à l'excellence certifiée}
+\label{subsec:usine_talents}
+
+Le concept d'\og usine de talents \fg{} résume la démarche hautement industrialisée et reproductible mise en place par Oxyl pour transformer des étudiants ingénieurs en consultants immédiatement opérationnels et armés face aux exigences les plus pointues de l'industrie.
+
+\subsubsection{Un processus de sélection ciblé et rigoureux}
+Le recrutement constitue le premier maillon de cette chaîne de valeur. Présente activement dans les grandes écoles d'ingénieurs à travers plus de $40$~conférences techniques annuelles, Oxyl attire chaque année plus de $2\,000$~candidatures. Le processus de sélection suit un entonnoir strict à plusieurs étapes :
+\begin{enumerate}
+    \item \textbf{Test technique initial en ligne (1 heure) :} évaluation des compétences fondamentales en algorithmique et en programmation (taux de sélection : environ $2$ candidats retenus sur $5$) ;
+    \item \textbf{Entretien de qualification culturelle :} échange téléphonique mené par un collaborateur pour évaluer la passion du candidat, sa curiosité et son adéquation aux valeurs humaines de l'entreprise (taux d'élimination : environ $30\,\%$) ;
+    \item \textbf{Test pratique de développement (1 heure) \& Débriefing technique :} réalisation d'un développement concret sur la base d'un mini cahier des charges, suivi d'une soutenance technique avec un référent pour analyser la démarche d'ingénierie et le raisonnement adopté ;
+    \item \textbf{Entretien de synthèse managérial :} validation finale de l'embauche en stage de fin d'études avec les managers du groupe.
+\end{enumerate}
+Au terme de ce filtre, environ $40$~stagiaires sont intégrés chaque année, répartis en promotions régulières selon leur date d'arrivée. J'ai pour ma part intégré la promotion d'\textbf{avril 2026}. Afin de faciliter l'accueil et l'installation en région parisienne des élèves-ingénieurs issus d'écoles régionales (à l'instar de TELECOM Nancy), Oxyl propose un parc d'appartements en colocation situés à proximité du siège, accélérant ainsi la cohésion d'équipe dès les premiers jours.
+
+\subsubsection{Le parcours de formation initiale standardisé}
+Durant les trois premiers mois du stage, l'ensemble des recrues suit un programme de formation intensive conçu pour homogénéiser le niveau technique et bâtir des réflexes d'ingénierie irréprochables. Ce parcours s'articule autour de deux composantes majeures :
+
+\paragraph{1. La validation par les certifications officielles :}
+Loin d'un simple apprentissage déclaratif, Oxyl impose la validation de certifications industrielles reconnues internationalement, faisant office de tiers de confiance indiscutable pour les clients :
+\begin{itemize}
+    \item \textit{Oracle Certified Associate (OCA) Java SE 8 Programmer I :} maîtrise rigoureuse des mécanismes fondamentaux du langage (cycle de vie, typage, modélisation objet, gestion des exceptions) ;
+    \item \textit{Oracle Certified Professional (OCP) Java SE 21 Developer :} assimilation poussée des paradigmes avancés (programmation fonctionnelle, Streams, concurrence, I/O non bloquantes, modules JPMS) ;
+    \item \textit{AWS Certified Cloud Practitioner :} acquisition des bases de l'architecture Cloud, des modèles de sécurité partagée et des services managés d'Amazon Web Services.
+\end{itemize}
+Cette préparation s'appuie sur la plateforme interne \textbf{MyNeuroFactory} (entraînement quotidien de $1$~heure le matin et examens blancs surveillés chaque vendredi après-midi).
+
+\paragraph{2. Le projet fil rouge « NewroFactory » (L'apprentissage par l'épreuve) :}
+En parallèle de l'étude théorique, chaque stagiaire doit redévelopper en autonomie une version complète de l'application de formation. Découpé en $8$~sprints itératifs, le projet force l'ingénieur à concevoir l'application d'abord en code bas niveau natif (CLI en Java pur, Servlets, JDBC), pour lui faire ressentir concrètement les limitations architecturales avant d'introduire successivement les couches d'abstraction industrielles (pools HikariCP, inversion de contrôle avec Spring Core, MVC, programmation orientée aspect -- AOP, ORM Hibernate/JPA, Spring Security, puis exposition en API RESTful et interface front-end). Chaque sprint est validé lors d'une revue de code (\textit{code review}) collective et intransigeante menée par la direction technique, où le respect des principes de \textit{Clean Code} (SOLID, DRY, KISS, YAGNI) est systématiquement audité.
+
+\subsection{Le cycle de vie du collaborateur et la dynamique d'apprentissage continu}
+\label{subsec:cycle_de_vie_formation_continue}
+
+À l'issue de cette phase d'accélération initiale de trois mois, le modèle d'Oxyl oriente les consultants vers deux trajectoires opérationnelles complémentaires selon les besoins stratégiques :
+\begin{itemize}
+    \item \textbf{Le parcours « Padawan » en immersion client :} l'ingénieur est introduit en régie chez un client de l'ESN, sous le tutorat bienveillant d'un consultant senior d'Oxyl (le \og Jedi \fg{}). Ce dispositif, proposé sans refacturation additionnelle durant le stage, garantit une intégration sereine dans des écosystèmes industriels complexes et sécurise l'embauche en CDI à l'issue du cursus.
+    \item \textbf{Le parcours R\&D et Projets Internes :} l'ingénieur rejoint l'équipe interne de développement d'Oxyl, dédiée à la conception de solutions innovantes et d'outils d'assistance logicielle (tels que l'extension \textit{OxaPocket} ou l'\textit{Usine Logicielle} agentique). Ce pôle constitue un véritable banc d'essai pour tester les ruptures technologiques et sert de vitrine de savoir-faire pour l'entreprise.
+\end{itemize}
+
+Ce cycle de vie professionnel est entretenu tout au long de la carrière du collaborateur par des dispositifs pérennes d'intelligence collective :
+\begin{itemize}
+    \item \textbf{Les TechNights mensuelles :} conférences internes organisées le jeudi soir au siège, où les consultants en mission présentent des retours d'expérience (REX) ou explorent de nouveaux paradigmes (ex. Rust, Kotlin, Claude Code, architectures agentiques) ;
+    \item \textbf{Les Café Tech :} ateliers réguliers de veille technique en binômes ;
+    \item \textbf{Le portail de veille collective :} base de connaissances collaborative permettant de solliciter les experts internes et de capitaliser sur les solutions éprouvées en mission.
+\end{itemize}
+
+En instaurant cette rigueur méthodologique dès l'intégration, Oxyl standardise son capital humain. Cette première étape est la condition indispensable pour aborder le second volet de sa chaîne de valeur : l'industrialisation du capital technique et la mise en place d'une \og usine de code \fg{} automatisée par l'intelligence artificielle.
+
+\section{Problématique double : Analyse de la dépendance technologique (vendor lock-in) et de la fragilité du socle de compétences}
+\label{sec:problematique_double}
+
+L'ambition d'Oxyl d'articuler son modèle autour d'une double \og usine \fg{} (de talents et de code) s'inscrit au cœur d'une tension structurelle du secteur informatique. D'un côté, le capital humain fait face à une érosion de la maîtrise des couches basses de l'ingénierie logicielle ; de l'autre, le capital technique est exposé à un risque critique d'enfermement propriétaire face à l'avènement des modèles d'intelligence artificielle générative. La pérennité et la compétitivité de l'entreprise reposent ainsi sur la résolution conjointe de cette double problématique.
+
+\subsection{La fragilité du socle de compétences : du développeur de surface à l'auditeur critique}
+\label{subsec:fragilite_competences}
+
+Un paradoxe frappant caractérise la formation contemporaine des jeunes diplômés en informatique : alors qu'ils sont initiés très tôt à des frameworks modernes de haut niveau, une proportion significative d'élèves-ingénieurs intègre le monde professionnel avec une compréhension purement superficielle et strictement utilitaire des concepts. Trop souvent, l'apprentissage privilégie l'usage magique des abstractions (annotations, bibliothèques prêtes à l'emploi) au détriment d'une compréhension intime de ce qui s'exécute \og sous le capot \fg{} (gestion de la mémoire JVM, cycle de vie des objets, mécanismes transactionnels, concurrence non-bloquante ou requêtage SQL natif).
+
+Cette dérive cognitive est aujourd'hui amplifiée par l'omniprésence des assistants de programmation génératifs (tels que GitHub Copilot ou ChatGPT). En générant instantanément des blocs de code fonctionnels en apparence, ces outils installent une illusion de compétence qui masque les lacunes structurelles. L'ingénieur devient alors un simple assembleur de composants qu'il ne maîtrise pas, s'exposant à des risques majeurs :
+\begin{itemize}
+    \item \textbf{L'introduction de failles invisibles et insidieuses :} des anomalies architecturales, des vulnérabilités de sécurité ou des fuites de ressources qui échappent aux tests unitaires de surface et ne se manifestent qu'en production sous forte charge ou lors d'attaques ciblées ;
+    \item \textbf{L'incapacité à maintenir et faire évoluer des systèmes patrimoniaux (\textit{legacy}) :} chez les clients grands comptes, les consultants d'Oxyl sont fréquemment confrontés à des architectures hétérogènes, parfois anciennes ou atypiques. L'adaptation rapide à ces contextes exige une solide culture des concepts fondamentaux pour comprendre rapidement les contraintes sous-jacentes et intervenir avec pertinence ;
+    \item \textbf{L'incapacité à auditer le code produit par des tiers ou des agents :} un développeur ne possédant qu'une compréhension moyenne ne peut identifier les erreurs subtiles d'implémentation.
+\end{itemize}
+
+Face à ce constat, l'obligation d'un apprentissage \textit{from scratch} (de la programmation système et JDBC brut jusqu'aux architectures d'entreprise) s'impose comme une nécessité absolue pour forger des ingénieurs capables d'appréhender les moindres détails techniques et d'exercer un regard critique intransigeant.
+
+\subsection{Le risque d'enfermement technologique (\textit{vendor lock-in}) : l'impératif d'une usine logicielle agnostique}
+\label{subsec:risque_vendor_lock_in}
+
+Parallèlement à la qualification du capital humain, l'automatisation de la chaîne de production logicielle par l'intelligence artificielle soulève un défi d'indépendance technologique sans précédent. L'intégration précipitée d'outils d'IA fermés au sein du cycle de développement (SDLC) expose les organisations à un triple risque de verrouillage :
+\begin{enumerate}
+    \item \textbf{L'hétérogénéité des environnements clients :} Oxyl intervient auprès d'une multiplicité de donneurs d'ordre, chacun imposant ses propres contraintes de sécurité, ses choix d'infrastructure (Cloud souverain, environnements \textit{on-premise}, conteneurisation privée) et ses stacks logicielles. Une usine de code interne ne peut être viable que si elle est capable de s'adapter dynamiquement à ces variables sans exiger une refonte de son architecture ;
+    \item \textbf{La volatilité économique et l'instabilité des API :} le modèle économique des fournisseurs de LLMs (OpenAI, Anthropic, Google, etc.) repose sur une tarification au jeton (\textit{token}) sujette à de fortes variations. Coupler rigidement une usine logicielle à une interface propriétaire exposerait l'entreprise à une dépendance financière et opérationnelle intenable ;
+    \item \textbf{La concurrence permanente entre modèles de langage :} l'état de l'art des modèles d'IA évolue à un rythme hebdomadaire. Un fournisseur surpassant les références du marché aujourd'hui peut être déclassé le mois suivant par un modèle concurrent ou une solution \textit{open-source} spécialisée (ex. DeepSeek, Llama). Pour maintenir un avantage concurrentiel maximal, l'usine logicielle doit pouvoir substituer son moteur d'inférence sous-jacent de manière totalement transparente.
+\end{enumerate}
+
+L'enjeu architectural consiste donc à concevoir une plateforme agentique rigoureusement agnostique, découplée des API tierces par des patrons d'abstraction formels, garantissant une flexibilité totale face aux évolutions du marché.
+
+\subsection{La synergie dialectique : redéfinir la valeur de l'ingénieur à l'ère agentique}
+\label{subsec:synergie_dialectique}
+
+Loin de constituer deux démarches isolées, la standardisation du capital humain (Volet 1) et l'industrialisation du capital technique (Volet 2) entretiennent une relation d'interdépendance fondamentale. 
+
+À mesure que les usines logicielles agentiques automatisent la génération de code standard et résolvent des tâches répétitives, la valeur intrinsèque de l'ingénieur se déplace radicalement :
+\begin{quote}
+    \itshape
+    Un ingénieur doté de compétences simplement moyennes n'apporte pas plus de valeur qu'une usine logicielle automatisée. À l'ère de l'intelligence artificielle, la valeur ajoutée humaine se concentre exclusivement sur les deux extrêmes du spectre d'ingénierie : l'analyse microscopique des détails d'implémentation et la vision macroscopique de l'architecture.
+\end{quote}
+
+D'une part, au niveau \textbf{microscopique}, l'ingénieur devient un relecteur de code (\textit{code reviewer}) d'élite. Il doit être doté d'une acuité technique suffisamment pointue pour détecter ce que l'IA a laissé passer : failles de concurrence, fuites de mémoire sournoises, inefficacités algorithmiques ou non-respect des standards d'entreprise. 
+
+D'autre part, au niveau \textbf{macroscopique}, l'ingénieur intervient comme le garant de la cohérence métier et architecturale. C'est à lui qu'incombe la responsabilité d'aligner le système sur les besoins complexes du domaine, d'arbitrer les compromis de conception globaux et de diriger les agents autonomes. Cette capacité de discernement global, indissociable de l'expérience et d'une solide culture d'ingénierie, constitue le rempart ultime contre les dérives fonctionnelles des systèmes automatisés.
+
+La double problématique d'Oxyl réside ainsi dans la construction d'un équilibre vertueux : forger des ingénieurs d'excellence capables de dominer intellectuellement les outils qu'ils utilisent, tout en concevant une usine logicielle résiliente et souveraine capable de démultiplier leur efficacité.
+
+\section{La stratégie d'ingénierie : Justification de la synergie entre formation continue et automatisation agentique}
+\label{sec:strategie_ingenierie}
+
+Loin de constituer deux initiatives déconnectées, la standardisation du capital humain (Volet 1) et l'industrialisation du capital technique (Volet 2) forment le cœur d'une stratégie d'ingénierie intégrée chez Oxyl. Face aux mutations profondes induites par l'intelligence artificielle générative dans l'industrie logicielle, cette stratégie répond à un impératif double : préparer l'entreprise aux futures pratiques du marché tout en garantissant un niveau de qualité irréprochable face aux exigences de ses clients grands comptes.
+
+\subsection{Anticipation du marché : les projets internes comme banc d'essai industriel}
+\label{subsec:anticipation_marche}
+
+Le marché de la prestation de services numériques traverse une phase de transition asymétrique. D'un côté, les modèles d'intelligence artificielle agentique démontrent un potentiel de rupture pour le cycle de développement logiciel (SDLC) ; de l'autre, les grands comptes institutionnels (notamment dans la bancassurance et l'industrie) manifestent une frilosité légitime vis-à-vis de l'intégration directe de solutions d'IA au sein de leurs dépôts de code de production, freinés par des contraintes de confidentialité, de sécurité et de conformité réglementaire.
+
+Dans ce contexte, la maîtrise de l'outillage IA constitue d'ores et déjà un facteur différenciant pour valoriser le profil des consultants en mission. Néanmoins, pour ne pas subir passivement les évolutions technologiques, Oxyl a fait le choix stratégique d'utiliser son pôle de R\&D et ses projets internes comme banc d'essai pour son usine logicielle agentique. Cette démarche proactive permet à l'entreprise d'éprouver, d'optimiser et de fiabiliser ses outils d'automatisation en conditions réelles, afin d'être immédiatement opérationnelle et force de proposition dès que les organisations avant-gardistes ouvriront leurs infrastructures à ces nouveaux paradigmes.
+
+Par ailleurs, l'IA ne se limite pas à un outil de génération : elle agit comme un accélérateur cognitif majeur au service de la formation continue des ingénieurs, facilitant l'assimilation rapide de nouvelles stacks techniques et amplifiant la dynamique d'apprentissage.
+
+\subsection{La transmission du savoir-faire : de l'expertise humaine aux garde-fous de l'usine}
+\label{subsec:transmission_savoir_faire}
+
+L'ordonnancement chronologique du stage — débutant par trois mois d'immersion technique intensive \textit{from scratch} sur \textit{NewroFactory} avant d'aborder les briques de l'usine logicielle — découle d'une nécessité technique fondamentale : un ingénieur ne peut piloter, auditer ou contraindre une chaîne de génération automatique sur des aspects qu'il ne maîtrise pas lui-même en profondeur.
+
+Ce que le développeur assimile durant sa formation (règles de \textit{Clean Code}, architecture en couches, gestion fine des transactions et patrons de conception) constitue la matière première injectée dans l'usine logicielle :
+\begin{itemize}
+    \item \textbf{Le cadrage comportemental par les \textit{system prompts} :} l'expertise de l'ingénieur permet de formaliser les directives, les rôles spécialisés (\textit{personas}) et les contraintes de conception imposés aux agents lors des phases de planification et de rédaction ;
+    \item \textbf{L'outillage de validation déterministe :} la rigueur méthodologique acquise permet de concevoir des scripts d'évaluation stricts (compilation rigoureuse, tests unitaires et d'intégration, analyse statique via SonarQube, vérification de types) servant de portes de qualité (\textit{quality gates}) incontournables avant toute proposition de modification.
+\end{itemize}
+
+À mesure que l'usine gagne en maturité et produit un code de plus en plus fiable, le temps consacré aux revues de code triviales diminue. Ce gain de productivité libère une charge cognitive précieuse, permettant à l'ingénieur d'élever sa posture professionnelle : il consacre désormais l'essentiel de son temps à la réflexion architecturale, à la modélisation du domaine métier et à la supervision stratégique des comportements de l'usine.
+
+\subsection{Agnosticité et réassurance client : la garantie d'une ingénierie mature}
+\label{subsec:agnosticite_reassurance}
+
+Face aux réticences des directions informatiques clientes, la stratégie d'Oxyl repose sur un contrat de confiance fondé sur l'excellence démontrable de ses ingénieurs. Un consultant doté d'une solide discipline technique n'acceptera jamais qu'une chaîne automatisée produise des livrables inférieurs aux standards industriels en vigueur. L'exigence du capital humain sert ainsi de caution morale et technique à la production du capital automatisé.
+
+Enfin, le choix d'une architecture résolument agnostique — découplée des fournisseurs de modèles de langage (LLMs) et des forges logicielles (GitLab, GitHub, Bitbucket) — constitue un marqueur d'ingénierie décisif. En génie logiciel, la capacité à généraliser et abstraire un processus n'intervient qu'après la preuve de son plein fonctionnement opérationnel. Démontrer une indépendance technologique totale prouve que l'usine logicielle dépasse le stade du prototype expérimental pour atteindre celui de produit industriel robuste. Ce découplage facilite l'adoption future chez les clients en leur permettant d'intégrer l'usine directement au sein de leur propre écosystème d'outils, sans friction ni remise en cause de leurs standards établis.
+
+\bigskip
+Ce rapport s'articule ainsi autour de la concrétisation de cette stratégie d'ingénierie à double détente :
+\begin{itemize}
+    \item Le \textbf{Chapitre~\ref{chap:quiz}} détaille la standardisation du capital humain à travers la conception et le développement de la plateforme de formation \textit{NewroFactory} (Volet~1) ;
+    \item Les \textbf{Chapitres~\ref{chap:usine_ia}} et~\textbf{\ref{chap:infra_agnostique}} explorent l'industrialisation du capital technique, depuis l'état de l'art agentique jusqu'à la mise en œuvre de l'infrastructure logicielle agnostique (Volet~2) ;
+    \item Enfin, le \textbf{Chapitre~\ref{chap:analyse_critique}} propose une analyse critique systémique de cette synergie, mesurant ses retombées industrielles, ses gains de productivité et ses limites éthiques.
+\end{itemize}
 
 \cleardoublepage
 
-\chapter{Exemples Listings}
+\chapter{La standardisation du capital humain (Volet 1 - Le Quiz)}
+\label{chap:quiz}
 
-Il est aisé d'insérer du code dans un rapport. Il suffit de définir le langage, la légende à afficher et enfin un Label pour pouvoir y faire référence. Le résultat est donnée dans le listing \ref{lst:premierExemple}. Il est également possible de changer les couleurs, pour cela il faut éditer le lstset dans la classe tnreport.cls.
+\section{Analyse des besoins en montée en compétences : Le rôle du socle Java/JEE dans la qualité logicielle}
+\label{sec:analyse_besoins}
 
-\begin{lstlisting}[language=c++, caption={Premier Exemple}, label={lst:premierExemple}]
-void CEquation::IniParser()
-{
-	if (!pP){ //if not already initialized...
-		pP = new mu::Parser;
+La standardisation du capital humain au sein d'une Entreprise de Services du Numérique (ESN) repose sur une adéquation stricte entre la maîtrise des fondamentaux théoriques et les exigences opérationnelles des clients. Cette section explicite les facteurs de marché et les impératifs d'ingénierie ayant conduit à la définition du socle Java/JEE, détaille les limites de l'outillage existant et formalise le cahier des charges fonctionnel de la plateforme \textit{NewroFactory}.
 
-		pP->DefineOprt("%", CEquation::Mod, 6); //deprecated
-		pP->DefineFun("mod", &CEquation::Mod, false);
-		pP->DefineOprt("&", AND, 1); //DEPRECATED
-		pP->DefineOprt("and", AND, 1);
-		pP->DefineOprt("|", OR, 1); //DEPRECATED
-		pP->DefineOprt("or", OR, 1);
-		pP->DefineOprt("xor", XOR, 1);
-		pP->DefineInfixOprt("!", NOT);
-		pP->DefineFun("floor", &CEquation::Floor, false);
-		pP->DefineFun("ceil", &CEquation::Ceil, false);
-		pP->DefineFun("abs", &CEquation::Abs, false);
-		pP->DefineFun("rand", &CEquation::Rand, false);
-		pP->DefineFun("tex", &CEquation::Tex, false);
+\subsection{Évolution du marché et impératif de certification industrielle}
+\label{subsec:evolution_marche_certifications}
 
-		pP->DefineVar("x", &XVar);
-		pP->DefineVar("y", &YVar);
-		pP->DefineVar("z", &ZVar);
-	}
+Dans les premières phases d'expansion du secteur du numérique, la tension extrême sur le marché du recrutement conduisait les entreprises à embaucher des profils d'ingénieurs et de développeurs sans exiger de garanties formelles préalables. L'accès rapide aux projets primait sur la vérification systématique et objective des acquis techniques.
+
+Aujourd'hui, le niveau d'exigence des donneurs d'ordre s'est considérablement accru. Les clients attendent des ESN des garanties tangibles sur la qualification de leurs consultants afin de sécuriser des projets d'envergure, soumis à de fortes contraintes de maintenabilité et de scalabilité. Pour répondre à cette exigence de réassurance, Oxyl a instauré un passage obligatoire de certifications industrielles reconnues dès la phase d'intégration des nouveaux collaborateurs :
+\begin{itemize}
+    \item \textbf{Oracle Certified Associate (OCA) \& Oracle Certified Professional (OCP) Java SE :} validation formelle de la maîtrise approfondie du langage Java, de sa syntaxe, de la gestion mémoire, du modèle de concurrence et des patrons de conception objet ;
+    \item \textbf{AWS Certified Cloud Practitioner :} certification attestant de la compréhension des architectures distribuées, des services cloud fondamentaux, de la sécurité et des modèles de déploiement industriels.
+\end{itemize}
+
+L'obtention de ces certifications ne constitue pas un simple label commercial, mais un jalon garantissant qu'un socle d'excellence homogène est partagé par l'ensemble des consultants avant leur projection en mission.
+
+\subsection{Le socle Java et la programmation orientée objet comme vecteurs de qualité}
+\label{subsec:role_socle_java_poo}
+
+Le choix d'asseoir la formation initiale sur l'écosystème Java/JEE répond à des critères d'ingénierie logicielle rigoureux :
+\begin{enumerate}
+    \item \textbf{Rigueur et expressivité de la Programmation Orientée Objet (POO) :} En tant que langage fortement typé et orienté objet, Java impose une discipline de modélisation stricte. Ses mécanismes fondamentaux (encapsulation, polymorphisme, héritage, interfaces, généricité) permettent de transcrire fidèlement les règles et les relations des domaines métiers complexes. Cette fidélité de modélisation est indispensable à la conception d'architectures web robustes et modulaires ;
+    \item \textbf{Gestion avancée de la concurrence et du cycle de vie :} La maîtrise des particularités fines de la JVM (mécanismes du \textit{Garbage Collector}, collections thread-safe, flux réactifs) est essentielle pour concevoir des applications résilientes sous forte charge et prévenir les régressions de performance ;
+    \item \textbf{Base fondamentale pour l'écosystème d'entreprise :} La maîtrise du langage sous-jacent (Java SE) constitue le prérequis indispensable pour appréhender avec discernement les frameworks d'entreprise tels que Spring Boot, Spring Security et Hibernate, évitant ainsi le piège du « développement par copier-coller » ou l'usage magique d'annotations sans compréhension des mécanismes sous-jacents.
+\end{enumerate}
+
+\subsection{Limites de l'outillage existant et identification des besoins}
+\label{subsec:limites_outillage_besoins}
+
+Bien qu'un outil interne d'entraînement aux certifications ait été utilisé par le passé au sein d'Oxyl, les retours d'expérience ont mis en lumière plusieurs lacunes structurelles :
+\begin{itemize}
+    \item \textbf{Carence d'analyses et de métriques granulaires :} Les versions précédentes ne proposaient qu'un score brut en fin de série, sans capacité de décomposer les résultats par domaine de connaissances. Les stagiaires ne disposaient d'aucune visibilité quantifiée sur leurs points faibles spécifiques au sein d'un même programme d'examen ;
+    \item \textbf{Absence de suivi pédagogique centralisé :} Les tuteurs et encadrants ne disposaient pas d'une vue d'ensemble consolidée pour évaluer la trajectoire de montée en compétences d'une promotion entière ni pour adapter leur accompagnement aux difficultés récurrentes ;
+    \item \textbf{Manque d'interactivité et d'outils d'approfondissement :} En mode entraînement, la découverte d'une erreur n'était pas couplée à des mécanismes d'exploration complémentaires permettant à l'apprenant de creuser la notion théorique au-delà du corrigé statique.
+\end{itemize}
+
+\subsection{Cahier des charges fonctionnel et innovations de la plateforme}
+\label{subsec:cahier_des_charges_fonctionnel}
+
+Pour combler ces lacunes, le cahier des charges de \textit{NewroFactory} s'est articulé autour de deux axes majeurs : l'autonomie analytique de l'apprenant et le pilotage fin par l'encadrement.
+
+\subsubsection{Besoins apprenants : Visualisation analytique et synergie avec les LLM}
+Pour maximiser l'efficacité de l'entraînement, la plateforme devait intégrer :
+\begin{itemize}
+    \item \textbf{Un tableau de bord de diagnostic des compétences :} Présentation claire et hiérarchisée des pourcentages de réussite par chapitre et par série, complétée par le taux de complétion des questions disponibles par notion. Cette double métrique permet au stagiaire d'identifier immédiatement les chapitres sous-travaillés ou mal assimilés ;
+    \item \textbf{Deux modes d'entraînement complémentaires :} Un mode \textit{Entraînement} interactif (feedback immédiat et explications détaillées pour chaque proposition) et un mode \textit{Examen blanc} (chronométré, tirage étanche, conditions réelles) ;
+    \item \textbf{Export structuré JSON pour approfondissement via LLM :} Innovation clé développée sur la plateforme, l'interface de correction en mode entraînement propose un bouton d'exportation instantané au format JSON. Ce bouton copie dans le presse-papier l'intégralité du contexte de la question (énoncé, code snippet, propositions, statut de validation, explications). L'apprenant peut ainsi soumettre directement ces métadonnées à un grand modèle de langage (LLM) afin d'obtenir des explications interactives, des contre-exemples ou des variantes pédagogiques sur la notion précise abordée.
+\end{itemize}
+
+\subsubsection{Besoins encadrants : Gouvernance et assignation ciblée}
+Du côté de l'administration et du tutorat technique, les exigences comprenaient :
+\begin{itemize}
+    \item \textbf{Gestion des identités et des rôles :} Distinction stricte entre les profils stagiaires et formateurs/administrateurs ;
+    \item \textbf{Supervision globale des promotions :} Tableau de bord analytique transverse offrant aux tuteurs une visibilité sur les statistiques agrégées et individuelles de l'ensemble des stagiaires ;
+    \item \textbf{Création et assignation de séries personnalisées :} Capacité pour l'encadrant de composer des séries d'évaluation sur-mesure et de les assigner directement au tableau de bord de stagiaires ciblés pour remédier à des lacunes précises ;
+    \item \textbf{Administration dynamique du référentiel pédagogique :} Outils complets de gestion (CRUD) des chapitres hiérarchiques, des questions, des propositions et de leurs explications associées.
+\end{itemize}
+
+\subsection{Objectifs d'ingénierie et exigences implicites}
+\label{subsec:objectifs_contraintes}
+
+Le projet s'est vu confier une consigne fondatrice : \textbf{convaincre les parties prenantes et les équipes commerciales} de la pertinence de la solution en démontrant qu'elle répondait avec excellence aux standards industriels actuels.
+
+Cette orientation imposait de facto des contraintes de réalisation implicites mais déterminantes :
+\begin{itemize}
+    \item \textbf{Excellence ergonomique et design moderne :} Concevoir une interface soignée, responsive et intuitive (développée sous Angular), surpassant les outils internes traditionnels pour susciter une adhésion immédiate des utilisateurs ;
+    \item \textbf{Robustesse et performance logicielle :} Assurer une réactivité instantanée des interactions et garantir l'étanchéité des sessions d'examen via une architecture backend Spring Core/Boot découplée ;
+    \item \textbf{Sécurité et intégrité :} Mettre en œuvre une gestion robuste des sessions et des droits d'accès pour préserver la confidentialité des évaluations et l'intégrité des données d'examen.
+\end{itemize}
+
+\section{Ingénierie de la plateforme : Conception d'un système de contrôle qualité des connaissances}
+\label{sec:conception_systeme}
+
+Pour concrétiser la politique d'excellence technique d'Oxyl et standardiser le capital humain, nous avons conçu et développé \textit{NewroFactory}, une plateforme web sur-mesure d'évaluation et de validation des compétences. Ce système vise un double objectif pédagogique et opérationnel : offrir aux apprenants un environnement d'auto-évaluation interactif aligné sur les référentiels officiels de l'industrie (tels qu'Oracle Java SE OCP et AWS Cloud Practitioner), tout en fournissant aux encadrants techniques un instrument de mesure quantitatif et objectif de la progression des stagiaires.
+
+\subsection{Modélisation du domaine et structuration arborescente des connaissances}
+\label{subsec:modelisation_domaine}
+
+La première exigence d'ingénierie a consisté à concevoir un modèle de données capable d'épouser fidèlement la granularité des référentiels pédagogiques officiels sans introduire de rigidité structurelle.
+
+\subsubsection{Hiérarchisation des chapitres par chemin matérialisé (\textit{Materialized Path})}
+Les programmes d'examens professionnels s'organisent selon une hiérarchie stricte en modules, chapitres et sous-notions (par exemple : \textit{Java Concurrency} $\rightarrow$ \textit{Thread-Safe Collections} $\rightarrow$ \textit{ConcurrentHashMap}). Pour représenter cette arborescence parent-enfant en base de données relationnelle sans subir les limites de performance des requêtes récursives profondes (\textit{Common Table Expressions} ou jointures récursives multiples), nous avons mis en œuvre le patron de conception par \textbf{chemin matérialisé} (\textit{Materialized Path}).
+
+Dans l'entité \texttt{ChapterEntity}, chaque nœud stocke explicitement la chaîne hiérarchique de ses ascendants dans un champ \texttt{parentPath} (ex. \texttt{"/1/4/"}) :
+
+\begin{lstlisting}[language=java, caption={Modélisation de l'entité ChapterEntity avec chemin matérialisé et suppression logique}, label={lst:chapterEntity}]
+@Entity
+@Table(name = "chapter", uniqueConstraints = @UniqueConstraint(columnNames = {"name", "parent_path"}))
+@SoftDelete(columnName = "is_deleted")
+public class ChapterEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @Column(name = "parent_path")
+    private String parentPath;
+
+    @Formula("is_deleted")
+    private Boolean isDeleted;
+
+    // Getters, Setters et methodes metier
 }
 \end{lstlisting}
-\clearpage
-Il est également possible d'afficher du code directement depuis un fichier source, le résultat de cette opération est visible dans le listing \ref{lst:fromSrc}
-\lstinputlisting[language=c++,caption={Affichage depuis le fichier source},label={lst:fromSrc}]{figures/sourceCode.cpp}
 
-De nombreux languages sont supportés : \\
-ABAP2,4, ACSL, Ada4, Algol4, Ant, Assembler2,4, Awk4, bash, Basic2,4, C\#5, C++4, C4, Caml4, Clean, Cobol4, Comal, csh, Delphi, Eiffel, Elan, erlang, Euphoria, Fortran4, GCL, Gnuplot, Haskell, HTML, IDL4, inform, Java4, JVMIS, ksh, Lisp4, Logo, Lua2, make4, Mathematica1,4, Matlab, Mercury, MetaPost, Miranda, Mizar, ML, Modelica3, Modula-2, MuPAD, NASTRAN, Oberon-2, Objective C5 , OCL4, Octave, Oz, Pascal4, Perl, PHP, PL/I, Plasm, POV, Prolog, Promela, Python, R, Reduce, Rexx, RSL, Ruby, S4, SAS, Scilab, sh, SHELXL, Simula4, SQL, tcl4, TeX4, VBScript, Verilog, VHDL4, VRML4, XML, XSLT.
-\clearpage
-Il est néanmoins possible de définir le sien, il faudra alors ajouter dans la classe tnreport.cls du code ressemblant au listing \ref{lst:defLang}. On y définit les différents mots-clés, ainsi que les délimiteurs des chaînes de caractère et des commentaires.
-\begin{lstlisting}[language=Tex, caption={Syntaxe définition d'un langage}, label={lst:defLang}]
-\lstdefinelanguage{amf}
-{keywords=
-  {
-    xml,
-    amf,
-    volume,
-    material,
-    coordinates,
-    vertices,
-    vertex,
-    triangle,
-    x,
-    y,
-    z,
-    v1,
-    v2,
-    v3,
-    mesh,
-    object,
-    constellation,
-    metadata,
-    color,
-    texmap,
-    texture,
-    utex1,
-    utex2,
-    utex3,
-    instance,
-    deltax,
-    deltay,
-    deltaz,
-    r,
-    g,
-    b,
-    rx,
-    ry,
-    rz,
-    composite
-  },
-  sensitive=false,
-  morestring=[b]",
-  comment=[s]{<!--}{-->}
+Cette modélisation permet d'effectuer des opérations ensemblistes hautement performantes :
+\begin{itemize}
+    \item L'extraction de l'ensemble des sous-chapitres descendants d'un nœud s'effectue par un simple filtre de préfixe SQL (\code{parent_path LIKE '/1/4/%'}) ;
+    \item L'agrégation et le décompte global des questions rattachées à un module complet et à l'ensemble de ses sous-arborescences s'exécutent en une unique passe indexée (\code{countQuestionsByChapterIdsAndChildren}) ;
+    \item L'intégrité de l'arbre est protégée par une contrainte d'unicité composite sur \texttt{(name, parent\_path)} et par la mise en œuvre du mécanisme de suppression logique (\textit{Soft Delete}) via l'annotation Hibernate \code{@SoftDelete}.
+\end{itemize}
+
+\subsubsection{Modélisation des questions et étanchéité des examens blancs}
+Les questions sont modélisées sous forme de Questionnaires à Choix Multiples (QCM) sans pénalité de points négatifs, conformes aux modalités réelles des certifications Oracle et AWS. Chaque question est rattachée à un chapitre spécifique et comporte un ensemble de propositions dont une ou plusieurs peuvent être valides.
+
+Un enjeu méthodologique central résidait dans l'évitement du biais de mémorisation passive. Si les stagiaires s'entraînent quotidiennement sur l'ensemble de la base de questions, les examens blancs hebdomadaires du vendredi perdent leur valeur diagnostique. Pour garantir une étanchéité stricte :
+\begin{enumerate}
+    \item Les questions réservées aux examens officiels sont isolées dans un chapitre racine dédié (\textit{Examen Blanc}) ;
+    \item Les sessions d'entraînement permettent au stagiaire de sélectionner librement le chapitre cible ainsi que le volume de questions souhaité, lesquelles sont alors sélectionnées aléatoirement au sein du vivier d'entraînement ;
+    \item Les examens blancs imposent un gabarit rigoureusement identique aux conditions réelles de passage (même volumétrie intégrale et tirage exclusif parmi les questions étanches).
+\end{enumerate}
+
+\subsubsection{Modes d'évaluation : Entraînement vs Examen}
+La plateforme intègre deux modes d'évaluation distincts :
+\begin{itemize}
+    \item \textbf{Le mode Entraînement (formatif) :} favorise l'apprentissage itératif en fournissant une correction immédiate dès la validation de chaque question, accompagnée d'une explication technique détaillée justifiant pourquoi les alternatives erronées ont été écartées ;
+    \item \textbf{Le mode Examen (sommatif) :} simule l'épreuve officielle. Aucun feedback ni indice n'est retourné pendant le déroulement de la série. Le stagiaire ne découvre son score global qu'à l'issue de la soumission définitive, sans affichage des explications par question afin d'éviter toute fixation de réponses lors des sessions ultérieures.
+\end{itemize}
+
+\subsection{Architecture logicielle backend et services RESTful}
+\label{subsec:architecture_backend_spring}
+
+Le backend de \textit{NewroFactory} a été développé en Java avec le framework Spring, selon une architecture en couches étanches respectant les principes de responsabilité unique (\textit{Single Responsibility Principle} - SRP) et d'inversion de dépendances.
+
+\subsubsection{Découpage en couches et exposition des API}
+L'architecture sépare rigoureusement la persistance, le domaine métier et l'exposition REST :
+\begin{itemize}
+    \item \textbf{Couche Présentation / Contrôleurs (\code{web.rest}) :} les points d'entrée tels que \code{ChapterController}, \code{SerieController} et \code{UserController} valident les requêtes entrantes (via Jakarta Validation et des validateurs personnalisés comme \code{StartDateBeforeEndDateValidator}), invoquent les services métiers et retournent des objets de transfert typés (\textit{DTOs}) ;
+    \item \textbf{Couche Métier / Services (\code{service}) :} orchestre la logique d'évaluation, l'assemblage dynamique des séries aléatoires (\code{RandomSerieRequest}), le calcul des taux de réussite et la gestion des utilisateurs ;
+    \item \textbf{Couche Persistance (\code{persistence}) :} s'appuie sur Spring Data JPA et Hibernate pour abstraire l'accès aux tables relationnelles MySQL via des interfaces de dépôts typées (\code{ChapterRepository}, \code{SerieRepository}, \code{SerieReponseRepository}).
+\end{itemize}
+
+\subsubsection{Observabilité et découplage transversal par Spring AOP}
+Dans une application d'entreprise, la journalisation (\textit{logging}) et la gestion des erreurs ne doivent pas polluer la logique métier. Pour garantir une observabilité exhaustive et standardisée, nous avons mis en place une programmation orientée aspect (\textit{Aspect-Oriented Programming} - AOP) via le composant \code{LoggingAspect}.
+
+\begin{lstlisting}[language=java, caption={Aspect transverse de logging et traduction des exceptions de persistance}, label={lst:loggingAspect}]
+@Aspect
+@Component
+public class LoggingAspect {
+
+    @Pointcut("execution(public * com.oxyl.newrofactory.service.*.*(..)) || "
+            + "execution(public * com.oxyl.newrofactory.persistence.*.*(..)) || "
+            + "execution(public * com.oxyl.newrofactory.web.*.*(..))")
+    public void allLayersMethods() {}
+
+    @Before("allLayersMethods()")
+    public void logBefore(JoinPoint jp) {
+        getLogger(jp).info("-> Appel de : {}.{}",
+                jp.getTarget().getClass().getSimpleName(), jp.getSignature().getName());
+    }
+
+    @AfterReturning(pointcut = "allLayersMethods()", returning = "result")
+    public void logAfterReturning(JoinPoint jp, Object result) {
+        getLogger(jp).info("<- Retour de : {} -> {}",
+                jp.getSignature().getName(), result);
+    }
+
+    @Pointcut("within(com.oxyl.newrofactory.persistence..*)")
+    public void persistenceMethods() {}
+
+    @AfterThrowing(pointcut = "persistenceMethods()", throwing = "exception")
+    public void translateDataAccessException(JoinPoint jp, DataAccessException exception) {
+        Logger logger = getLogger(jp);
+        String className = jp.getTarget().getClass().getSimpleName();
+        String methodName = jp.getSignature().getName();
+        if (exception instanceof EmptyResultDataAccessException) {
+            logger.warn("! [FONCTIONNEL] Element non trouve dans {}.{}() : {}", 
+                    className, methodName, exception.getMessage());
+        } else {
+            logger.error("!! [CRITIQUE] Erreur SQL/Base de donnees dans {}.{}() : {}", 
+                    className, methodName, exception.getMessage());
+        }
+    }
 }
 \end{lstlisting}
+
+Cet aspect intercepte automatiquement chaque transition inter-couches à l'entrée et à la sortie des méthodes, mesure les flux et assure une discrimination fine entre les anomalies fonctionnelles (ex. entité introuvable notifiée en avertissement) et les défaillances critiques d'infrastructure (erreurs SQL journalisées au niveau \code{ERROR}).
+
+\subsubsection{Moteur d'analytics et consolidation des statistiques}
+Pour offrir une vue claire sur l'acquisition des compétences, le système consolide deux niveaux de métriques :
+\begin{itemize}
+    \item \textbf{Le score par série :} calculé à la fin de chaque questionnaire pour évaluer la performance ponctuelle sur un tirage donné ;
+    \item \textbf{Le score agrégé par chapitre (\code{ChapterStat}) :} calculé à partir de l'historique complet des réponses d'un stagiaire, permettant d'identifier immédiatement les chapitres maîtrisés et les points de vulnérabilité conceptuelle.
+\end{itemize}
+Tandis que le stagiaire accède à son tableau de bord personnel, l'encadrant technique dispose d'un endpoint d'administration dédié (\code{/api/chapters/root/withStat/user/{userId}}) lui permettant de consulter les métriques individuelles de chaque collaborateur pour adapter son suivi pédagogique.
+
+\subsection{Gouvernance des accès, Sécurité et Interopérabilité Front/Back}
+\label{subsec:securite_cors}
+
+En tant qu'outil interne destiné à une ESN, la gouvernance des identités et la sécurité des échanges constituent un pilier central de l'architecture.
+
+\subsubsection{Gestion des sessions et création déléguée des comptes}
+Afin de préserver la confidentialité des contenus et de garantir le rattachement hiérarchique des métriques, l'auto-inscription publique a été proscrite. La création de compte est exclusivement réservée aux encadrants et administrateurs (\code{ROLE_ADMIN}). Lorsqu'un encadrant crée le profil d'un stagiaire, ce dernier est explicitement rattaché à sa promotion dans le système. Lors de sa première connexion avec ses identifiants temporaires, le stagiaire est invité à réinitialiser son mot de passe via un composant dédié (\code{update-password}), ce qui active l'historisation de ses statistiques sous la supervision de son tuteur.
+
+\subsubsection{Authentification JWT par cookies sécurisés et résolution CORS}
+L'architecture applique un modèle sans état (\textit{stateless}) basé sur des jetons JSON Web Tokens (JWT) :
+\begin{itemize}
+    \item Pour immuniser le client contre les vulnérabilités de type \textit{Cross-Site Scripting} (XSS), le jeton JWT n'est pas stocké dans le \code{localStorage} du navigateur, mais encapsulé dans un cookie HTTP sécurisé (\code{HttpOnly}, \code{SameSite=Lax}) émis par la fabrique \code{AuthCookieFactory} ;
+    \item La séparation physique en phase de développement et de déploiement entre le serveur front-end Angular (port $4200$) et l'API backend Spring (port $8080$) a nécessité une configuration rigoureuse du mécanisme de partage de ressources entre origines multiples (\textit{Cross-Origin Resource Sharing} - CORS).
+\end{itemize}
+
+Comme détaillé dans la classe \code{SecurityConfig}, l'instruction \code{configuration.setAllowCredentials(true)} a été combinée avec un filtrage explicite des motifs d'origine autorisés (\code{setAllowedOriginPatterns}) et l'autorisation des requêtes préliminaires d'évaluation (\textit{preflight} \code{OPTIONS}), garantissant ainsi l'acheminement transparent et inviolable des cookies d'authentification sur l'ensemble des endpoints REST.
+
+\subsection{Conception de l'interface utilisateur et expérience apprenant (Angular)}
+\label{subsec:conception_front_angular}
+
+L'interface utilisateur a été conçue sous le framework Angular, en accordant une attention rigoureuse à l'ergonomie, à la clarté visuelle et à la rapidité de prise en main.
+
+\subsubsection{Design System et architecture CSS}
+J'ai pris en charge la conception de la feuille de style globale, du design system et de la mise en page générale de l'application. L'objectif était de rompre avec l'aspect utilitaire brut souvent associé aux outils internes d'entreprise, pour proposer une interface moderne et valorisante :
+\begin{itemize}
+    \item Définition d'une palette chromatique harmonieuse à base de variables CSS (couleurs sémantiques, contrastes validés selon les critères d'accessibilité WCAG) ;
+    \item Mise en page responsive modulaire s'adaptant aussi bien aux postes de travail des développeurs qu'aux terminaux portables ;
+    \item Conception de composants graphiques atomiques : cartes de lancement de quiz interactives (\texttt{card-quiz}), affichage de l'arborescence des chapitres avec indicateurs d'état et badges statistiques (\texttt{chapter-tree-node}), et boîte de dialogue modale de confirmation.
+\end{itemize}
+
+\subsubsection{Parcours utilisateur et navigation interactive}
+Le front-end s'organise autour de parcours fluides pilotés par les services Angular et RxJS :
+\begin{itemize}
+    \item \textbf{Le tableau de bord stagiaire :} synthèse visuelle présentant la progression globale, l'accès rapide aux séries d'entraînement par module et la liste des derniers examens blancs passés ;
+    \item \textbf{Le module d'examen interactif :} affichage séquentiel des questions avec sélection dynamique des réponses, bascule contextuelle entre mode entraînement (dévoilement animé des justifications) et mode examen, puis récapitulatif global avec ventilation des scores à la soumission ;
+    \item \textbf{Le portail d'administration :} interface réservée aux tuteurs permettant la gestion des promotions, la création des comptes stagiaires et la consultation directe des métriques individuelles.
+\end{itemize}
+
+\subsection{Dynamique d'ingénierie collaborative, gestion des risques et retours d'expérience}
+\label{subsec:dynamique_collaborative_rex}
+
+Au-delà des aspects purement techniques de développement, la réalisation de \textit{NewroFactory} a constitué une expérience humaine et organisationnelle fondatrice sur la gestion de projet logiciel en équipe.
+
+\subsubsection{Du développement individuel à l'intégration collective à 4}
+Le calendrier du projet s'est articulé en deux phases méthodologiques très contrastées :
+\begin{enumerate}
+    \item \textbf{Phase 1 (Les 8 premiers sprints -- 2,5 mois) :} chaque stagiaire a développé individuellement son propre backend \textit{from scratch}, franchissant par l'épreuve les paliers successifs de l'ingénierie Java (du CLI natif et JDBC pur jusqu'à Spring Boot, Spring Security et Hibernate). Cette démarche a garanti l'alignement individuel de chacun sur les fondamentaux d'architecture ;
+    \item \textbf{Phase 2 (Sprint collaboratif final) :} nous avons sélectionné l'un des backends développés parmi les quatre comme socle commun. L'ensemble des quatre stagiaires a ensuite été réuni pour travailler simultanément sur le développement du front-end Angular et l'ajustement des API backend.
+\end{enumerate}
+
+\subsubsection{Difficultés rencontrées et arbitrages méthodologiques}
+Le passage brutal du travail en solitaire au développement simultané à quatre sur une base de code partagée a mis en lumière des défis d'ingénierie majeurs :
+\begin{itemize}
+    \item \textbf{Gestion des flux Git et conflits de fusion :} n'ayant jamais été confrontés à une collaboration synchrone aussi intensive, nous avons initialement fait face à des régressions et à des superpositions de code dues à un manque de régularité dans la synchronisation locale (\texttt{git pull}) avant d'entamer de nouvelles modifications. Pour résoudre ces frictions, nous avons dû formaliser une discipline rigoureuse de gestion des branches et veiller à une synchronisation quotidienne systématique ;
+    \item \textbf{Découpage et respect des périmètres de tickets :} nous avons appris par l'expérience l'importance cruciale de définir des tickets de travail strictement atomiques et parfaitement délimités. Lorsque le périmètre d'un ticket débordait sur les modules adjacents, le risque de collision entre développeurs augmentait de manière critique ;
+    \item \textbf{Synchronisation des schémas de base de données :} chaque membre de l'équipe travaillant sur une instance MySQL locale, toute évolution structurelle du modèle de données (ajout de colonnes, modifications de contraintes) devait être répercutée manuellement par des scripts SQL partagés, soulignant l'importance future d'outils de migration automatisés (tels que Flyway ou Liquibase) ;
+    \item \textbf{Déploiement Cloud :} la plateforme a été déployée sur l'infrastructure Cloud d'Amazon Web Services, en exploitant une instance virtuelle \textbf{AWS EC2} pour l'exécution des conteneurs applicatifs et un stockage \textbf{AWS S3} pour les ressources et sauvegardes.
+\end{itemize}
+
+Cette première réalisation grandeur nature a ancré des réflexes d'ingénierie essentiels : rigueur du découpage fonctionnel, conception d'architectures résilientes et standardisation des livrables. Elle a établi le socle indispensable pour aborder le second défi d'envergure du stage : la conception d'une usine logicielle agentique industrialisée et agnostique.
+
+\section{Choix techniques comme choix de maturité : Justification de l'architecture (Spring Core/Angular) pour une maîtrise approfondie des fondamentaux}
+\label{sec:choix_techniques_quiz}
+Justification de l'utilisation de Spring Core et Angular pour la plateforme, et comment ces technologies structurent l'apprentissage des fondamentaux.
+
 \cleardoublepage
 
-\chapter{Autre chapitre}
+\chapter{La standardisation du capital technique (Volet 2 - L'usine IA)}
+\label{chap:usine_ia}
 
-\section{Autre section}
+\section{État de l'art : L'industrialisation du cycle de vie logiciel (SDLC) et les agents IA (SWE-bench)}
+\label{sec:etat_de_l_art}
+Revue de la littérature scientifique et technique sur l'intégration des agents autonomes d'IA (ex: SWE-bench) dans le cycle de développement.
 
-Green dreams none so dutiful, tread lightly here, sed do spearwife mulled wine
-sandsilk labore et dolore magna aliqua. Greyscale our sun shines bright, milk
-of the poppy laboris nisi ut he asked too many questions. Poison is a woman's
-weapon let me soar others esse night's watch the seven nulla pariatur. Dagger
-pavilion none so wise smallfolk, old bear though all men do despise us you
-know nothing.
+Ceci est un exemple de référence bibliographique~\cite{GOT4} pour illustrer comment citer vos sources dans ce chapitre.
 
+\section{Théorie de l'abstraction : Étude des patrons de conception (Adapter, Bridge, Strategy) pour s'affranchir du lock-in}
+\label{sec:theorie_abstraction}
+Analyse conceptuelle de l'utilisation des patrons de conception pour concevoir une architecture logicielle flexible et indépendante des fournisseurs de modèles de langage (LLMs) ou d'outils tiers.
 
-\subsection{Première sous-section}
+\section{Analyse des contraintes : Sécurité, gestion des coûts de tokens et reproductibilité des résultats}
+\label{sec:analyse_contraintes}
+Évaluation des limites concrètes des agents d'IA en production, notamment sur les aspects financiers (consommation de tokens), de sécurité du code et de déterminisme.
 
-\subsubsection{Première sous-sous section}
+\cleardoublepage
 
-Exemple d'illustration :
+\chapter{La mise en œuvre de l'infrastructure agnostique}
+\label{chap:infra_agnostique}
 
+\section{Architecture du moteur agnostique : Le découplage des couches Git et des couches LLM}
+\label{sec:architecture_moteur}
+Description détaillée de l'implémentation technique séparant la gestion des dépôts de code de la couche d'accès aux modèles d'IA.
+
+% Exemple d'insertion de figure
 \begin{figure}[h]
   \centering
   \includegraphics[width=10cm]{figures/school-logo}
-  \caption{Logo de TELECOM Nancy}
-  \label{fig:logo-tn}
+  \caption{Exemple de figure pour l'architecture}
+  \label{fig:archi-moteur}
 \end{figure}
 
-La Figure~\ref{fig:logo-tn} représente le logo de \reportSchool{}.
+La Figure~\ref{fig:archi-moteur} illustre un exemple de structure (ici avec le logo de \reportSchool{}).
 
-Ceci est une référence bibliographique~\cite{GOT4}.
+\section{Stratégies de normalisation : Uniformisation des API hétérogènes (GitLab/GitHub/LLMs)}
+\label{sec:normalisation_api}
+Mise en place de façades et d'adaptateurs pour assurer l'interopérabilité entre les différentes plateformes d'intégration continue et les divers LLMs du marché.
 
-
-Entrée dans le glossaire:
-\newacronym{TEM}{TEM}{scanning electron microscope}
-blabla \gls{TEM}
+\section{Validation de la chaîne de valeur : Benchmarking du pipeline (taux de résolution, qualité, robustesse)}
+\label{sec:validation_valeur}
+Présentation des métriques de performance obtenues lors des tests de validation du pipeline d'automatisation.
 
 \cleardoublepage
 
-\chapter{Conclusion}
+\chapter{Analyse critique et Impact systémique}
+\label{chap:analyse_critique}
+
+\section{Synergie entre les deux volets : Comment le socle de compétences facilite la maintenance et l'évolution de l'usine logicielle}
+\label{sec:synergie_volets}
+Analyse de la relation bidirectionnelle : des développeurs mieux formés conçoivent de meilleurs outils automatisés, et ces outils facilitent en retour leur travail quotidien.
+
+\section{Impact économique et technologique : ROI, réduction du vendor lock-in, gains de productivité et attractivité client}
+\label{sec:impact_eco}
+Calculs et estimations des retours sur investissement, gains de productivité pour l'entreprise et valeur ajoutée commerciale.
+
+\section{Recul critique : Limites de l'IA agentique, enjeux éthiques et de confidentialité}
+\label{sec:recul_critique}
+Discussion critique sur la place de l'IA dans l'ingénierie logicielle, les questions de confidentialité des données de code et les enjeux éthiques liés à la réduction des tâches humaines.
+
+\cleardoublepage
+
+\chapter{Conclusion Générale}
+\label{chap:conclusion}
+
+Synthèse : L'industrialisation est un équilibre constant entre l'Humain (formé) et la Machine (automatisée).
+
+Réflexion prospective sur le métier d'ingénieur logiciel à l'ère de l'IA.
 
 \cleardoublepage
 \renewcommand{\tocbibname}{Bibliographie / Webographie}
-\bibliography{example} % See example.bib
+\bibliography{example} % Voir le fichier example.bib
 \bibliographystyle{plain}
 
 \cleardoublepage
@@ -284,10 +731,19 @@ blabla \gls{TEM}
 \addcontentsline{toc}{part}{Annexes}
 \cleardoublepage
 
-\chapter{Première Annexe}
+\chapter{Attestations des certifications obtenues}
+\label{annexe:certifications}
+Insérer ici les justificatifs des certifications obtenues durant le stage.
 \cleardoublepage
 
-\chapter{Seconde Annexe}
+\chapter{Diagrammes de classe / Schémas d'architecture}
+\label{annexe:diagrammes}
+Présentation des schémas d'architecture globale et des diagrammes de classes clés de la plateforme et de l'agent.
+\cleardoublepage
+
+\chapter{Exemples de traces d'exécution de l'agent IA}
+\label{annexe:traces}
+Exemples détaillés de logs et de parcours de résolution de bugs par l'agent autonome d'IA.
 
 
 \cleardoublepage
@@ -333,6 +789,7 @@ false courtesy blood. Darkness mollis arbor gold. Nullam arcu. Never resting.
 Sandsilk green dreams, mulled wine, betrothed et, pretium ac, nuncle. Whore
 your grace, mollis quis, suckling pig, clansmen king, half-man. In hac
 baseborn old bear.
+
 
 Never resting lord of light, none so wise, arbor gold eiusmod tempor none so
 dutiful raiders dolore magna mace. You know nothing servant warrior, cold old

@@ -77,6 +77,9 @@
 \RequirePackage{tabularx}
 \RequirePackage{titlesec}
 \RequirePackage[colorlinks,linkcolor=black,citecolor=black,pagebackref,linktocpage=true]{hyperref}
+\RequirePackage{xurl}
+\RequirePackage{microtype}
+\DeclareUrlCommand\code{\def\UrlFont{\ttfamily}}
 \RequirePackage{acronym}
 
 
