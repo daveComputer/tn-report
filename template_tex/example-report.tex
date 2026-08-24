@@ -631,7 +631,49 @@ Cette première réalisation grandeur nature a ancré des réflexes d'ingénieri
 
 \section{Choix techniques comme choix de maturité : Justification de l'architecture (Spring Core/Angular) pour une maîtrise approfondie des fondamentaux}
 \label{sec:choix_techniques_quiz}
-Justification de l'utilisation de Spring Core et Angular pour la plateforme, et comment ces technologies structurent l'apprentissage des fondamentaux.
+Les choix d'architecture technologique retenus pour la plateforme \textit{NewroFactory} procèdent d'un arbitrage réfléchi entre impératifs de formation, rigueur d'ingénierie et maîtrise pragmatique des délais de livraison. Loin d'être de simples sélections d'outils, ces choix constituent un véritable parti pris méthodologique visant la maîtrise des fondamentaux du développement logiciel moderne.
+
+\subsection{Démystification des couches applicatives : Le choix de Spring Core et de la configuration explicite}
+\label{subsec:choix_spring_core}
+
+Alors que l'écosystème moderne privilégie l'utilisation immédiate de Spring Boot pour sa capacité à masquer la complexité derrière des starters auto-configurés, nous avons délibérément fait le choix d'édifier le backend sur le socle \textbf{Spring Core} et les bibliothèques Spring sous-jacentes de manière explicite.
+
+Ce choix s'explique par la volonté de comprendre en profondeur la mécanique interne et l'articulation des couches composant une application web d'entreprise n-tiers. En renonçant à la « magie » des auto-configurations automatiques :
+\begin{itemize}
+    \item \textbf{Maîtrise du conteneur IoC et injection de dépendances :} nous avons configuré explicitement le contexte d'application, la déclaration et le cycle de vie des Beans métier, forçant une compréhension fine du principe d'Inversion de Contrôle (\textit{Inversion of Control} - IoC) et d'injection de dépendances ;
+    \item \textbf{Configuration explicite des filtres et servlets :} la mise en œuvre manuelle de la chaîne de filtres de sécurité (\code{SecurityFilterChain}), du découplage des aspects de journalisation (\code{LoggingAspect}) et de la gestion des erreurs HTTP a permis d'appréhender le fonctionnement exact du moteur Web de Spring (\code{DispatcherServlet}) sans subir d'abstractions opaques ;
+    \item \textbf{Appropriation de l'architecture n-tiers :} l'explicitation du passage de données entre les contrôleurs REST, les services transactionnels et la persistance relationnelle a renforcé les réflexes de découplage et d'isolation des responsabilités (\textit{Single Responsibility Principle}).
+\end{itemize}
+
+\subsection{Adoption d'Angular : Rigueur structurelle et opportunité de montée en compétences}
+\label{subsec:choix_angular}
+
+Côté frontend, le choix s'est porté sur le framework \textbf{Angular}. Ce choix répond à un double objectif technique et d'apprentissage :
+\begin{itemize}
+    \item \textbf{Rigueur architecturale et typage strict :} Angular impose une structure orientée composants, services et injection de dépendances particulièrement rigoureuse, véhiculée par le langage TypeScript. Ce typage strict à la compilation prémunit l'application contre toute une classe d'erreurs d'exécution et aligne la conception client sur les exigences de qualité du backend Java ;
+    \item \textbf{Montée en compétences sur un framework d'entreprise :} par rapport à d'autres bibliothèques UI plus répandues dans le cadre académique (telles que React ou Vue.js), Angular est un framework complet mais plus exigeant. Ce projet représentait une opportunité privilégiée d'expérimenter et d'explorer une technologie robuste et largement éprouvée au sein des grands comptes industriels et des ESN.
+\end{itemize}
+
+\subsection{Monolithe modulaire vs Microservices : Pragmatisme et focalisation sur le prototype}
+\label{subsec:choix_monolithe}
+
+Sur le plan de l'architecture globale, nous avons opté pour un \textbf{monolithe modulaire} rigoureusement découpé en paquets métier. Ce choix résulte d'une décision d'ingénierie pragmatique dictée par deux facteurs majeurs :
+\begin{itemize}
+    \item \textbf{Respect du calendrier et gestion du temps :} le temps imparti pour cette phase de réalisation interdisait la sur-ingénierie liée aux architectures distribuées en microservices (gestion du réseau, découplage des bases de données par service, passerelles d'API et orchestration complexe) ;
+    \item \textbf{Focus sur le livrable fonctionnel (POC) :} l'objectif prioritaire était de concevoir et présenter une preuve de concept (\textit{Proof of Concept} - POC) fonctionnelle, robuste, testable et de haute qualité dans les délais impartis, plutôt qu'un système sur-dimensionné. La structure monolithique modulaire garantit ainsi une cohérence transactionnelle immédiate tout en réservant la possibilité d'un découplage futur si le volume d'utilisateurs l'exigeait.
+\end{itemize}
+
+\subsection{Écosystème outillé et composants clés du socle technique}
+\label{subsec:outils_socle_technique}
+
+Pour compléter ce socle d'ingénierie, plusieurs outils et bibliothèques fondamentaux ont été intégrés et articulés :
+\begin{itemize}
+    \item \textbf{Apache Maven :} employé comme moteur de build standardisé et gestionnaire d'outils, assurant une gestion transparente des dépendances, la répétabilité des builds et le packaging en archive exécutable ;
+    \item \textbf{Hibernate et JPA (\textit{Java Persistence API}) :} assurent l'abstraction relationnelle et la correspondance objet-relationnel (ORM), permettant la manipulation fluide des entités métier (\code{ChapterEntity}, \code{QuestionEntity}) et l'exécution optimisée des requêtes ;
+    \item \textbf{Jakarta Validation :} utilisé pour garantir la validation déclarative et systématique des DTOs en entrée d'API (\code{@NotNull}, \code{@Size}, validateurs personnalisés), assurant l'étanchéité des données saisies ;
+    \item \textbf{JJWT (Java JWT) :} exploité pour la création et la vérification cryptographique des jetons d'authentification JSON Web Tokens, sécurisant les échanges de session de manière stateless via des cookies HTTP sécurisés.
+\end{itemize}
+
 
 \cleardoublepage
 
@@ -640,9 +682,55 @@ Justification de l'utilisation de Spring Core et Angular pour la plateforme, et 
 
 \section{État de l'art : L'industrialisation du cycle de vie logiciel (SDLC) et les agents IA (SWE-bench)}
 \label{sec:etat_de_l_art}
-Revue de la littérature scientifique et technique sur l'intégration des agents autonomes d'IA (ex: SWE-bench) dans le cycle de développement.
 
-Ceci est un exemple de référence bibliographique~\cite{GOT4} pour illustrer comment citer vos sources dans ce chapitre.
+L'intégration des modèles de langage de grande taille (\textit{Large Language Models} - LLMs) au sein du cycle de vie du développement logiciel (\textit{Software Development Life Cycle} - SDLC) représente une transition majeure dans la manière d'analyser, de concevoir et d'entretenir les systèmes d'information. Longtemps cantonnée à de l'assistance contextuelle ponctuelle, l'automatisation s'oriente désormais vers des architectures agentiques capables d'exécuter de manière autonome des sous-ensembles complexes du SDLC.
+
+\subsection{L'évolution du SDLC et la primauté de la génération de code}
+\label{subsec:evolution_sdlc}
+
+Parmi l'ensemble des phases constitutives du SDLC --- analyse des besoins, modélisation architecturale, développement, revue de code, tests d'intégration et déploiement --- l'étape de \textbf{génération et de modification de code} constitue le verrou le plus stratégique et le plus consommateur de ressources.
+
+Historiquement, l'évaluation des capacités des LLMs s'appuyait sur des jeux de données synthétiques tels que HumanEval~\cite{chen2021codex} ou MBPP, mesurant la génération d'une fonction isolée à partir d'une spécification courte. Bien que pertinents pour valider la compréhension algorithmique de base, ces indicateurs s'avèrent insuffisants pour représenter l'ingénierie logicielle industrielle, caractérisée par des dépôts volumineux, des dépendances inter-fichiers et la nécessité de respecter des patrons d'architecture préexistants.
+
+L'industrialisation moderne du SDLC requiert ainsi des modèles non seulement capables de rédiger de nouvelles implémentations, mais surtout de naviguer au sein de bases de code existantes, de diagnostiquer des régressions, et de proposer des diffs directement intégrables au workflow d'intégration continue (CI/CD).
+
+\subsection{Évaluation agentique par SWE-bench et assistants en ligne de commande}
+\label{subsec:swebench_cli}
+
+Pour répondre aux limites des métriques de génération synthétiques, le benchmark \textbf{SWE-bench}~\cite{jimenez2023swebench} s'est imposé comme l'étalon-or scientifique pour l'évaluation des agents autonomes de génie logiciel. Basé sur l'extraction d'issues réelles issues de projets open-source Python d'envergure, SWE-bench confronte l'agent à une description de problème et à l'état complet du dépôt Git. La réussite est conditionnée par la capacité de l'agent à générer un patch validant l'ensemble de la suite de tests unitaires du projet sans introduire de régression.
+
+Dans une perspective d'intégration opérationnelle au court terme, le choix des interfaces d'exécution s'oriente vers des outils joignables par \textbf{ligne de commande (CLI)}, notamment :
+\begin{itemize}
+    \item \textbf{Google Antigravity SDK :} permettant l'orchestration dynamique d'agents et de sous-agents autonomes spécialisés pour le suivi de tâches complexes ;
+    \item \textbf{OpenAI Codex / CLI :} fournissant des capacités d'édition directe et de modification raisonnée de fichiers source ;
+    \item \textbf{Claude Code CLI :} offrant des capacités avancées de raisonnement à fenêtre de contexte étendue et d'exécution d'instructions shell interactives.
+\end{itemize}
+
+L'évaluation de ces outils à l'aide de SWE-bench permet de qualifier rigoureusement leur niveau d'autonomie et leur résilience face à la complexité des tâches d'ingénierie.
+
+\subsection{Analyse comparative des solutions agentiques du marché}
+\label{subsec:comparatif_marche}
+
+Face à la multiplication des solutions commerciales et open-source d'assistance agentique (telles que Devin, GitHub Copilot Workspace, Cursor ou SWE-agent~\cite{yang2024sweagent}), une analyse comparative s'impose pour positionner la stratégie retenue au sein d'Oxyl.
+
+Le Tableau~\ref{tab:comparatif_agents} synthétise la comparaison entre l'approche d'usine logicielle agnostique développée et les solutions majeures du marché selon quatre critères fondamentaux.
+
+\begin{table}[htbp]
+\centering
+\caption{Analyse comparative des solutions agentiques du marché vs l'Usine IA Oxyl}
+\label{tab:comparatif_agents}
+\small
+\begin{tabular}{|p{3.2cm}|p{2.8cm}|p{2.8cm}|p{2.8cm}|p{3.2cm}|}
+\hline
+\textbf{Solution} & \textbf{Intégration CLI / CI-CD} & \textbf{Agnosticisme LLM (Anti lock-in)} & \textbf{Scope d'édition code} & \textbf{Extensibilité des workflows} \\ \hline
+\textbf{GitHub Copilot} & Faible (IDE/Web) & Propriétaire (OpenAI) & Fichier / In-line & Limitée (Extensions) \\ \hline
+\textbf{Devin / SaaS proprietary} & Web / Clôturé & Propriétaire / Intégré & Projet complet & Configurable (SaaS) \\ \hline
+\textbf{Cursor / Claude Code} & CLI / IDE local & Multi-modèles restreint & Projet complet & Scriptable \\ \hline
+\textbf{Usine IA Oxyl (Proposée)} & \textbf{Native CLI \& CI-CD} & \textbf{Agnostique (Google/OpenAI/Claude)} & \textbf{Multi-fichiers complet} & \textbf{Totale (Patrons de conception \& SDK)} \\ \hline
+\end{tabular}
+\end{table}
+
+Cette analyse met en évidence que l'usine logicielle Oxyl privilégie l'indépendance technologique et la personnalisation fine des flux agentiques, combinant la souplesse d'exécution CLI à un contrôle total sur l'infrastructure de développement.
 
 \section{Théorie de l'abstraction : Étude des patrons de conception (Adapter, Bridge, Strategy) pour s'affranchir du lock-in}
 \label{sec:theorie_abstraction}
