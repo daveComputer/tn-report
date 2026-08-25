@@ -40,6 +40,9 @@
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric,arrows.meta,positioning,calc,fit}
 
+% Harmonisation typographique de la commande \code (noms de fichiers, fonctions, variables)
+\DeclareUrlCommand\code{\def\UrlFont{\footnotesize\ttfamily}}
+
 \begin{document}
 
 \maketitle
@@ -900,21 +903,310 @@ Ce tableau de bord constituera l'outil central de pilotage de la rentabilité et
 
 \section{Architecture du moteur agnostique : Le découplage des couches Git et des couches LLM}
 \label{sec:architecture_moteur}
-Description détaillée de l'implémentation technique séparant la gestion des dépôts de code de la couche d'accès aux modèles d'IA.
 
-% Exemple d'insertion de figure
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=10cm]{figures/school-logo}
-  \caption{Exemple de figure pour l'architecture}
-  \label{fig:archi-moteur}
+La concrétisation opérationnelle de l'usine logicielle autonome développée au sein d'Oxyl repose sur un impératif architectural majeur : interconnecter de multiples briques hétérogènes de l'écosystème de développement (gestionnaires de backlogs, forges de code, environnements d'exécution locaux et assistants d'intelligence artificielle) tout en garantissant un agnosticisme technologique complet, une gestion concurrente robuste et une étanchéité de sécurité absolue.
+
+L'intégralité du moteur d'orchestration (Superviseur et Worker) a été conçue et implémentée en \textbf{TypeScript} sous l'environnement Node.js. TypeScript apporte la garantie d'un typage statique nominal rigoureux --- étendu par des types opaques étiquetés (\textit{Branded Types}) --- évitant les erreurs de manipulation de jetons ou d'identifiants au moment de la compilation, tout en exploitant la puissance du modèle asynchrone non-bloquant de Node.js pour piloter les sous-processus et les flux d'entrées/sorties.
+
+\subsection{Conception modulaire et contrats d'interface : BacklogProvider et CodeBaseProvider}
+\label{subsec:interfaces_providers}
+
+Afin d'éradiquer tout couplage fort entre la logique d'orchestration et les forges logicielles, l'architecture sépare strictement les opérations de gestion du travail et les opérations de manipulation de code au travers de deux contrats d'interface distincts :
+
+\begin{itemize}
+    \item \textbf{L'interface \code{BacklogProvider} (Gestion du flux de travail) :} 
+    Définie dans le sous-système superviseur (\code{src/supervisor/providers/backlog-provider.ts}), cette interface abstrait les interactions avec les outils de ticketing. Elle formalise les opérations de découverte, de réservation et de traçabilité des tickets :
+    \begin{itemize}
+        \item \code{fetchReadyTickets(filter, priorities)} : interroge la forge pour extraire les tickets ouverts portant les labels d'éligibilité (ex. \code{factory::ready}), ordonnés selon les priorités ;
+        \item \code{claimTicket(ticketId)} : applique le protocole de réservation en apposant un label de verrouillage spécifique à la machine (ex. \code{factory::claimed-by-<machine>}) afin de garantir l'exclusion mutuelle ;
+        \item \code{addLabels}, \code{removeLabels}, \code{updateLabels} : orchestrent les transitions d'état du ticket tout au long du cycle de résolution ;
+        \item \code{postComment(ticketId, body)} et \code{updateComment} : publient et mettent à jour les comptes-rendus de diagnostic, les métriques d'exécution et les liens d'intégration ;
+        \item \code{getRelatedMergeRequests(ticketId)} : identifie les demandes de fusion déjà associées pour prévenir les ré-exécutions superflues.
+    \end{itemize}
+    L'adaptateur de référence implémenté est \code{GitLabBacklogAdapter}, avec une extension naturelle prévue vers \textbf{GitHub Issues}, \textbf{Gitea} et \textbf{Jira}.
+
+    \item \textbf{L'interface \code{CodeBaseProvider} (Gestion des dépôts et des fusions) :} 
+    Localisée côté worker (\code{src/worker/providers/codebase-provider.ts}), cette interface unifie la création des demandes de fusion de code via une méthode canonique unique :
+    \begin{itemize}
+        \item \code{handleMergeRequest(params)} : prend en charge de façon atomique la création ou la récupération d'une \textit{Merge Request} (GitLab) ou \textit{Pull Request} (GitHub/Gitea/Bitbucket) en transmettant la branche source, la branche cible, le titre et la description générée (renvoie un \code{Promise<MergeRequestResult>}).
+    \end{itemize}
+    Le moteur dispose déjà d'adaptateurs opérationnels pour \textbf{GitLab} (\code{GitLabCodeBaseAdapter}) et \textbf{Gitea} (\code{GiteaCodeBaseAdapter}), prêts à accueillir GitHub et Bitbucket.
+\end{itemize}
+
+Grâce à cette séparation, un projet peut être librement configuré pour consommer son backlog sur un outil (ex. Jira ou GitLab Issues) tout en publiant son code et ses revues sur un autre (ex. GitHub ou Gitea).
+
+\subsection{Typage nominal étiqueté (\textit{Branded Types}) et résolution dynamique des instances}
+\label{subsec:provider_resolver}
+
+Pour éliminer les risques de fuites ou de confusion entre différents secrets applicatifs lors des appels d'API, le moteur exploite le mécanisme de typage nominal par étiquetage (\textit{Branded Types}) au sein de \code{src/shared/providers/types.ts} :
+
+\begin{lstlisting}[language=java, caption={Modélisation des types étiquetés et des contrats d'accès aux providers}, label={lst:branded_types}]
+declare const __brand: unique symbol;
+export type Branded<T, B> = T & { [__brand]: B };
+
+export type GitlabToken = Branded<string, 'GitlabToken'>;
+export type GiteaToken = Branded<string, 'GiteaToken'>;
+
+export type CodeBaseAccessInfo = 
+  | { providerName: 'gitlab'; url: string; projectId: number; token: GitlabToken }
+  | { providerName: 'gitea'; url: string; owner: string; repo: string; token: GiteaToken };
+\end{lstlisting}
+
+L'instanciation des adaptateurs est pilotée par des résolveurs dédiés (\code{BacklogProviderResolver} et \code{CodeBaseProviderResolver}) qui appliquent le patron \textbf{Registry / Singleton} :
+\begin{itemize}
+    \item Au démarrage du superviseur, \code{createBacklogProvider()} lit la configuration du projet (\code{backlogAccessInfoList}) et instancie l'adaptateur adéquat ;
+    \item Le point d'accès global \code{getBacklogProvider()} permet aux modules d'orchestration de consommer les services de backlog sans instanciation redondante ;
+    \item Côté worker, \code{createCodeBaseProvider(accessInfo)} résout dynamiquement le fournisseur de code à partir des informations de connexion transmises.
+\end{itemize}
+
+\subsection{Cycle opérationnel : Isolation par \textit{Git Worktrees} et suivi des tâches}
+\label{subsec:cycle_superviseur_worker}
+
+Plutôt que d'effectuer un clonage intégral et coûteux du dépôt Git pour chaque ticket, le superviseur d'Oxyl (\code{Supervisor V5}) met en œuvre une gestion concurrente légère et hautement performante fondée sur les \textbf{arborescences de travail Git (\textit{Git Worktrees})} :
+
+\begin{enumerate}
+    \item \textbf{Boucle de surveillance et réservation atomique (\code{pollCycle}) :}
+    Le Superviseur exécute une boucle périodique sécurisée :
+    \begin{itemize}
+        \item Il vérifie le verrou de limite de requêtes (\code{checkRateLimitLock}) pour respecter les quotas d'API des forges ;
+        \item Il libère les verrous orphelins ou expirés laissés par d'éventuels processus interrompus (\code{releaseExpiredClaims}) ;
+        \item Il détecte les tickets éligibles via \code{fetchReadyTickets()}, réserve le ticket par étiquetage (\code{claimTicket()}), puis déclenche l'instanciation du worker.
+    \end{itemize}
+
+    \item \textbf{Création de l'espace de travail isolé (\code{setup-worktree.ts}) :}
+    Pour chaque tâche prise en charge :
+    \begin{itemize}
+        \item Une branche dédiée (ex. \code{feature/ticket-104}) et un répertoire de travail isolé sous \code{.worktrees/<nom-branche>} sont créés via \code{createWorktree()} ;
+        \item Un dossier d'échange \code{.task/} est initialisé avec un fichier de description de tâche \code{manifest.json} et automatiquement ajouté au \code{.gitignore} local (\code{ensureTaskGitignore}) ;
+        \item Si des dépendances sont détectées dans le projet cible, une installation propre (\code{npm ci}) est exécutée au sein du worktree.
+    \end{itemize}
+
+    \item \textbf{Surveillance en vol et réattachement (\textit{In-Flight Tracking}) :}
+    Le superviseur enregistre les identifiants de processus (PIDs) et les identités d'exécution (\code{RunIdentity}) dans une table de suivi persistée (\code{in-flight-store.ts}). Un émetteur de signal de vie (\code{heartbeat}) garantit la détection des anomalies, tandis que la fonction \code{reattachSurvivors()} permet au superviseur de reprendre le suivi des workers actifs en cas de redémarrage inopiné.
+\end{enumerate}
+
+\subsection{Exécution du pipeline agentique et publication déterministe de la MR}
+\label{subsec:execution_pipeline_mr}
+
+Une fois l'environnement de travail préparé, le processus Worker (\code{src/worker/worker.ts} / \textit{Launcher V5}) prend le relais pour dérouler la séquence d'ingénierie :
+
+\begin{itemize}
+    \item \textbf{Confinement strict de l'agent IA (\code{invokeAgent}) :}
+    L'agent d'intelligence artificielle (Claude Code CLI / Antigravity) est invoqué par sous-processus via son flux d'entrée standard (\code{stdin}) en lui restreignant strictement les outils autorisés (\code{--allowed-tools}). Il n'opère que sur les fichiers locaux du worktree ;
+    \item \textbf{Assainissement et observabilité (\code{redactSecrets} \& \code{truncateForLog}) :}
+    Toutes les traces d'exécution de l'agent font l'objet d'un masquage systématique des clés et secrets. Les journaux volumineux sont condensés par une troncature symétrique (\textit{head-and-tail truncation}) préservant les diagnostics initiaux et finaux ;
+    \item \textbf{Disjoncteur global (\code{Circuit Breaker}) :}
+    Le worker maintient un compteur d'essais cumulés (\code{globalAttempts}). Si le seuil critique (\code{maxGlobalAttempts = 25}) est franchi suite à des échecs répétés, le disjoncteur interrompt immédiatement le traitement pour prévenir tout gaspillage de ressources ;
+    \item \textbf{Gouvernance mécanique et script \code{create-mr.ts} :}
+    Une fois le code validé par les garde-fous déterministes (\code{validateMechanical}), le worker n'utilise \textbf{en aucun cas l'IA} pour publier le travail. Il exécute un script TypeScript autonome (\code{src/worker/providers/create-mr.ts}) qui récupère les variables d'environnement injectées (\code{USINE_CODEBASE_TOKEN}), instancie le \code{CodeBaseProvider} et déclenche l'ouverture de la Merge Request sur la forge avec les références au ticket d'origine.
+\end{itemize}
+
+\subsection{Schéma d'architecture globale du moteur agnostique}
+\label{subsec:schema_architecture_moteur}
+
+La Figure~\ref{fig:archi-moteur} illustre l'architecture globale du moteur agnostique, mettant en évidence le découplage des forges, l'isolation par Git Worktrees et l'étanchéité absolue entre la zone d'intervention de l'IA et les mécanismes d'intégration déterministes.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    scale=0.82,
+    transform shape,
+    font=\sffamily\footnotesize,
+    >=Latex,
+    forge/.style={draw=blue!70!black, fill=blue!10, rounded corners=4pt, minimum width=2.4cm, minimum height=0.85cm, align=center, font=\scriptsize\bfseries},
+    boxsupervisor/.style={draw=orange!80!black, fill=orange!8, rounded corners=6pt, line width=0.8pt},
+    boxworktree/.style={draw=teal!80!black, fill=teal!6, rounded corners=6pt, line width=0.8pt},
+    comporange/.style={draw=orange!90!black, fill=white, rounded corners=3pt, minimum width=3.0cm, minimum height=0.85cm, align=center, font=\scriptsize},
+    compteal/.style={draw=teal!90!black, fill=white, rounded corners=3pt, minimum width=3.0cm, minimum height=0.85cm, align=center, font=\scriptsize},
+    agentbox/.style={draw=purple!80!black, fill=purple!12, rounded corners=4pt, minimum width=7.2cm, minimum height=1.1cm, align=center, font=\scriptsize},
+    guardbox/.style={draw=red!70!black, fill=red!10, rounded corners=3pt, minimum width=3.0cm, minimum height=0.85cm, align=center, font=\scriptsize},
+    scriptbox/.style={draw=blue!80!black, fill=blue!12, rounded corners=4pt, minimum width=6.8cm, minimum height=0.9cm, align=center, font=\scriptsize\bfseries}
+]
+
+    % =========================================================================
+    % 1. ZONE FORGES & BACKLOGS (EXTERNE)
+    % =========================================================================
+    \draw[draw=blue!50, fill=blue!3, dashed, rounded corners=6pt, line width=0.8pt] (-5.8, 6.0) rectangle (5.8, 4.3);
+    \node[anchor=west, font=\scriptsize\bfseries\color{blue!80!black}] at (-5.6, 5.7) {Écosystème Externe (Forges \& Gestionnaires de Backlog)};
+
+    \node[forge] (gitlab) at (-4.2, 4.9) {GitLab\\ \tiny (Issues / MR)};
+    \node[forge] (github) at (-1.4, 4.9) {GitHub\\ \tiny (Issues / PR)};
+    \node[forge] (jira)   at (1.4, 4.9) {Jira\\ \tiny (Backlog)};
+    \node[forge] (gitea)  at (4.2, 4.9) {Gitea / Bitbucket\\ \tiny (CodeBase)};
+
+    % =========================================================================
+    % 2. ZONE SUPERVISEUR (SUPERVISOR V5)
+    % =========================================================================
+    \draw[boxsupervisor] (-5.8, 3.8) rectangle (5.8, 1.2);
+    \node[anchor=west, font=\scriptsize\bfseries\color{orange!90!black}] at (-5.6, 3.55) {Superviseur Daemon (Supervisor V5) — Pilotage continu et Concurrence};
+
+    \node[comporange] (backlog_prov) at (-3.9, 2.3) {\textbf{BacklogProvider}\\ \tiny fetchReadyTickets() / claimTicket()};
+    \node[comporange, fill=orange!15] (resolver) at (0, 2.3) {\textbf{ProviderResolver}\\ \tiny Registry / Singleton config};
+    \node[comporange] (in_flight) at (3.9, 2.3) {\textbf{In-Flight Store}\\ \tiny Suivi PIDs, Heartbeat \& Survivors};
+
+    % =========================================================================
+    % 3. ZONE WORKSPACE WORKTREE & WORKER (LAUNCHER V5)
+    % =========================================================================
+    \draw[boxworktree] (-5.8, 0.7) rectangle (5.8, -3.5);
+    \node[anchor=west, font=\scriptsize\bfseries\color{teal!90!black}] at (-5.6, 0.45) {Espace de travail isolé (Git Worktree \& Launcher V5) — Confinement Sandbox};
+
+    \node[compteal, fill=gray!12] (git_local) at (-3.9, -0.6) {\textbf{Git Worktree Local}\\ \tiny \code{.worktrees/<branch>} + \code{.task/}};
+    \node[compteal, fill=teal!15] (runner) at (0, -0.6) {\textbf{Workflow Runner}\\ \tiny Analyse $\rightarrow$ Plan $\rightarrow$ Tests $\rightarrow$ Code};
+    \node[guardbox] (guards) at (3.9, -0.6) {\textbf{Garde-fous}\\ \tiny validateMechanical / Linters};
+
+    \node[agentbox] (llm_agent) at (0, -2.4) {\textbf{Agent IA Confiné (Claude Code CLI / Antigravity)}\\ \scriptsize \color{red!80!black}\textbf{Accès I/O fichiers locaux uniquement — Zéro token forge}};
+
+    % =========================================================================
+    % 4. PASSERELLE DE FINALISATION DÉTERMINISTE
+    % =========================================================================
+    \node[scriptbox] (mr_creator) at (0, -4.4) {Script Déterministe \code{create-mr.ts}\\ \tiny CodeBaseProvider.handleMergeRequest() avec tokens typés (\code{brandAs})};
+
+    % =========================================================================
+    % FLÈCHES ET FLUX D'ORCHESTRATION
+    % =========================================================================
+    % 1. Forges <-> Superviseur
+    \draw[<->, thick, draw=blue!70!black] (0, 4.3) -- node[fill=white, inner sep=2pt, font=\tiny] {1. Polling périodique \& Claiming atomique par labels} (0, 3.8);
+
+    % 2. Superviseur -> Worker
+    \draw[->, thick, draw=orange!80!black] (0, 1.2) -- node[fill=white, inner sep=2pt, font=\tiny] {2. Création Git Worktree \& Spawn du Worker} (0, 0.7);
+
+    % 3. Intérieur du Worktree
+    \draw[->, thick, draw=teal!80!black] (runner) -- node[above=1pt, font=\tiny] {Init/Commit} (git_local);
+    \draw[<->, thick, draw=purple!80!black] (runner.south) -- node[right=2pt, font=\tiny] {3. Invocations (stdin/stdout)} (llm_agent.north);
+    \draw[<->, thick, draw=gray!70!black] (llm_agent.west) -| (-3.9, -1.4) -- node[left=1pt, font=\tiny] {Édition} (git_local.south);
+    \draw[->, thick, draw=teal!80!black] (runner) -- node[above=1pt, font=\tiny] {4. Contrôle} (guards);
+
+    % 4. Finalisation vers create-mr
+    \draw[->, thick, draw=teal!80!black] (guards.south) -- (3.9, -4.4) -- node[above=1pt, font=\tiny] {5. Succès gardes} (mr_creator.east);
+
+    % 5. create-mr vers Forges (Remontée à l'extérieur gauche)
+    \draw[->, thick, draw=blue!80!black] (mr_creator.west) -- (-6.5, -4.4) |- node[pos=0.25, left=2pt, font=\tiny, align=right] {6. Push branche \&\\ Création MR/PR\\ (Appel API déterministe)} (gitlab.west);
+
+\end{tikzpicture}
+\caption{Architecture globale du moteur agnostique : découplage des forges, isolation par Git Worktrees et étanchéité de l'agent IA}
+\label{fig:archi-moteur}
 \end{figure}
 
-La Figure~\ref{fig:archi-moteur} illustre un exemple de structure (ici avec le logo de \reportSchool{}).
 
-\section{Stratégies de normalisation : Uniformisation des API hétérogènes (GitLab/GitHub/LLMs)}
+
+\section{Stratégies de normalisation : Uniformisation des API hétérogènes (GitLab/GitHub/Gitea/LLMs)}
 \label{sec:normalisation_api}
-Mise en place de façades et d'adaptateurs pour assurer l'interopérabilité entre les différentes plateformes d'intégration continue et les divers LLMs du marché.
+
+L'efficacité et la pérennité d'une usine logicielle autonome reposent sur sa capacité à fonctionner de manière totalement agnostique vis-à-vis des outils tiers. Dans un écosystème d'entreprise, les équipes utilisent des forges hétérogènes (GitLab, GitHub, Gitea, Bitbucket), des gestionnaires de backlog variés (Jira, GitLab Issues, GitHub Projects) et différents assistants d'intelligence artificielle (Antigravity/Agy, OpenAI Codex CLI, Claude Code CLI).
+
+Face à cette diversité, l'architecture d'Oxyl implémente une stratégie de normalisation reposant sur trois piliers :
+\begin{enumerate}
+    \item Un \textbf{modèle de données canonique pivot} couplé à des \textit{Data Mappers} pour abstraire les forges et leurs asymétries de protocole ;
+    \item Une \textbf{couche d'adaptation d'agents CLI} standardisant l'invocation, la surveillance et l'interchangeabilité des moteurs d'IA ;
+    \item Un \textbf{protocole pivot d'échange documentaire} basé sur des artefacts Markdown structurés (\code{.task/*.md}), constituant l'espéranto entre l'orchestrateur déterministe et les agents cognitifs.
+\end{enumerate}
+
+\subsection{Modèle pivot canonique : Unification des entités métier (\textit{Data Mapper})}
+\label{subsec:modele_pivot_forges}
+
+Chaque forge logicielle manipule des structures de données et des protocoles d'accès divergents. Par exemple, GitLab manipule les labels directement sous forme de chaînes textuelles (\code{string[]}) et identifie les projets par un ID numérique ou un chemin encodé, tandis que Gitea requiert une résolution préalable des labels sous forme d'identifiants numériques internes (\code{number[]}) et segmente les dépôts par couple \code{owner/repo}.
+
+Pour isoler la logique métier du superviseur et du worker de ces disparités, nous appliquons le patron de conception \textbf{Canonical Data Model} (Modèle Pivot) associé à des \textbf{Data Mappers} bidirectionnels (voir Listing~\ref{lst:canonical_types}).
+
+\begin{lstlisting}[language=java, caption={Modélisation des types pivots abstraits et du contrat d'adaptation}, label={lst:canonical_types}]
+// 1. Modèle canonique pivot pour les tickets de backlog
+export type Ticket = {
+  id: number;
+  projectId: number | string;
+  title: string;
+  description: string;
+  labels: string[];
+  state: 'open' | 'closed';
+  priority: string;
+};
+
+// 2. Modèle canonique pour les demandes d'intégration (MR / PR)
+export type MergeRequestResult = {
+  id: number;
+  iid: number;
+  url: string;
+  sourceBranch: string;
+  targetBranch: string;
+  state: 'opened' | 'closed' | 'merged';
+};
+
+// 3. Contrat d'adaptation Backlog (Mapping bidirectionnel)
+export interface BacklogProvider {
+  fetchReadyTickets(filter: TicketFilter, priorities: PriorityConfig): Promise<Ticket[]>;
+  claimTicket(ticketId: number): Promise<boolean>;
+  addLabels(ticketId: number, labels: string[]): Promise<void>;
+  removeLabels(ticketId: number, labels: string[]): Promise<void>;
+  postComment(ticketId: number, body: string): Promise<void>;
+  getRelatedMergeRequests(ticketId: number): Promise<RelatedMergeRequest[]>;
+}
+\end{lstlisting}
+
+Chaque adaptateur concret (\code{GitLabBacklogAdapter}, \code{GiteaCodeBaseAdapter}) encapsule la complexité de sérialisation et de désérialisation :
+\begin{itemize}
+    \item \textbf{Désérialisation ascendante :} Lorsqu'un adaptateur interroge une API externe, il mappe le payload brut (JSON GitLab REST ou Gitea Swagger) en une entité conforme au type pivot \code{Ticket} ;
+    \item \textbf{Sérialisation descendante :} Lors des opérations de mutation (création de MR, mise à jour de labels), l'adaptateur traduit les commandes unifiées dans le format exigé par la cible. C'est l'adaptateur Gitea qui prend en charge la conversion transparente des noms de labels en IDs Gitea sans polluer le code de l'orchestrateur.
+\end{itemize}
+
+\subsection{Abstraction et interchangeabilité des moteurs agentiques (\textit{AgentProvider})}
+\label{subsec:abstraction_agents_cli}
+
+Plutôt que de coupler l'usine logicielle aux SDKs d'APIs brutes de chaque fournisseur de LLM (Anthropic API, OpenAI API, Google AI), nous avons fait le choix stratégique d'interagir avec les \textbf{CLI agentiques autonomes} : \textbf{Agy (Antigravity CLI)}, \textbf{OpenAI Codex CLI} et \textbf{Claude Code CLI}.
+
+Ce choix offre des avantages déterminants :
+\begin{itemize}
+    \item \textbf{Délégation de la gestion de contexte :} Les CLI intègrent nativement les optimisations d'historique de conversation, la gestion dynamique de la fenêtre de contexte et la compaction automatique des messages ;
+    \item \textbf{Gouvernance centralisée des accès :} L'usine est hébergée sur l'infrastructure d'Oxyl où les comptes et quotas de tokens sont mutualisés et sécurisés. La sélection du CLI agentique est configurable dynamiquement au sein du fichier \code{config.json} de l'usine, ouvrant la voie à une architecture multi-tenant où chaque client pourra brancher son propre CLI et ses propres clés d'authentification ;
+    \item \textbf{Isolation des autorisations d'outils (\textit{Tool Sandboxing}) :} Le worker alloue dynamiquement les outils autorisés (\code{--allowed-tools}) en fonction de la phase en cours (voir Listing~\ref{lst:agentic_build}).
+\end{itemize}
+
+\begin{lstlisting}[language=java, caption={Génération dynamique du contexte et allocation des permissions d'outils}, label={lst:agentic_build}]
+export function getAllowedTools(step: Step): string {
+  const baseTools = ['Read', 'Write', 'Glob', 'Grep', 'Bash', 'Agent'];
+  // L'outil d'édition in-situ ('Edit') est strictement verrouillé
+  // lors des étapes d'analyse, de planification ou de revue
+  if (!step.read_only) {
+    baseTools.push('Edit');
+  }
+  return baseTools.join(',');
+}
+\end{lstlisting}
+
+Pour prévenir les dérives d'exécution et les gaspillages financiers liés à des agents bloqués en boucle infinie, deux mécanismes déterministes sont intégrés :
+\begin{enumerate}
+    \item \textbf{Signal de vie périodique (\textit{Heartbeat}) :} Le superviseur émet régulièrement un commentaire structuré sur le ticket (\code{buildClaimMetaComment}) attestant de la progression du worker. L'absence prolongée de signal permet de détecter les processus orphelins et de recycler les verrous ;
+    \item \textbf{Garde-fou temporel et disjoncteur (\textit{Circuit Breaker}) :} Un temps d'exécution maximal est alloué à chaque étape du pipeline, couplé à un plafond global de tentatives (\code{maxGlobalAttempts = 25}) au-delà duquel l'exécution est suspendue avec notification d'échec motivée.
+\end{enumerate}
+
+\subsection{Protocole pivot d'échange documentaire : Les artefacts Markdown (\texttt{.task/*.md})}
+\label{subsec:protocole_markdown}
+
+Pour orchestrer la communication entre les composants déterministes (écrits en TypeScript) et les agents probabilistes (les LLMs pilotés par CLI), l'usine utilise le langage \textbf{Markdown} comme format d'échange universel. 
+
+À chaque instanciation de tâche dans un \textit{Git Worktree}, un répertoire d'échange dédié \code{.task/} est créé à la racine du projet. Ce répertoire contient des documents standardisés jouant le rôle de contrats d'interface :
+
+\begin{table}[htbp]
+\centering
+\caption{Typologie et rôle des artefacts Markdown au sein de l'espace \texttt{.task/}}
+\label{tab:artefacts_task}
+\small
+\begin{tabularx}{\textwidth}{|l|l|X|}
+\hline
+\textbf{Fichier Artefact} & \textbf{Étape Productrice} & \textbf{Rôle et Contenu Normalisé} \\
+\hline
+\code{ticket.md} & Superviseur (Init) & Synthèse normalisée du besoin : titre, description nettoyée, critères d'acceptation et contraintes de branches. \\
+\hline
+\code{plan.md} & Agent (\code{plan-ticket}) & Contrat d'implémentation : analyse de cause racine, périmètre exact des fichiers à créer/éditer et stratégie de tests. \\
+\hline
+\code{staged-files.txt} & Garde-fous / Git & Liste brute des fichiers modifiés, utilisée par \code{check-scope} pour valider la conformité avec \code{plan.md}. \\
+\hline
+\code{feedback.md} & Worker (Validation) & Rapport normalisé d'erreurs de compilation, de linter ou de tests unitaires injecté dans le prompt lors des boucles d'auto-correction. \\
+\hline
+\code{review.md} & Agent (\code{review-code}) & Rapport d'audit de qualité logicielle, d'adhérence aux conventions de nommage et d'absence de régressions. \\
+\hline
+\end{tabularx}
+\end{table}
+
+Cette normalisation documentaire garantit une lisibilité maximale pour l'IA, facilite l'auditabilité pour les développeurs humains qui consultent les branches, et supprime tout couplage direct avec un schéma propriétaire.
 
 \section{Validation de la chaîne de valeur : Benchmarking du pipeline (taux de résolution, qualité, robustesse)}
 \label{sec:validation_valeur}
