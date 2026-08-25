@@ -37,6 +37,8 @@
 \def\place{Nancy} % Ville pour la signature pour l'engagement anti-plagiat
 \def\date{\today} % Date pour la signature de l'engagement anti-plagiat
 
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,arrows.meta,positioning,calc,fit}
 
 \begin{document}
 
@@ -732,13 +734,164 @@ Le Tableau~\ref{tab:comparatif_agents} synthétise la comparaison entre l'approc
 
 Cette analyse met en évidence que l'usine logicielle Oxyl privilégie l'indépendance technologique et la personnalisation fine des flux agentiques, combinant la souplesse d'exécution CLI à un contrôle total sur l'infrastructure de développement.
 
-\section{Théorie de l'abstraction : Étude des patrons de conception (Adapter, Bridge, Strategy) pour s'affranchir du lock-in}
+\section{Théorie de l'abstraction : Étude des patrons de conception pour s'affranchir du lock-in}
 \label{sec:theorie_abstraction}
-Analyse conceptuelle de l'utilisation des patrons de conception pour concevoir une architecture logicielle flexible et indépendante des fournisseurs de modèles de langage (LLMs) ou d'outils tiers.
+
+L'intégration d'assistants et d'agents d'intelligence artificielle au sein d'une usine logicielle industrielle confronte l'architecture à un risque majeur d'enfermement technologique (\textit{vendor lock-in}). Les fournisseurs de modèles de langage (LLMs) et d'outils agentiques --- tels qu'Anthropic (Claude Code), Google (Antigravity SDK / Gemini) ou OpenAI (Codex / GPT) --- imposent des interfaces de programmation, des formats d'outillage (\textit{tool-calling}), des protocoles d'authentification et des modes d'exécution profondément disparates.
+
+Pour garantir la pérennité de l'usine logicielle, son indépendance stratégique et la substituabilité immédiate d'un modèle par un autre sans réécriture du cœur applicatif, nous avons mené une étude approfondie des patrons de conception logicielle (\textit{design patterns}) dédiés à l'abstraction.
+
+\subsection{Dilemme d'ingénierie et arbitrage des patrons de conception}
+\label{subsec:arbitrage_patterns}
+
+La conception du socle d'abstraction agentique a nécessité la confrontation de plusieurs patrons classiques du \textit{Gang of Four} (GoF) :
+
+\begin{itemize}
+    \item \textbf{L'Adapter (Adaptateur) :} Ce patron a été retenu comme le pivot conceptuel de l'architecture. La relation entre le moteur d'orchestration de l'usine et les différents moteurs d'IA est fondamentalement une relation de \textbf{traduction} : il s'agit de convertir des requêtes canoniques d'ingénierie (prompts, outils autorisés, contextes d'exécution) vers les syntaxes d'invocation spécifiques à chaque fournisseur (flags CLI, schémas JSON d'outils, flux d'entrée standard) et d'en normaliser les retours.
+    \item \textbf{La Strategy (Stratégie) :} Le patron Strategy a été abondamment étudié et s'hybride naturellement avec notre implémentation de l'Adapter. Le moteur applicatif interagit avec une interface générique stable (\code{LLMProvider} / \code{AgentRunner}) définissant les signatures des méthodes d'invocation. Les classes d'adaptation concrètes implémentent ces méthodes selon les spécificités de chaque modèle. Le choix du moteur à solliciter étant résolu dynamiquement à l'exécution selon le profil de la tâche, l'interchangeabilité de l'algorithme sous-jacent s'apparente à une Strategy.
+    \item \textbf{Le Bridge (Pont) :} Le patron Bridge permet de découpler une hiérarchie d'abstractions (les types d'activités logicielles : analyse de ticket, génération de code, audit de sécurité) de multiples hiérarchies d'implémentations (les protocoles d'exécution CLI, API REST, WebSocket). Bien que séduisant, son adoption complète a été écartée au profit d'une interface d'adaptation plus directe afin d'éviter une sur-ingénierie prématurée.
+    \item \textbf{Abstract Factory vs Singleton pour l'instanciation :} L'instanciation de l'adaptateur a fait l'objet d'un arbitrage spécifique. Si une \textit{Factory} (fabrique) a été envisagée pour instancier dynamiquement l'adaptateur requis, nous avons opté pour la conservation d'une instance unique (\textbf{Singleton}) en mémoire durant toute la durée de vie d'un conteneur worker. L'accès à cet adaptateur s'effectue via un résolveur dédié (\code{getLLMProvider()}), combinant ainsi la flexibilité d'une fabrique à la cohérence d'un point d'accès persistant en mémoire.
+\end{itemize}
+
+\subsection{Modélisation de la couche d'abstraction des moteurs d'IA}
+\label{subsec:modelisation_abstraction_llm}
+
+L'architecture d'abstraction projetée pour les moteurs LLM s'articule autour d'une interface canonique commune, d'un résolveur dynamique et d'adaptateurs spécialisés par fournisseur. Cette démarche reproduit fidèlement les principes d'abstraction déjà validés sur les composants de gestion de versions et de tickets.
+
+La Figure~\ref{fig:diagramme_uml_adapter_llm} schématise cette organisation structurelle.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    node distance=1.8cm,
+    interface/.style={draw, rectangle, fill=blue!10, rounded corners, minimum width=5.2cm, minimum height=1.3cm, align=center, font=\small},
+    adapter/.style={draw, rectangle, fill=green!10, minimum width=3.8cm, minimum height=1.4cm, align=center, font=\footnotesize},
+    resolver/.style={draw, rectangle, fill=orange!10, dashed, minimum width=4.8cm, minimum height=1.2cm, align=center, font=\small},
+    arrow/.style={-{Latex[length=3mm]}, thick},
+    implements/.style={-{Triangle[open, length=3mm]}, dashed, thick}
+]
+    % Nodes
+    \node[interface] (provider) {\textbf{<<interface>>}\\ \textbf{LLMProvider}\\ \scriptsize + invokeAgent(step: Step): Promise<ExecutionResult>\\ + formatPrompt(context, prompt): string};
+    
+    \node[adapter, below left=1.5cm and -0.8cm of provider] (claude) {\textbf{ClaudeCodeAdapter}\\ \scriptsize - apiKey: string\\ + invokeAgent()\\ + spawnCliProcess()};
+    
+    \node[adapter, below right=1.5cm and -0.8cm of provider] (antigravity) {\textbf{AntigravityAdapter}\\ \scriptsize - oauthSession: OAuthToken\\ + invokeAgent()\\ + initSession()};
+    
+    \node[resolver, above=1.2cm of provider] (resolver) {\textbf{LLMProviderResolver}\\ \scriptsize - instance: LLMProvider | null\\ + createLLMProvider(config): void\\ + getLLMProvider(): LLMProvider};
+
+    % Links
+    \draw[implements] (claude) -- (provider.south west);
+    \draw[implements] (antigravity) -- (provider.south east);
+    \draw[arrow] (resolver) -- node[right, font=\scriptsize] {Instancie / Retourne} (provider);
+\end{tikzpicture}
+\caption{Diagramme conceptuel du patron Adapter appliqué au découplage des moteurs LLM}
+\label{fig:diagramme_uml_adapter_llm}
+\end{figure}
+
+Le contrat d'interface \code{LLMProvider} définit une frontière étanche : le code métier de l'usine logicielle (gestion des étapes du workflow, validation mécanique, persistance des états) n'a aucune dépendance directe envers les SDKs ou binaires propriétaires.
+
+\subsection{Défis d'abstraction et contraintes d'exécution conteneurisée}
+\label{subsec:defis_abstraction_llm}
+
+L'unification des moteurs d'intelligence artificielle au sein d'environnements d'exécution automatisés (conteneurs Docker isolés et sans interface graphique) met en exergue des disparités techniques majeures que l'adaptateur doit normaliser :
+
+\begin{enumerate}
+    \item \textbf{Hétérogénéité des protocoles d'accès et d'authentification :}
+    \begin{itemize}
+        \item \textbf{Claude Code CLI :} Fonctionne nativement en ligne de commande autonome. Son exécution au sein du conteneur repose sur l'injection de variables d'environnement (\code{ANTHROPIC_API_KEY}), l'invocation d'un sous-processus sans état (\code{spawnSync}) et la transmission du prompt par le flux d'entrée standard (\code{stdin}) ;
+        \item \textbf{Google Antigravity SDK :} Conçu originellement pour opérer comme une extension intégrée à un environnement de développement interactif (IDE), son intégration dans un conteneur headless autonome nécessite une couche d'émulation de session et la gestion d'un jeton d'authentification OAuth spécifique.
+    \end{itemize}
+
+    \item \textbf{Gestion granulaire de l'outillage (\textit{Tool Gating}) :}
+    Tous les modèles ne disposent pas des mêmes conventions de déclaration d'outils. La couche d'abstraction normalise l'allocation des capacités selon la sensibilité de l'étape :
+    \begin{itemize}
+        \item Les étapes marquées \code{read_only} (audits, revues de code) ne transmettent aux adaptateurs que les outils d'exploration et de consultation (\code{Read}, \code{Glob}, \code{Grep}) et de rapport (\code{Write}), tout en désactivant strictement l'outil de modification de code source (\code{Edit}) ;
+        \item Les étapes de développement ouvrent l'ensemble des capacités d'édition et d'exécution de commandes.
+    \end{itemize}
+
+    \item \textbf{Normalisation des retours et injection contextuelle de résilience :}
+    En cas d'échec d'une étape (erreur de compilation ou régression de tests), l'adaptateur injecte de manière transparente un bloc structuré de remédiation (\textit{Retry Context}) en amont du prompt pour guider le modèle lors de la tentative suivante, tout en assurant l'assainissement automatique (\code{redactSecrets}) de toutes les sorties pour prévenir la fuite d'informations sensibles dans les journaux d'audit.
+\end{enumerate}
+
+Cette conception modulaire garantit ainsi une agnosticité totale : l'ajout d'un nouveau fournisseur (par exemple un modèle open-source hébergé localement via Ollama ou vLLM) se résume à l'écriture d'une nouvelle classe implémentant \code{LLMProvider} sans impacter le reste du pipeline d'ingénierie.
 
 \section{Analyse des contraintes : Sécurité, gestion des coûts de tokens et reproductibilité des résultats}
 \label{sec:analyse_contraintes}
-Évaluation des limites concrètes des agents d'IA en production, notamment sur les aspects financiers (consommation de tokens), de sécurité du code et de déterminisme.
+
+L'exploitation industrielle d'agents autonomes au sein du cycle de développement logiciel ne saurait se résumer à des considérations algorithmiques. En environnement de production, le déploiement de ces systèmes fait face à des contraintes opérationnelles strictes : la dérive financière liée à la consommation incontrôlée de tokens, la saturation des fenêtres de contexte, la préservation des secrets applicatifs et le caractère non déterministe des modèles génératifs.
+
+Cette section détaille les mécanismes de contrôle, de résilience et de gouvernance mécanique mis en place pour garantir la viabilité économique, technique et sécuritaire de l'usine logicielle.
+
+\subsection{Maîtrise des coûts et des temps d'exécution : Le double verrou de réessai}
+\label{subsec:gestion_couts_tokens}
+
+L'un des risques majeurs inhérents aux systèmes agentiques réside dans le phénomène de « boucle de raisonnement infinie » (\textit{infinite reasoning loop}). Lorsqu'un modèle se heurte à une anomalie sans parvenir à la corriger, il tend à multiplier les essais infructueux, engendrant une consommation exponentielle de tokens et un temps d'occupation critique des conteneurs.
+
+Pour juguler ce risque, notre moteur intègre une politique de plafonnement à deux niveaux :
+\begin{itemize}
+    \item \textbf{Plafond local par étape (\code{max_retries}) :} Chaque étape élémentaire du workflow d'un worker (par exemple la génération de code, l'analyse d'architecture ou l'exécution de la suite de tests) est assortie d'un quota strict de tentatives. Si une étape échoue (erreur de compilation, échec de linting), le moteur évalue le nombre d'essais consommés (\code{getRetryCount(step.id)}). Tant que \code{retryCount < step.max_retries}, une nouvelle tentative ciblée est autorisée ; dans le cas contraire, le traitement de l'étape est interrompu.
+    \item \textbf{Disjoncteur global par ticket (\code{Circuit Breaker}) :} Au-delà des limites par étape, un compteur d'essais cumulés (\code{globalAttempts}) est maintenu pour l'ensemble du cycle de vie du worker sur un ticket donné. Dès que ce compteur atteint le seuil critique \code{maxGlobalAttempts} (défini par les limites globales de l'usine), le disjoncteur se déclenche immédiatement (\textit{circuit breaker triggered}), interrompant définitivement le traitement afin d'éviter tout surcoût financier ou blocage de la file de tâches.
+    \item \textbf{Routage conditionnel sur échec (\code{on_fail} et \code{max_on_fail}) :} Lorsqu'une défaillance survient, le moteur analyse et classifie l'erreur (\code{classifyFailure}). Si un gestionnaire de déviation est configuré (ex. \code{goto diagnostic_step}), le flux est redirigé vers une étape spécialisée, tout en plafonnant le nombre total de déviations via \code{max_on_fail} pour empêcher les cycles de redirection infinis.
+\end{itemize}
+
+\subsection{Gestion du flux de sortie et compression contextuelle : Le rôle du Manifest}
+\label{subsec:gestion_flux_manifest}
+
+L'exécution des agents génère des volumes considérables de données textuelles (traces d'exécution, diffs de code, journaux de compilation). L'injection brute et intégrale de ces flux dans les invites d'entrée (\textit{prompts}) saturerait rapidement la fenêtre de contexte du modèle, provoquant une dégradation notable du raisonnement et un gonflement tarifaire.
+
+Pour rationaliser ces flux de sortie, nous appliquons une stratégie de gestion asymétrique :
+\begin{itemize}
+    \item \textbf{Filtrage et affichage sélectif dans le terminal :} Les sorties brutes générées par les sous-processus ne sont pas intégralement imprimées dans la console standard. Le moteur de logs tronque les réponses volumineuses en conservant uniquement le début et la fin du message (\textit{head-and-tail truncation}), garantissant ainsi la lisibilité pour les développeurs tout en évitant la saturation des flux d'observabilité.
+    \item \textbf{Persistance structurée dans le \textit{Manifest} :} Plutôt que de conserver l'historique complet des échanges en mémoire vive, les informations vitales d'état sont persistées au sein d'un document structuré machine-readable nommé \textbf{Manifest} (\code{manifest.json}). Ce fichier consigne l'identifiant de l'étape en cours, le numéro de tentative (\code{attemptNumber}), l'étape ayant échoué (\code{failedStep}) ainsi qu'un extrait synthétique de l'erreur (\code{errorSnippet}) et une recommandation d'orientation (\code{suggestion}).
+    \item \textbf{Injection minimale de contexte de réessai (\textit{Retry Context}) :} Lors d'une reprise après incident, la fonction \code{buildRetryContext} n'extrait du Manifest que la charge utile essentielle liée à l'erreur précédente. Ce condensé contextuel est injecté en tête de prompt sous forme de directive ciblée (\textit{« Previous failure category: syntax\_error... »}), permettant au modèle de corriger son approche sans gaspiller de précieux tokens à relire des milliers de lignes de logs inutiles.
+\end{itemize}
+
+\subsection{Sécurité, étanchéité des conteneurs et assainissement des secrets}
+\label{subsec:securite_secrets}
+
+L'exécution autonome d'instructions shell et la manipulation de code source par des modèles tiers exigent un cadre de sécurité intransigeant :
+\begin{itemize}
+    \item \textbf{Isolation en conteneurs éphémères :} Chaque agent s'exécute au sein d'un conteneur Docker dédié, instancié à la volée avec des privilèges restreints et détruit à l'issue de la tâche. Cette conteneurisation garantit l'étanchéité totale du système hôte vis-à-vis des commandes exécutées par l'IA.
+    \item \textbf{Purification systématique des flux (\code{redactSecrets}) :} Les variables d'environnement des conteneurs hébergent des identifiants sensibles (clés d'API LLM, tokens Git). Une fonction d'assainissement intercepte et masque systématiquement ces secrets au sein des flux \code{stdout}, \code{stderr} et des messages d'erreur avant toute sauvegarde dans les rapports d'audit ou affichage dans les logs.
+    \item \textbf{Cloisonnement des permissions d'outils (\textit{Tool Gating}) :} Conformément au principe du moindre privilège, les étapes ne nécessitant pas de modification de code (revue, vérification) se voient interdire l'accès à l'outil d'écriture de code (\code{Edit}), restreignant ainsi la surface d'attaque.
+\end{itemize}
+
+\subsection{Gouvernance déterministe : L'arsenal des garde-fous mécaniques}
+\label{subsec:gardefous_mecaniques}
+
+La nature probabiliste des LLMs implique une variabilité inhérente de leurs livrables et un risque d'hallucination ou de dérive de périmètre. Pour transformer cette variabilité en une chaîne de production logicielle déterministe et industrielle, notre architecture impose une philosophie de \textbf{validation mécanique systématique}. Aucune étape n'est validée sur la seule auto-évaluation du modèle ; chaque livrable doit satisfaire un ensemble de vérifications déterministes et outillées.
+
+\subsubsection{Le moteur de validation mécanique déclaratif (\texttt{validateMechanical})}
+Au terme de chaque étape du workflow, la fonction \code{validateMechanical(step)} évalue automatiquement la conformité des artefacts produits :
+\begin{itemize}
+    \item \textbf{Vérification des livrables obligatoires (\code{outputs[].required}) :} Contrôle physique de la présence sur le disque des fichiers de travail requis (tels que \code{.task/analyse.md}, \code{.task/plan.md} ou \code{.task/review.md}) ;
+    \item \textbf{Règles d'intégrité de contenu :} Application de contraintes de longueur minimale (\code{min_length}) pour écarter les rapports tronqués, et validation de structure par expressions régulières (\code{contains}, \code{contains_regex}) pour s'assurer de la présence des sections obligatoires ;
+    \item \textbf{Preuve d'activité effective (\code{git_diff_not_empty}) :} Vérifie formellement qu'une modification concrète a été enregistrée sur le dépôt (via \code{git diff HEAD}, présence de fichiers non suivis ou commits en avance sur la branche cible), interdisant à un agent de prétendre avoir finalisé une implémentation sans avoir apporté de changement au code source.
+\end{itemize}
+
+\subsubsection{Garde-fous mécaniques spécialisés (\textit{Mechanical Guards})}
+Pour prévenir les comportements déviants caractéristiques des assistants de programmation, nous avons conçu une suite de scripts de contrôle autonomes exécutés à des jalons stratégiques du pipeline :
+
+\begin{enumerate}
+    \item \textbf{Contrôle d'existence des fichiers sources (\code{check-source-files}) :} Exécuté après l'étape d'analyse, ce script extrait les chemins de fichiers mentionnés dans \code{.task/analyse.md} et vérifie leur existence réelle sur le système de fichiers, neutralisant immédiatement les hallucinations de modules inexistants.
+    \item \textbf{Respect strict du périmètre d'édition (\code{check-scope}) :} Afin d'éviter qu'un modèle ne modifie opportunément des fichiers non prévus, ce garde-fou compare la liste des fichiers modifiés (\code{.task/staged-files.txt}) aux fichiers explicitement validés dans le plan d'action (\code{.task/plan.md}). Toute altération hors périmètre déclenche l'arrêt immédiat du pipeline (\code{halt_if}).
+    \item \textbf{Étanchéité des suites de tests (\code{check-tests-scope}) :} Lors de l'étape de rédaction de tests (\code{code-tests}), l'agent a l'interdiction formelle de modifier le code source de l'application sous \code{src/}. Le script compare un instantané pré-tests (\code{staged-files-pre-tests.txt}) aux modifications finales pour garantir que seuls des fichiers sous \code{tests/} ont été ajoutés ou édités, empêchant le modèle d'altérer le code métier pour « faire passer » artificiellement les tests.
+    \item \textbf{Protection de la chaîne d'approvisionnement (\code{check-new-deps}) :} Analyse le fichier \code{package.json} par rapport à la branche de base (\code{dev}) et bloque le pipeline si de nouvelles dépendances tierces ont été introduites sans validation explicite préalable, prévenant l'inflation des dépendances et les vulnérabilités de sécurité associées.
+    \item \textbf{Intégrité de la qualité logicielle (\code{check-suppressions}) :} Audite le diff Git pour s'assurer que le modèle n'a pas contourné les erreurs de compilation ou de typage en injectant des annotations d'inhibition (telles que \code{eslint-disable}, \code{@ts-ignore}, \code{@ts-expect-error}, \code{@SuppressWarnings} ou \code{NOSONAR}).
+\end{enumerate}
+
+\subsection{Reproductibilité, métriques et perspective du patron Observer}
+\label{subsec:observabilite_reproductibilite}
+
+L'agrégation de l'ensemble de ces garde-fous permet de convertir le comportement probabiliste des LLMs en un flux d'ingénierie prédictible et auditable.
+
+Afin de consolider à grande échelle ces métriques de santé et de performance, nous prévoyons l'intégration d'un composant d'observabilité fondé sur le patron de conception \textbf{Observer} (Observateur). Ce composant écoutera les événements émis par les superviseurs et les conteneurs workers, permettant de mesurer en temps réel :
+\begin{itemize}
+    \item La consommation cumulée de tokens et les coûts financiers associés par projet et par ticket ;
+    \item La durée moyenne de cycle et la répartition temporelle par étape ;
+    \item Le taux de passage au premier essai (\textit{First-Time Pass Rate}) et la typologie des erreurs rattrapées par les gardes mécaniques.
+\end{itemize}
+Ce tableau de bord constituera l'outil central de pilotage de la rentabilité et de la robustesse globale de l'usine logicielle.
 
 \cleardoublepage
 
