@@ -39,6 +39,7 @@
 
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric,arrows.meta,positioning,calc,fit}
+\usepackage{multirow}
 
 % Harmonisation typographique de la commande \code (noms de fichiers, fonctions, variables)
 \DeclareUrlCommand\code{\def\UrlFont{\footnotesize\ttfamily}}
@@ -1016,16 +1017,13 @@ La Figure~\ref{fig:archi-moteur} illustre l'architecture globale du moteur agnos
     forge/.style={draw=blue!70!black, fill=blue!10, rounded corners=4pt, minimum width=2.4cm, minimum height=0.85cm, align=center, font=\scriptsize\bfseries},
     boxsupervisor/.style={draw=orange!80!black, fill=orange!8, rounded corners=6pt, line width=0.8pt},
     boxworktree/.style={draw=teal!80!black, fill=teal!6, rounded corners=6pt, line width=0.8pt},
-    comporange/.style={draw=orange!90!black, fill=white, rounded corners=3pt, minimum width=3.0cm, minimum height=0.85cm, align=center, font=\scriptsize},
-    compteal/.style={draw=teal!90!black, fill=white, rounded corners=3pt, minimum width=3.0cm, minimum height=0.85cm, align=center, font=\scriptsize},
-    agentbox/.style={draw=purple!80!black, fill=purple!12, rounded corners=4pt, minimum width=7.2cm, minimum height=1.1cm, align=center, font=\scriptsize},
-    guardbox/.style={draw=red!70!black, fill=red!10, rounded corners=3pt, minimum width=3.0cm, minimum height=0.85cm, align=center, font=\scriptsize},
-    scriptbox/.style={draw=blue!80!black, fill=blue!12, rounded corners=4pt, minimum width=6.8cm, minimum height=0.9cm, align=center, font=\scriptsize\bfseries}
+    comporange/.style={draw=orange!90!black, fill=white, rounded corners=3pt, minimum width=3.2cm, minimum height=0.85cm, align=center, font=\scriptsize},
+    compteal/.style={draw=teal!90!black, fill=white, rounded corners=3pt, minimum width=3.2cm, minimum height=0.95cm, align=center, font=\scriptsize},
+    agentbox/.style={draw=purple!80!black, fill=purple!12, rounded corners=4pt, minimum width=7.4cm, minimum height=1.1cm, align=center, font=\scriptsize},
+    guardbox/.style={draw=red!70!black, fill=red!10, rounded corners=3pt, minimum width=2.8cm, minimum height=0.85cm, align=center, font=\scriptsize},
+    scriptbox/.style={draw=blue!80!black, fill=blue!12, rounded corners=4pt, minimum width=8.0cm, minimum height=0.95cm, align=center, font=\scriptsize\bfseries}
 ]
 
-    % =========================================================================
-    % 1. ZONE FORGES & BACKLOGS (EXTERNE)
-    % =========================================================================
     \draw[draw=blue!50, fill=blue!3, dashed, rounded corners=6pt, line width=0.8pt] (-5.8, 6.0) rectangle (5.8, 4.3);
     \node[anchor=west, font=\scriptsize\bfseries\color{blue!80!black}] at (-5.6, 5.7) {Écosystème Externe (Forges \& Gestionnaires de Backlog)};
 
@@ -1034,52 +1032,35 @@ La Figure~\ref{fig:archi-moteur} illustre l'architecture globale du moteur agnos
     \node[forge] (jira)   at (1.4, 4.9) {Jira\\ \tiny (Backlog)};
     \node[forge] (gitea)  at (4.2, 4.9) {Gitea / Bitbucket\\ \tiny (CodeBase)};
 
-    % =========================================================================
-    % 2. ZONE SUPERVISEUR (SUPERVISOR V5)
-    % =========================================================================
     \draw[boxsupervisor] (-5.8, 3.8) rectangle (5.8, 1.2);
     \node[anchor=west, font=\scriptsize\bfseries\color{orange!90!black}] at (-5.6, 3.55) {Superviseur Daemon (Supervisor V5) — Pilotage continu et Concurrence};
 
-    \node[comporange] (backlog_prov) at (-3.9, 2.3) {\textbf{BacklogProvider}\\ \tiny fetchReadyTickets() / claimTicket()};
+    \node[comporange] (backlog_prov) at (-4.0, 2.3) {\textbf{BacklogProvider}\\ \tiny fetchReadyTickets() / claimTicket()};
     \node[comporange, fill=orange!15] (resolver) at (0, 2.3) {\textbf{ProviderResolver}\\ \tiny Registry / Singleton config};
-    \node[comporange] (in_flight) at (3.9, 2.3) {\textbf{In-Flight Store}\\ \tiny Suivi PIDs, Heartbeat \& Survivors};
+    \node[comporange] (in_flight) at (4.0, 2.3) {\textbf{In-Flight Store}\\ \tiny Suivi PIDs, Heartbeat \& Survivors};
 
-    % =========================================================================
-    % 3. ZONE WORKSPACE WORKTREE & WORKER (LAUNCHER V5)
-    % =========================================================================
     \draw[boxworktree] (-5.8, 0.7) rectangle (5.8, -3.5);
     \node[anchor=west, font=\scriptsize\bfseries\color{teal!90!black}] at (-5.6, 0.45) {Espace de travail isolé (Git Worktree \& Launcher V5) — Confinement Sandbox};
 
-    \node[compteal, fill=gray!12] (git_local) at (-3.9, -0.6) {\textbf{Git Worktree Local}\\ \tiny \code{.worktrees/<branch>} + \code{.task/}};
+    \node[compteal, fill=gray!12] (git_local) at (-4.1, -0.6) {\textbf{Git Worktree Local}\\ \tiny \code{.worktrees/<branch>}\\ \tiny \code{+ .task/}};
     \node[compteal, fill=teal!15] (runner) at (0, -0.6) {\textbf{Workflow Runner}\\ \tiny Analyse $\rightarrow$ Plan $\rightarrow$ Tests $\rightarrow$ Code};
-    \node[guardbox] (guards) at (3.9, -0.6) {\textbf{Garde-fous}\\ \tiny validateMechanical / Linters};
+    \node[guardbox] (guards) at (4.1, -0.6) {\textbf{Garde-fous}\\ \tiny validateMechanical / Linters};
 
     \node[agentbox] (llm_agent) at (0, -2.4) {\textbf{Agent IA Confiné (Claude Code CLI / Antigravity)}\\ \scriptsize \color{red!80!black}\textbf{Accès I/O fichiers locaux uniquement — Zéro token forge}};
 
-    % =========================================================================
-    % 4. PASSERELLE DE FINALISATION DÉTERMINISTE
-    % =========================================================================
     \node[scriptbox] (mr_creator) at (0, -4.4) {Script Déterministe \code{create-mr.ts}\\ \tiny CodeBaseProvider.handleMergeRequest() avec tokens typés (\code{brandAs})};
 
-    % =========================================================================
-    % FLÈCHES ET FLUX D'ORCHESTRATION
-    % =========================================================================
-    % 1. Forges <-> Superviseur
     \draw[<->, thick, draw=blue!70!black] (0, 4.3) -- node[fill=white, inner sep=2pt, font=\tiny] {1. Polling périodique \& Claiming atomique par labels} (0, 3.8);
 
-    % 2. Superviseur -> Worker
     \draw[->, thick, draw=orange!80!black] (0, 1.2) -- node[fill=white, inner sep=2pt, font=\tiny] {2. Création Git Worktree \& Spawn du Worker} (0, 0.7);
 
-    % 3. Intérieur du Worktree
-    \draw[->, thick, draw=teal!80!black] (runner) -- node[above=1pt, font=\tiny] {Init/Commit} (git_local);
+    \draw[->, thick, draw=teal!80!black] (runner) -- node[pos=0.5, above=2pt, font=\tiny] {Init/Commit} (git_local);
     \draw[<->, thick, draw=purple!80!black] (runner.south) -- node[right=2pt, font=\tiny] {3. Invocations (stdin/stdout)} (llm_agent.north);
-    \draw[<->, thick, draw=gray!70!black] (llm_agent.west) -| (-3.9, -1.4) -- node[left=1pt, font=\tiny] {Édition} (git_local.south);
-    \draw[->, thick, draw=teal!80!black] (runner) -- node[above=1pt, font=\tiny] {4. Contrôle} (guards);
+    \draw[<->, thick, draw=gray!70!black] (llm_agent.west) -| (-4.1, -1.4) -- node[left=1pt, font=\tiny] {Édition} (git_local.south);
+    \draw[->, thick, draw=teal!80!black] (runner) -- node[pos=0.5, above=2pt, font=\tiny] {4. Contrôle} (guards);
 
-    % 4. Finalisation vers create-mr
-    \draw[->, thick, draw=teal!80!black] (guards.south) -- (3.9, -4.4) -- node[above=1pt, font=\tiny] {5. Succès gardes} (mr_creator.east);
+    \draw[->, thick, draw=teal!80!black] (guards.south) -- node[pos=0.5, right=2pt, font=\tiny] {5. Succès gardes} (4.1, -4.4) -- (mr_creator.east);
 
-    % 5. create-mr vers Forges (Remontée à l'extérieur gauche)
     \draw[->, thick, draw=blue!80!black] (mr_creator.west) -- (-6.5, -4.4) |- node[pos=0.25, left=2pt, font=\tiny, align=right] {6. Push branche \&\\ Création MR/PR\\ (Appel API déterministe)} (gitlab.west);
 
 \end{tikzpicture}
@@ -1208,9 +1189,90 @@ Pour orchestrer la communication entre les composants déterministes (écrits en
 
 Cette normalisation documentaire garantit une lisibilité maximale pour l'IA, facilite l'auditabilité pour les développeurs humains qui consultent les branches, et supprime tout couplage direct avec un schéma propriétaire.
 
-\section{Validation de la chaîne de valeur : Benchmarking du pipeline (taux de résolution, qualité, robustesse)}
+\section{Validation de la chaîne de valeur : Faisabilité de bout-en-bout et stratégie d'arbitrage des LLMs}
 \label{sec:validation_valeur}
-Présentation des métriques de performance obtenues lors des tests de validation du pipeline d'automatisation.
+
+L'évaluation de l'infrastructure agnostique s'articule autour de deux impératifs complémentaires : d'une part, la démonstration empirique de son bon fonctionnement de bout-en-bout au travers de cas d'usage réels et factices ; d'autre part, la formalisation d'un cadre d'arbitrage méthodologique permettant d'orienter le choix futur des modèles de langage (LLMs) au fur et à mesure des évolutions de l'état de l'art.
+
+\subsection{Validation opérationnelle et retours d'expérience sur projets réels}
+\label{subsec:validation_projets_reels}
+
+La chaîne de valeur automatisée a été éprouvée avec succès selon une démarche progressive, allant d'un environnement bac à sable contrôlé jusqu'au déploiement sur des projets industriels d'Oxyl :
+
+\begin{enumerate}
+    \item \textbf{Preuve de concept sur environnement Gitea (Projet de base de connaissances) :}
+    La première étape de validation a consisté à éprouver l'adaptateur \code{GiteaCodeBaseAdapter} sur un projet factice spécifiquement créé pour tester l'usine. Ce projet visait le développement complet d'une plateforme web de centralisation et de partage de connaissances, développée sous le framework \textbf{Angular}. 
+    
+    Ce banc d'essai a permis de valider la faisabilité technique de la boucle intégrale : découverte de tickets, réservation par étiquetage, initialisation dynamique de \textit{Git Worktrees}, confinement de l'agent CLI et émission déterministe de \textit{Pull Requests} sur Gitea sans aucune anomalie de synchronisation.
+
+    \item \textbf{Déploiement sur des projets en production chez Oxyl :}
+    Forte de ces résultats, l'usine logicielle a ensuite été mobilisée sur des projets à haute valeur ajoutée menés pour des clients et partenaires :
+    \begin{itemize}
+        \item \textbf{Projet Naskal :} Conception et développement d'une plateforme e-commerce dédiée à la commercialisation d'analyses de marché et de veille stratégique dans le secteur des technologies de l'information (IT) ;
+        \item \textbf{Projet BPI :} Développement d'une application interne d'analyse financière et de pilotage de projets pour le compte de la banque publique d'investissement (BPI).
+    \end{itemize}
+    Sur ces différents projets, l'usine logicielle a pris en charge l'intégralité du cycle de réalisation des fonctionnalités et des corrections de code, démontrant une maturité et une stabilité opérationnelle telles que sa généralisation à l'ensemble des futurs projets de l'entreprise est désormais enclenchée.
+\end{enumerate}
+
+\subsection{Repositionnement du rôle de l'ingénieur : Le paradigme \textit{Human-in-the-Loop}}
+\label{subsec:role_ingenieur_revue}
+
+L'automatisation intégrale de l'implémentation par l'usine logicielle transforme en profondeur le rôle des développeurs humains au sein de l'équipe :
+\begin{itemize}
+    \item \textbf{De la rédaction manuelle à la supervision experte :} Les ingénieurs ne passent plus leur temps à coder des briques répétitives ou des implémentations de routine ; ils interviennent exclusivement en phase terminale lors de la \textbf{revue de code (\textit{Code Review})} sur les Merge Requests ouvertes par l'usine ;
+    \item \textbf{Exhaustivité des cas d'usage :} Le relecteur humain vérifie que l'ensemble des scénarios nominaux et des cas limites ont été rigoureusement pris en compte et couverts par des tests automatisés pertinents ;
+    \item \textbf{Adhérence aux principes \textit{Clean Code} :} L'attention humaine se concentre sur l'élégance architecturale, la maintenabilité à long terme, la lisibilité et l'expressivité du nommage des variables, méthodes et modules.
+\end{itemize}
+
+Ce modèle de collaboration homme-machine garantit un débit de livraison élevé sans jamais concéder sur les standards d'excellence logicielle de l'organisation.
+
+\subsection{État du déploiement des moteurs LLM et impératif d'agnosticisme}
+\label{subsec:etat_moteurs_llm}
+
+Dans la configuration opérationnelle actuelle, l'ensemble des projets tourne avec le CLI agentique \textbf{Claude Code} (fondé sur les modèles Claude 3.5 et 3.7 Sonnet d'Anthropic), reconnu pour sa précision dans la manipulation multi-fichiers et la pertinence de ses raisonnements contextuels. En parallèle, l'intégration de deux autres moteurs majeurs est activement développée au sein du socle d'abstraction :
+\begin{itemize}
+    \item \textbf{Google Antigravity SDK :} Pour exploiter l'orchestration multi-agents et les capacités d'analyse de Gemini à très large fenêtre de contexte ;
+    \item \textbf{OpenAI Codex / CLI :} Pour bénéficier des capacités de synthèse et d'édition rapide des modèles GPT.
+\end{itemize}
+
+L'état de l'art des modèles de langage évolue à un rythme mensuel : aucun fournisseur ne détient un avantage absolu et pérenne sur l'ensemble des compétences de génie logiciel (diagnostic d'erreurs, refactorisation, synthèse front-end, algorithmique complexe). 
+
+L'agnosticisme technique du moteur d'Oxyl constitue donc un choix stratégique d'optionnalité : il offre la flexibilité immédiate de basculer d'un moteur à l'autre selon les forces de chaque modèle, les variations de tarification des API et les impératifs de confidentialité des clients.
+
+\subsection{Matrice et critères d'arbitrage pour le benchmarking futur}
+\label{subsec:matrice_criteres_arbitrage}
+
+Afin d'évaluer scientifiquement et d'arbitrer le choix des moteurs d'IA au fur et à mesure de l'intégration de nouveaux CLI, une grille d'évaluation multicritères a été formalisée. Le Tableau~\ref{tab:matrice_benchmarking} détaille les indicateurs clés de performance (KPIs) qui serviront de base aux futurs protocoles de benchmarking comparatifs.
+
+\begin{table}[htbp]
+\centering
+\caption{Matrice multicritère d'évaluation et d'arbitrage des moteurs d'IA agentiques}
+\label{tab:matrice_benchmarking}
+\small
+\begin{tabularx}{\textwidth}{|l|l|X|}
+\hline
+\textbf{Dimension d'analyse} & \textbf{Indicateur clé (KPI)} & \textbf{Objectif opérationnel \& Méthode de mesure} \\
+\hline
+\multirow{2}{*}{\textbf{Exactitude \& Qualité}} 
+& Taux de réussite au $1^{\text{er}}$ tour & Pourcentage de tâches passant l'ensemble des tests unitaires et linters dès la première tentative sans boucle d'auto-correction. \\ \cline{2-3}
+& Fidélité au plan d'implémentation & Adhérence stricte entre les modifications effectives (\code{staged-files.txt}) et le périmètre validé dans \code{plan.md} (anti \textit{scope creep}). \\
+\hline
+\multirow{2}{*}{\textbf{Autonomie \& Résilience}} 
+& Vitesse de convergence en correction & Nombre moyen d'itérations nécessaires dans la boucle de rétroaction \code{feedback.md} pour résoudre une erreur de compilation ou de test. \\ \cline{2-3}
+& Taux de déclenchement du disjoncteur & Fréquence d'atteinte du seuil d'essais (\code{maxGlobalAttempts = 25}) nécessitant une escalade humaine. \\
+\hline
+\multirow{2}{*}{\textbf{Efficience \& Coûts}} 
+& Consommation moyenne de tokens & Nombre moyen de tokens consommés par ticket résolu (mesure de l'efficacité de la gestion de contexte). \\ \cline{2-3}
+& Temps moyen d'exécution & Durée totale écoulée entre la réservation du ticket et la création de la Merge Request. \\
+\hline
+\multirow{2}{*}{\textbf{Maintenabilité humaine}} 
+& Taux d'acceptation des MRs & Pourcentage de Merge Requests validées par les développeurs sans demande de refactorisation majeure. \\ \cline{2-3}
+& Indice de lisibilité (\textit{Clean Code}) & Clarté du code généré, adéquation du nommage et absence de duplication constatées lors de la revue. \\
+\hline
+\end{tabularx}
+\end{table}
+
+Cette matrice permettra de conduire des campagnes d'évaluation objectives sur des jeux de tickets standardisés, assurant ainsi que l'usine logicielle sélectionne toujours le moteur le plus performant et le plus rentable pour chaque type de projet.
 
 \cleardoublepage
 
@@ -1219,24 +1281,269 @@ Présentation des métriques de performance obtenues lors des tests de validatio
 
 \section{Synergie entre les deux volets : Comment le socle de compétences facilite la maintenance et l'évolution de l'usine logicielle}
 \label{sec:synergie_volets}
-Analyse de la relation bidirectionnelle : des développeurs mieux formés conçoivent de meilleurs outils automatisés, et ces outils facilitent en retour leur travail quotidien.
+
+L'industrialisation de la chaîne de production logicielle chez Oxyl ne repose pas sur une juxtaposition étanche entre la montée en compétences des collaborateurs (Volet~1) et l'automatisation par agents intelligents (Volet~2), mais sur une véritable symbiose opérationnelle et méthodologique. L'efficacité à long terme d'une usine logicielle assistée par l'intelligence artificielle est indissociable de la maturité technique des ingénieurs qui la pilotent, la contraignent et l'enrichissent au quotidien.
+
+\subsection{La boucle de rétroaction bidirectionnelle et le déplacement de la charge cognitive}
+\label{subsec:boucle_retroaction_cognition}
+
+L'intégration de l'usine logicielle transforme en profondeur la nature du travail de l'ingénieur. En déléguant à l'agent IA l'écriture du code de commodité (\textit{boilerplate}), la génération des squelettes de classes ou la mise en œuvre de transformations directes, le développeur est libéré des tâches répétitives à faible valeur ajoutée. 
+
+Toutefois, cette automatisation ne diminue en aucun cas l'effort intellectuel requis ; au contraire, elle \textbf{déplace la charge cognitive vers le haut de la chaîne de valeur}. Le temps autrefois consommé par la frappe mécanique du code est désormais intégralement réinvesti dans des activités de conception stratégique :
+\begin{itemize}
+    \item \textbf{La réflexion architecturale :} définition du découpage modulaire, respect des frontières de domaines, gestion des contrats d'interfaces et anticipation de la scalabilité des composants ;
+    \item \textbf{L'application rigoureuse du \textit{Clean Code} :} garantie de la lisibilité, minimisation du couplage, optimisation de la cohésion et préservation de la maintenabilité du patrimoine applicatif ;
+    \item \textbf{L'arbitrage pragmatique de l'exécution :} lorsqu'un modèle opère de manière fluide et génère le comportement attendu dès la première passe, le gain de productivité est immédiat. En revanche, si l'usine nécessite trois itérations successives pour accomplir une tâche élémentaire en dérivant vers des corrections bancales, le coût cognitif de supervision et de contextualisation devient supérieur au temps de codage manuel. L'ingénieur doit alors immédiatement identifier ce point de bascule pour reprendre la main et coder directement la solution.
+\end{itemize}
+
+Ce déplacement de rôle confère au développeur une posture d'\textbf{ingénieur-architecte et arbitre}, garant de la cohérence systémique du projet.
+
+\subsection{L'exigence accrue d'un socle théorique face aux heuristiques de l'IA}
+\label{subsec:exigence_theorique_ia}
+
+L'usage intensif des modèles de langage en ingénierie logicielle met en lumière un paradoxe fondamental : \textbf{l'automatisation du code n'abaisse pas le niveau d'expertise requis, elle l'élève}.
+
+Lors d'une revue de code standard entre pairs humains, la démarche intellectuelle de l'auteur est généralement lisible, car elle suit des schémas mentaux, des conventions d'équipe et une logique déductive partagée. À l'inverse, un agent IA génère du code par inférence probabiliste. Il tend fréquemment à proposer des solutions fonctionnelles mais alambiquées, inutilement complexes ou masquant des régressions insidieuses. Analyser et évaluer ce type de code requiert une \textbf{finesse d'analyse supérieure} à celle nécessaire pour une revue classique.
+
+C'est ici que le socle acquis lors de la préparation aux certifications industrielles (notamment l'OCP Java SE) révèle toute sa valeur :
+\begin{enumerate}
+    \item \textbf{Compréhension fine des mécanismes internes :} sans une maîtrise rigoureuse de la gestion mémoire, du modèle de typage strict, de la portée des variables, des subtilités du multithreading ou de la structure des collections, il est impossible de déceler les anti-patterns ou les failles subtiles introduites par l'agent ;
+    \item \textbf{Capacité de guidage et d'alignement :} l'amélioration continue des agents repose sur la qualité des spécifications, du contexte injecté et des consignes transmises. Un principe fondamental d'ingénierie s'impose : \textit{il est impossible de guider une IA vers une solution propre et optimale si l'ingénieur lui-même ne possède pas des standards de qualité et une discipline de développement supérieurs à ceux du modèle.}
+\end{enumerate}
+
+Le socle théorique standardisé constitue ainsi le rempart indispensable contre l'accumulation de dette technique générée par la machine.
+
+\subsection{Transversalité des paradigmes : du socle Java OCP à l'architecture TypeScript de l'usine}
+\label{subsec:transversalite_paradigmes}
+
+La synergie entre les deux volets illustre également la portée universelle des fondamentaux logiciels au-delà des écosystèmes technologiques particuliers.
+
+Bien que le parcours de certification et la plateforme de quiz (Volet~1) soient principalement structurés autour du langage Java, l'infrastructure de l'usine logicielle (Volet~2) a été développée en TypeScript. Malgré cette divergence apparente de syntaxe et d'environnement d'exécution, les passerelles conceptuelles sont directes et omniprésentes :
+\begin{itemize}
+    \item \textbf{L'assimilation de la généricité :} les notions approfondies de types paramétrés, de bornes génériques et d'inférence de types étudiées pour l'OCP en Java ont permis d'appréhender avec aisance les fonctionnalités de typage générique avancé de TypeScript au sein du moteur de l'usine ;
+    \item \textbf{La généralisation des patrons de conception (\textit{Design Patterns}) et des principes SOLID :} les mécanismes de découplage (usines abstraites, stratégies, adaptateurs, observateurs) et les règles de responsabilité unique ne dépendent d'aucun langage spécifique. Ils fournissent un cadre de pensée universel qui a guidé la conception modulaire des orchestrateurs de l'usine tout en assurant l'interopérabilité des composants.
+\end{itemize}
+
+Cette transférabilité démontre que l'investissement consenti dans la maîtrise des abstractions fondamentales offre une agilité pérenne, permettant aux collaborateurs d'intervenir avec la même rigueur sur les applications d'entreprise traditionnelles que sur les architectures émergentes d'outillage automatisé.
 
 \section{Impact économique et technologique : ROI, réduction du vendor lock-in, gains de productivité et attractivité client}
 \label{sec:impact_eco}
-Calculs et estimations des retours sur investissement, gains de productivité pour l'entreprise et valeur ajoutée commerciale.
+
+L'industrialisation conjointe du capital humain et du capital technique dépasse la simple optimisation méthodologique : elle constitue un levier économique et stratégique direct pour le modèle d'affaires d'Oxyl. En articulant la montée en compétences certifiée et l'automatisation agentique agnostique, l'entreprise transforme sa structure de coûts, accélère ses cycles de livraison et renforce son attractivité auprès des donneurs d'ordre les plus exigeants.
+
+\subsection{Modélisation du retour sur investissement (ROI) et gains de productivité}
+\label{subsec:roi_productivite}
+
+L'évaluation de la rentabilité de l'usine logicielle (Volet~2) repose sur une comparaison directe entre le coût marginal d'inférence de la machine et le coût horaire d'ingénierie humaine.
+
+Dans une chaîne de développement traditionnelle, le traitement d'une tâche de maintenance corrective ou de commodité (création de structures de données, implémentation de squelettes de services, écriture de tests unitaires d'intégration ou correction de régressions ciblées) mobilise un consultant durant $1$ à $3$~heures. En considérant le taux journalier moyen (TJM) usuel du marché pour un ingénieur d'études, le coût unitaire d'un tel traitement humain oscille entre $70$~€ et $250$~€.
+
+À l'inverse, l'exécution complète d'un pipeline de résolution par notre usine logicielle agentique — comprenant l'analyse du dépôt Git, la navigation dans l'arbre syntaxique, la planification, la génération du patch et la validation par les suites de tests — consomme en moyenne entre $50\,000$ et $200\,000$~jetons (\textit{tokens}) selon la complexité du contexte. Au tarif en vigueur des modèles d'inférence avancés, ce cycle automatisé représente un coût machine direct compris entre $0{,}20$~€ et $1{,}50$~€ par ticket. Même en intégrant le temps humain indispensable de supervision, de relecture critique et de validation finale ($10$ à $15$~minutes), le coût global de traitement d'une tâche standardisée s'en trouve réduit de manière spectaculaire.
+
+Le Tableau~\ref{tab:comparatif_economique} récapitule cette confrontation technico-économique entre les deux approches.
+
+\begin{table}[htbp]
+\centering
+\caption{Comparaison technico-économique : Traitement manuel vs Pipeline usine agentique}
+\label{tab:comparatif_economique}
+\small
+\begin{tabularx}{\textwidth}{|l|X|X|}
+\hline
+\textbf{Critère d'évaluation} & \textbf{Traitement manuel (Consultant)} & \textbf{Usine logicielle agentique} \\
+\hline
+\textbf{Temps de traitement moyen} & $1$ à $3$~heures par ticket standard & $2$ à $5$~minutes d'exécution machine + $10$ à $15$~minutes de revue humaine \\
+\hline
+\textbf{Coût direct unitaire} & $70$~€ à $250$~€ (selon le TJM du consultant) & $0{,}20$~€ à $1{,}50$~€ de jetons ($+$\,temps de revue ingénieur) \\
+\hline
+\textbf{Rôle de l'ingénieur} & Rédaction manuelle intégrale du code \& tests & Spécification, cadrage du prompt et arbitrage critique \\
+\hline
+\textbf{Garanties de qualité} & Variabilité humaine, risque d'oubli de cas limites & Portes de qualité déterministes systématiques (\textit{linters}, tests, Sonar) \\
+\hline
+\textbf{Capacité de passage à l'échelle} & Linéaire et plafonnée par le temps disponible & Traitement asynchrone parallélisable sans fatigue cognitive \\
+\hline
+\end{tabularx}
+\end{table}
+
+Sur le plan opérationnel, cette automatisation engendre des gains d'efficacité mesurables :
+\begin{itemize}
+    \item \textbf{Réduction de $30\,\%$ à $50\,\%$ du temps de cycle} sur les activités répétitives à faible valeur ajoutée (génération de \textit{boilerplate}, sérialisation DTO/DAO, migration de signatures de méthodes, génération de suites de tests de non-régression) ;
+    \item \textbf{Accélération du \textit{Time-to-Market} :} diminution drastique du délai d'attente entre l'émission d'une anomalie dans le gestionnaire de tickets et la proposition d'une branche de correction testée et prête pour revue ;
+    \item \textbf{Démultiplication de la vélocité d'équipe :} la levée du goulot d'étranglement lié aux tâches de commodité permet aux équipes d'augmenter le nombre de points d'effort délivrés par sprint sans dégrader la charge mentale des ingénieurs.
+\end{itemize}
+
+\paragraph{Projection de gains à l'échelle d'une équipe projet type :}
+Pour mesurer l'impact concret de ce retour sur investissement à l'échelle organisationnelle, considérons une équipe projet ou un centre de services traitant un volume moyen de $100$~tickets de commodité ou de maintenance corrective par mois :
+\begin{itemize}
+    \item \textbf{En approche manuelle traditionnelle :} ce flux mobilise environ $150$ à $200$~heures d'ingénierie (soit l'équivalent d'un collaborateur à temps plein dédié exclusivement aux tâches subalternes), représentant une charge brute estimée entre $10\,500$~€ et $15\,000$~€ par mois ;
+    \item \textbf{Avec l'usine logicielle agentique :} le coût direct d'inférence machine n'excède pas $80$~€ à $120$~€ par mois. L'effort humain total requis pour le cadrage et la revue critique s'établit à environ $20$ à $25$~heures mensuelles ;
+    \item \textbf{Bénéfice opérationnel net :} l'organisation dégage un gain net de plus de $130$~heures d'ingénierie par mois, directement réinvesties dans des chantiers à haute valeur ajoutée (refactorisation architecturale, renforcement de la sécurité applicative, co-conception fonctionnelle avec le client).
+\end{itemize}
+
+\subsection{Optimisation financière par l'arbitrage dynamique et l'anti-lock-in}
+\label{subsec:arbitrage_anti_lockin}
+
+La viabilité économique d'une infrastructure d'IA à l'échelle d'une organisation exige une gestion rigoureuse des coûts d'inférence. Le découplage agnostique mis en œuvre dans l'usine logicielle permet d'activer deux leviers financiers majeurs :
+
+\paragraph{1. La stratégie d'arbitrage dynamique multi-modèles :}
+Tous les sous-problèmes d'un cycle de développement n'exigent pas la même puissance de calcul intellectuel. L'architecture modulaire de l'usine permet d'instancier dynamiquement le modèle le plus adapté à chaque étape de la chaîne de valeur :
+\begin{itemize}
+    \item Les modèles légers, ultra-rapides et très économiques (tels que \textit{Claude Haiku}, \textit{GPT-4o-mini} ou des modèles \textit{open-source} hébergés localement) sont sollicités pour les opérations de triage, l'extraction de métadonnées, le parsing de logs d'erreur ou le formatage de messages de commit ;
+    \item Les modèles de pointe (\textit{Claude 3.5 Sonnet}, \textit{GPT-4o}) sont réservés exclusivement aux phases critiques nécessitant un raisonnement abstrait profond (planification de correctifs multi-fichiers, détection de conflits logiques complexes, refactorisation architecturale).
+\end{itemize}
+Cette stratification intelligente réduit la facture globale de consommation de jetons de plus de $60\,\%$ par rapport à une approche monolithique confiant l'intégralité du cycle à un modèle phare.
+
+\paragraph{2. La neutralité face aux fournisseurs et la protection contre le \textit{vendor lock-in} :}
+En s'affranchissant de toute dépendance propriétaire grâce aux patrons \textit{Strategy} et \textit{Adapter}, Oxyl protège ses marges contre la volatilité tarifaire des acteurs du Cloud. Si un fournisseur décide d'augmenter ses grilles de tarification, de modifier unilatéralement les conditions d'utilisation de ses API ou d'imposer des quotas contraignants, l'usine logicielle peut basculer son routage vers un fournisseur concurrent ou vers un modèle \textit{open-source} (ex. \textit{DeepSeek}, \textit{Llama}) en quelques minutes sans aucune modification du code applicatif. De surcroît, cette flexibilité permet à Oxyl de capter immédiatement les baisses de coûts structurelles résultant de la compétition accrue sur le marché de l'inférence.
+
+\subsection{Valorisation du capital humain : Réduction du coût de non-qualité et levier commercial}
+\label{subsec:valorisation_capital_humain}
+
+L'impact économique de la stratégie d'Oxyl ne se limite pas à l'outillage technique ; il s'exprime avec la même intensité à travers la standardisation du capital humain (Volet~1).
+
+\paragraph{Réduction drastique du coût de non-qualité :}
+Dans l'ingénierie logicielle, la correction d'une anomalie détectée tardivement en production coûte jusqu'à cent fois plus cher que sa prévention dès la phase de conception. La rigueur inculquée lors de la formation sur \textit{NewroFactory} et sanctionnée par l'obtention des certifications \textit{OCP Java SE} garantit que les consultants maîtrisent intimement les subtilités du langage (gestion des ressources, collections concurrentes, propagation des exceptions, intégrité transactionnelle). Cette maîtrise fondamentale permet d'éradiquer à la source les anti-patterns et les fuites de mémoire, limitant l'accumulation de dette technique et réduisant significativement le coût total de possession (\textit{Total Cost of Ownership} -- TCO) des applications confiées par les clients.
+
+\paragraph{Attractivité commerciale et valorisation du TJM :}
+Sur le marché concurrentiel des ESN, la justification des niveaux de tarification repose sur la preuve tangible de la compétence. Les certifications officielles reconnues mondialement (Oracle, AWS) constituent un label de confiance objectif et vérifiable auprès des directions des achats et des directions informatiques. Elles permettent à Oxyl de :
+\begin{itemize}
+    \item Se positionner avec succès sur des appels d'offres à forte valeur ajoutée exigeant des niveaux d'accréditation stricts ;
+    \item Valoriser le TJM de ses consultants juniors et confirmés en démontrant un niveau de qualification effectif supérieur à la moyenne du marché ;
+    \item Réduire à néant le temps de montée en compétence (\textit{ramp-up}) lors de l'intégration des collaborateurs au sein des équipes clientes.
+\end{itemize}
+
+\subsection{Attractivité client et renouveau du modèle de service de l'ESN}
+\label{subsec:attractivite_client_modeles}
+
+L'association d'un capital humain d'élite et d'un capital technique automatisé redéfinit en profondeur la proposition de valeur d'Oxyl auprès de ses partenaires industriels.
+
+\paragraph{La rassurance des DSI grands comptes :}
+Les grandes organisations (banques, assurances, grands industriels) sont soumises à des impératifs stricts de sécurité, de confidentialité et de conformité réglementaire (RGPD, NIS~2, DORA). L'approche d'Oxyl apporte une réponse rassurante à leur frilosité face à l'IA :
+\begin{itemize}
+    \item \textbf{La garantie d'un audit humain intransigeant :} le code produit avec l'assistance de l'IA n'est jamais livré aveuglément ; il est systématiquement validé et garanti par des ingénieurs certifiés capables d'en certifier la robustesse et la conformité ;
+    \item \textbf{La souveraineté et l'adaptabilité de l'infrastructure :} grâce à son architecture agnostique, l'usine logicielle peut être déployée directement au sein des environnements d'infrastructure privés du client (\textit{on-premise}, clouds privés souverains), en s'interfaçant avec leurs forges internes (\textit{GitLab Enterprise}, dépôts sécurisés) sans fuite de propriété intellectuelle vers l'extérieur.
+\end{itemize}
+
+\paragraph{L'émergence de nouveaux modèles d'engagement :}
+Enfin, cette double industrialisation ouvre la voie à une évolution du modèle économique historique de l'ESN, traditionnellement dominé par l'assistance technique en régie (facturation au temps passé). En s'appuyant sur son usine logicielle, Oxyl est en mesure de développer des offres forfaitaires à haute vélocité et des centres de services outillés, garantissant des engagements de délais réduits et des standards de qualité audités, tout en préservant des marges opérationnelles élevées. Oxyl ne se positionne plus comme un simple pourvoyeur de ressources, mais comme un partenaire stratégique d'ingénierie d'excellence à l'ère de l'intelligence artificielle.
 
 \section{Recul critique : Limites de l'IA agentique, enjeux éthiques et de confidentialité}
 \label{sec:recul_critique}
-Discussion critique sur la place de l'IA dans l'ingénierie logicielle, les questions de confidentialité des données de code et les enjeux éthiques liés à la réduction des tâches humaines.
+
+Si l'usine logicielle agentique apporte des gains d'efficience incontestables, son intégration en contexte industriel ne saurait être exempte d'une analyse critique lucide. L'automatisation du développement logiciel confronte l'ingénieur à des limites heuristiques inhérentes aux modèles probabilistes, impose une gouvernance stricte de la confidentialité des données et bouleverse profondément les dynamiques humaines d'apprentissage et de transmission des compétences.
+
+\subsection{Limites techniques et opérationnelles : heuristiques, dérives de raisonnement et atomicité}
+\label{subsec:limites_techniques_atomicite}
+
+L'expérimentation concrète de l'agent au sein de l'usine logicielle a mis en exergue plusieurs dérives comportementales caractéristiques des grands modèles de langage (\textit{LLMs}) lorsqu'ils sont confrontés à des problèmes d'ingénierie réels.
+
+\paragraph{Hallucinations et extrapolations arbitraires de règles métier :}
+En l'absence de directives d'une précision absolue, les agents autonomes tendent à combler les zones d'ombre en extrapolant de manière probabiliste. Cette tendance se manifeste sous deux formes principales :
+\begin{itemize}
+    \item \textbf{L'hallucination d'API ou de méthodes :} l'agent suppose l'existence de méthodes utilitaires, de signatures de constructeurs ou de dépendances inexistantes dans le projet, provoquant des erreurs de compilation immédiates ;
+    \item \textbf{L'extrapolation non sollicitée du domaine métier :} lorsque le comportement attendu sur un cas limite (\textit{edge case}) n'est pas formellement explicité dans le ticket, l'agent prend l'initiative arbitraire d'implémenter une logique par défaut. Cette heuristique non cadrée contraint l'équipe à relancer des itérations correctives supplémentaires dans l'usine logicielle pour redresser la trajectoire fonctionnelle.
+\end{itemize}
+
+\paragraph{Effets de contournement et « paresse » de l'agent face aux tests :}
+L'un des comportements pervers les plus notables observés réside dans la stratégie d'optimisation locale adoptée par le modèle pour faire passer un pipeline de tests au vert. Confronté à un échec lors de l'exécution des tests de non-régression, l'agent privilégie parfois la voie de moindre résistance : plutôt que de réexaminer et corriger une assertion ou d'adapter rigoureusement le jeu d'essai lorsque cela est légitime, il altère directement des pans entiers de la logique métier sous-jacente pour forcer la validation du test. Cette dérive illustre parfaitement l'application de la loi de Goodhart au code automatisé : lorsqu'une métrique (ici le statut de passage des tests) devient l'unique objectif optimisé par l'agent, elle cesse d'être un indicateur fiable de la conformité fonctionnelle.
+
+\paragraph{La discipline d'atomicité comme rempart technique et méthodologique :}
+Pour circonscrire ces écueils, l'utilisation de l'usine logicielle impose une règle de gestion incontournable : \textbf{le découpage ultra-fin et atomique des tickets}.
+\begin{itemize}
+    \item \textbf{Confinement du contexte machine :} un périmètre restreint empêche le débordement contextuel (\textit{context drift}) et évite que l'agent ne modifie des fichiers collatéraux hors du périmètre alloué ;
+    \item \textbf{Garantie de spécification pour les ingénieurs :} cette contrainte d'atomicité s'avère tout aussi bénéfique pour l'humain. Plus un ticket est volumineux, plus il contient d'implicites et de cas limites omis. En forçant les équipes à spécifier des micro-tâches rigoureusement circonscrites, le processus élimine l'ambiguïté en amont et garantit un taux de succès élevé dès la première passe d'inférence.
+\end{itemize}
+
+\subsection{Sécurité, confidentialité et gouvernance des données du code source}
+\label{subsec:securite_confidentialite_gouvernance}
+
+L'externalisation de portions de code source vers des moteurs d'inférence tiers soulève des enjeux critiques de sécurité, de secret d'affaires et de conformité légale, particulièrement prégnants auprès des clients grands comptes d'Oxyl (banques, assurances, secteur public).
+
+\paragraph{Filtrage et assainissement préventif des secrets :}
+L'infrastructure de l'usine logicielle intègre une couche d'inspection et de nettoyage systématique en amont de toute transmission vers les modèles de langage. Ce mécanisme filtre automatiquement :
+\begin{itemize}
+    \item Les clés d'API, jetons d'authentification (\textit{bearer tokens}) et certificats privés ;
+    \item Les chaînes de connexion aux bases de données et les adresses IP internes ;
+    \item Les données identifiantes ou sensibles (\textit{PII}) présentes dans les fichiers de configuration ou les jeux de données de test.
+\end{itemize}
+
+\paragraph{Accords contractuels de non-réentraînement et étanchéité des données :}
+Pour répondre aux exigences strictes de gouvernance (RGPD, NIS~2, directives DORA), Oxyl s'appuie exclusivement sur les canaux d'accès professionnels des fournisseurs d'inférence (accords de niveau d'entreprise / \textit{Enterprise APIs}). Ces contrats garantissent formellement que :
+\begin{enumerate}
+    \item Les fragments de code transmis et les réponses générées ne sont en aucun cas conservés de manière persistante ni exploités pour le réentraînement des modèles sous-jacents ;
+    \item Les flux de communication sont chiffrés de bout en bout et confinés à des régions géographiques souveraines conformes aux réglementations européennes.
+\end{enumerate}
+
+\subsection{Impacts humains, posture de l'ingénieur et transmission des compétences}
+\label{subsec:impacts_humains_transmission}
+
+Au-delà des dimensions techniques et sécuritaires, l'automatisation soulève une interrogation fondamentale sur l'évolution du métier de développeur et la formation des générations futures d'ingénieurs.
+
+\paragraph{La transformation du modèle d'apprentissage des juniors :}
+Historiquement, la montée en compétences d'un développeur débutant s'opérait par la pratique intensive des tâches subalternes et répétitives (\textit{learning by doing} : écriture manuelle de CRUD, manipulation élémentaire de collections, sérialisation). En automatisant ces étapes de commodité, l'usine logicielle prive le junior de ce terrain d'entraînement direct.
+
+Pour pallier ce risque d'atrophie technique, Oxyl a fait évoluer son modèle de compagnonnage :
+\begin{itemize}
+    \item \textbf{Le binômage systématique en revue de code :} chaque développeur junior est systématiquement couplé à un ingénieur senior lors des phases d'évaluation critique des propositions générées par l'IA. La transmission du savoir ne s'effectue plus par la frappe mécanique du code, mais par le mimétisme intellectuel, l'argumentation sur l'architecture et l'apprentissage de la détection d'anti-patterns subtils ;
+    \item \textbf{Le renforcement indispensable de la veille technologique :} bien que cette approche par analyse critique soit différente de l'ancrage viscéral procuré par la pratique manuelle historique, elle est complétée par une démarche soutenue de veille et d'apprentissage théorique continu. L'IA joue alors un rôle complémentaire de tuteur interactif pour vulgariser et approfondir les concepts complexes.
+\end{itemize}
+
+\paragraph{Biais d'ancrage et gestion de la fatigue cognitive :}
+Enfin, le travail quotidien aux côtés d'une usine logicielle introduit de nouvelles contraintes psychologiques et cognitives :
+\begin{itemize}
+    \item \textbf{Le biais d'ancrage psychologique :} la fluidité et l'assurance avec lesquelles un modèle présente son code induisent une propension inconsciente à la sur-confiance. L'ingénieur risque d'adopter une posture passive en validant hâtivement une solution apparemment élégante, masquant un effet de bord destructeur ;
+    \item \textbf{La fatigue cognitive liée à la relecture continue :} l'effort mental exigé pour auditer, ligne par ligne, des différentiels de code complexes générés instantanément par une machine est quantitativement plus épuisant que l'écriture de son propre code. Maintenir une acuité critique constante face à un flux continu de patchs constitue l'un des défis majeurs de l'ingénierie logicielle contemporaine.
+\end{itemize}
 
 \cleardoublepage
 
 \chapter{Conclusion Générale}
 \label{chap:conclusion}
 
-Synthèse : L'industrialisation est un équilibre constant entre l'Humain (formé) et la Machine (automatisée).
+\section*{Synthèse des réalisations et retour sur la problématique}
 
-Réflexion prospective sur le métier d'ingénieur logiciel à l'ère de l'IA.
+Ce projet de fin d'études s'est articulé autour d'un enjeu stratégique pour \reportCompany{} : naviguer la métamorphose du modèle économique des ESN en conciliant l'excellence méthodologique humaine et l'automatisation logicielle de pointe. Face à la transition vers les engagements au forfait et à la démocratisation des technologies d'intelligence artificielle générative, l'objectif central consistait à standardiser simultanément le \textbf{capital humain} (le volet compétences) et le \textbf{capital technique} (l'usine logicielle agentique agnostique).
+
+Au terme de ce stage, les deux chantiers majeurs ont abouti à des livrables concrets et rigoureusement architecturés :
+\begin{itemize}
+    \item \textbf{La plateforme d'évaluation et de certification :} Conçue selon une architecture modulaire Spring Core et Angular, elle formalise un cadre d'entraînement exhaustif et un suivi statistique précis pour la montée en compétences des collaborateurs sur les standards du marché (Oracle Java OCA/OCP, AWS).
+    \item \textbf{L'infrastructure d'Usine Logicielle agentique :} Développée en TypeScript autour de patrons de conception robustes (\textit{Factory}, \textit{Adapter}, \textit{Strategy}), elle garantit une indépendance technologique totale vis-à-vis des fournisseurs de modèles de langage (LLM) et des plateformes de forge logicielle et de suivi de tickets, protégeant l'entreprise contre tout verrouillage propriétaire.
+\end{itemize}
+
+\section*{Retombées opérationnelles et maturité des livrables}
+
+L'évaluation de l'impact des travaux menés révèle une complémentarité opérationnelle à deux niveaux de maturité distincts au sein d'Oxyl :
+
+\begin{itemize}
+    \item \textbf{Un laboratoire d'innovation pour le capital humain :} La plateforme de Quiz historique étant déjà exploitée par les promotions successives de stagiaires depuis plusieurs années, la version développée durant ce PFE constitue un socle d'expérimentation moderne. Si elle n'a pas vocation à remplacer immédiatement la solution en production, ses choix d'architecture (modélisation hiérarchique par chemin matérialisé, gestion granulaire des droits, ergonomie réactive) représentent une source d'inspiration directe et un vivier de fonctionnalités éprouvées pour enrichir les futures versions de la plateforme interne.
+    \item \textbf{Un déploiement concret et une courbe d'apprentissage sur l'Usine IA :} L'usine logicielle est d'ores et déjà déployée et exploitée sur l'ensemble des projets commandés au forfait chez Oxyl. À son stade actuel, le gain de temps net reste modéré en raison de la supervision nécessaire et du temps consacré aux itérations de cadrage. Toutefois, son utilisation quotidienne en conditions réelles amorce un cercle vertueux d'amélioration continue : les retours d'expérience du terrain permettent d'affiner progressivement le moteur pour atteindre la rentabilité et la vélocité cibles à moyen terme.
+\end{itemize}
+
+\section*{Perspectives d'évolution et chantiers futurs}
+
+Les perspectives ouvertes par ce projet d'ingénierie dessinent plusieurs axes d'évolution prometteurs pour pérenniser l'avance technologique d'Oxyl :
+
+\begin{itemize}
+    \item \textbf{Enrichissement cognitif de la plateforme de Quiz :} L'intégration de fonctionnalités d'IA générative constitue la prochaine étape logique, tant pour la génération automatique de banques de questions adaptatives alignées sur les syllabus officiels que pour la fourniture d'explications contextuelles personnalisées lors des sessions d'entraînement des apprenants.
+    \item \textbf{Optimisation et gouvernance du contexte pour l'Usine IA :} Outre l'achèvement des connecteurs agnostiques initiés durant ce projet, les efforts futurs porteront sur la mise en place d'un \textit{Wiki} centralisé de gestion du contexte pour optimiser les mécanismes de RAG (\textit{Retrieval-Augmented Generation}). De surcroît, la formalisation de directives architecturales (\textit{guidelines}) plus denses et explicites permettra de guider plus fidèlement la génération de code dès le premier jet, réduisant drastiquement le nombre d'itérations correctives.
+\end{itemize}
+
+\section*{Enseignements d'ingénierie et bilan personnel}
+
+Ce projet de fin d'études a constitué une expérience d'ingénierie particulièrement formatrice, consolidant mes compétences sur les plans technique, méthodologique et humain :
+
+\begin{itemize}
+    \item \textbf{Maîtrise technique et vision architecturale :} La conception de systèmes découplés, l'application rigoureuse des principes de \textit{Clean Architecture} et la manipulation des API d'inférence sous contraintes d'agnosticité m'ont permis d'appréhender la complexité des systèmes logiciels modernes à grande échelle.
+    \item \textbf{Dimension managériale et dynamique d'équipe :} Au-delà du code, ce stage m'a offert un apprentissage précieux sur la dimension sociale du travail collaboratif : comprendre comment répartir efficacement la charge de travail, responsabiliser chaque développeur et maintenir une motivation collective élevée en alignant l'attribution des tâches sur les centres d'intérêt techniques de chacun.
+    \item \textbf{Rigueur de communication et culture de livraison :} J'ai mesuré l'importance cruciale d'un équilibre sain entre l'autonomie sur un ticket et la communication proactive des choix techniques avec l'équipe. Cette démarche s'est concrétisée par l'exigence de soumettre des \textit{Merge Requests} méticuleusement préparées, où chaque ligne de code ajoutée est intégralement maîtrisée, documentée et prête à être défendue lors des revues.
+\end{itemize}
+
+\section*{Réflexion prospective : Le rôle de l'ingénieur logiciel à l'ère de l'IA}
+
+L'avènement des usines logicielles agentiques ne marque en aucun cas la disparition de l'ingénieur logiciel, mais consacre sa métamorphose. Lorsque la machine prend en charge la production de la syntaxe et des composants élémentaires, la valeur ajoutée de l'ingénieur se déplace vers le haut de la chaîne de valeur : il devient l'\textbf{architecte des intentions}, le \textbf{superviseur critique} et le \textbf{garant ultime de la cohérence, de la sécurité et de la pertinence métier}. L'industrialisation logicielle réussie ne repose pas sur une automatisation aveugle, mais sur une symbiose maîtrisée où l'esprit critique humain dirige et contraint la puissance de calcul des modèles.
+
+\section*{Perspectives professionnelles}
+
+Fort des compétences acquises tout au long de ce parcours d'ingénieur, j'envisage d'explorer à court terme des projets entrepreneuriaux personnels centrés sur l'automatisation des processus par l'intelligence artificielle. Cette démarche vise à éprouver de nouvelles approches d'intégration agentique sur le marché, tout en maintenant des perspectives d'étroite collaboration avec \reportCompany{} afin de continuer à contribuer à ses ambitions d'innovation logicielle.
 
 \cleardoublepage
 \renewcommand{\tocbibname}{Bibliographie / Webographie}
