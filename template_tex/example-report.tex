@@ -15,23 +15,23 @@
 %\def\reportAuthor{Jon Snow\\ Samwell Tarly}
 %\def\reportAuthorEmail{\email{jon@castleblack.com}\\ \email{tarly@casteblack.com}} % Courriel de l'élève
 
-\def\reportAuthorAddress{numéro, rue} % Adresse de l'élève
-\def\reportAuthorCity{code postal, VILLE} % Adresse (cont.) de l'élève
-\def\reportAuthorPhone{téléphone} % Téléphone de l'élève
+\def\reportAuthorAddress{5, rue Pierre d'Artagnan} % Adresse de l'élève
+\def\reportAuthorCity{92350 Le Plessis-Robinson} % Adresse (cont.) de l'élève
+\def\reportAuthorPhone{06 20 32 37 21} % Téléphone de l'élève
 
 %\def\reportIndustrialSupervisor{Prénom Nom} % Prénom Nom de l'encadrant industriel
-\def\reportSupervisor{Nom de l'encadrant} % Prénom Nom de l'encadrant industriel (en entreprise ou laboratoire)
-\def\reportAcademicSupervisor{Nom du tuteur académique} % Prénom Nom de l'encadrant académique
+\def\reportSupervisor{Maxime Bauer} % Prénom Nom de l'encadrant industriel (en entreprise ou laboratoire)
+\def\reportAcademicSupervisor{Thibault Cholez} % Prénom Nom de l'encadrant académique
 
 % For PIDR ?
 %\def\reportSupervisor{Eddard Stark} % Prénom Nom de l'encadrant industriel
 %\def\reportProjectCustomer{Projet réalisé pour l'équipe Night's Watch du laboratoire HBO}
 
 \def\reportCompany{Oxyl} % Nom de l'entreprise d'accueil
-\def\reportCompanyAddress{numéro, rue}  % Adresse de l'entreprise
-\def\reportCompanyCity{code postal, VILLE} % Adresse (cont.) de l'entreprise
-\def\reportCompanyPhone{téléphone} % Téléphone de l'entreprise
-\def\reportCompanyLogoPath{figures/anonymous_company-logo} % Logo de l'entreprise -- comment this definition to remove company logo
+\def\reportCompanyAddress{19-21, rue du 8 Mai 1945}  % Adresse de l'entreprise
+\def\reportCompanyCity{94110 Arcueil} % Adresse (cont.) de l'entreprise
+\def\reportCompanyPhone{09 72 60 09 87} % Téléphone de l'entreprise
+\def\reportCompanyLogoPath{figures/Oxylgroupe} % Logo officiel Oxyl
 %\def\reportSecondCompanyLogoPath{figures/logo.png} % Deuxième logo d'entreprise si besoin
 
 \def\place{Nancy} % Ville pour la signature pour l'engagement anti-plagiat
@@ -44,12 +44,70 @@
 % Harmonisation typographique de la commande \code (noms de fichiers, fonctions, variables)
 \DeclareUrlCommand\code{\def\UrlFont{\footnotesize\ttfamily}}
 
+% --- Définitions du Glossaire et des Acronymes ---
+\newglossaryentry{ESN}{
+    name={ESN},
+    description={Entreprise de Services du Numérique. Société de conseil et d'ingénierie délivrant des prestations logicielles en régie ou au forfait}
+}
+\newglossaryentry{SDLC}{
+    name={SDLC},
+    description={\textit{Software Development Life Cycle}. Cycle de vie global du développement logiciel, de l'analyse du besoin au maintien en condition opérationnelle}
+}
+\newglossaryentry{LLM}{
+    name={LLM},
+    description={\textit{Large Language Model}. Grand modèle de traitement automatique du langage fondé sur des réseaux de neurones profonds (\textit{Transformers})}
+}
+\newglossaryentry{CLI}{
+    name={CLI},
+    description={\textit{Command-Line Interface}. Interface utilisateur textuelle manipulée et exécutée en ligne de commande}
+}
+\newglossaryentry{OCP}{
+    name={OCP},
+    description={\textit{Oracle Certified Professional}. Certification professionnelle de référence sanctionnant la maîtrise avancée de la plateforme Java SE}
+}
+\newglossaryentry{OCA}{
+    name={OCA},
+    description={\textit{Oracle Certified Associate}. Certification industrielle validant l'acquisition des fondamentaux de la programmation Java}
+}
+\newglossaryentry{SOLID}{
+    name={SOLID},
+    description={Ensemble de cinq principes de conception orientée objet (\textit{Single responsibility, Open-closed, Liskov substitution, Interface segregation, Dependency inversion}) favorisant la maintenabilité et l'extensibilité du code}
+}
+\newglossaryentry{TJM}{
+    name={TJM},
+    description={Taux Journalier Moyen. Métrique tarifaire de référence représentant le coût de facturation journalier d'un ingénieur consultant}
+}
+\newglossaryentry{ROI}{
+    name={ROI},
+    description={\textit{Return on Investment} (Retour sur Investissement). Indicateur financier mesurant la rentabilité et les gains économiques générés par un investissement}
+}
+\newglossaryentry{RAG}{
+    name={RAG},
+    description={\textit{Retrieval-Augmented Generation}. Technique combinant un mécanisme de recherche documentaire et un modèle génératif pour contextualiser précisément les réponses}
+}
+\newglossaryentry{MR}{
+    name={MR / PR},
+    description={\textit{Merge Request} / \textit{Pull Request}. Demande formelle de fusion d'une branche de fonctionnalités vers la branche principale, soumise à une revue de code collaborative}
+}
+\newglossaryentry{REST}{
+    name={REST},
+    description={\textit{Representational State Transfer}. Style architectural standardisé fondé sur les protocoles et verbes HTTP pour la communication entre services web}
+}
+\newglossaryentry{DTO_DAO}{
+    name={DTO / DAO},
+    description={\textit{Data Transfer Object} / \textit{Data Access Object}. Patrons de conception dédiés respectivement au transport de données structurées et à l'abstraction de la couche de persistance}
+}
+\newglossaryentry{Vendor_Lockin}{
+    name={Vendor Lock-in},
+    description={Enfermement ou dépendance propriétaire. Situation de dépendance technologique où un système ne peut changer de fournisseur sans surcoûts majeurs}
+}
+
 \begin{document}
 
 \maketitle
 \pagenumbering{roman}
 
-\insertAntiPlagiarismAgreement{Guichard, David}{n°étudiant}{figures/anonymous_company-logo}{0.2}
+\insertAntiPlagiarismAgreement{Guichard, David}{322119809}{figures/anonymous_company-logo}{0.2}
                             % {Nom, Prénom}{n°étu}{image signature}{scale signature} 
 % You may insert several agreement in case of multiple authors
 %\insertAntiPlagiarismAgreement{Tarly, Samwell}{2014031142}{figures/anonymous_company-logo}{0.2}
@@ -61,23 +119,22 @@
 \section*{Remerciements}
 \addcontentsline{toc}{chapter}{Remerciements}
 
-{\em
-``Night gathers, and now my watch begins. \\
-It shall not end until my death.
+Je tiens à exprimer ma profonde gratitude à l'ensemble des personnes qui ont contribué, par leur encadrement, leurs conseils avisés et leur soutien, au bon déroulement et à la réussite de ce Projet de Fin d'Études au sein du Groupe Oxyl.
 
-I shall take no wife, hold no lands, father no children. \\
-I shall wear no crowns and win no glory. \\
-I shall live and die at my post.
+Mes remerciements s'adressent tout particulièrement à :
 
-I am the sword in the darkness. \\
-I am the watcher on the walls. \\
-I am the shield that guards the realms of men.
+\begin{itemize}
+    \item \textbf{Maxime \textsc{Bauer}}, mon tuteur de stage et reviewer senior, pour sa disponibilité constante, sa bienveillance et l'exigence constructive de ses revues de code lors des sprints du backend de la plateforme de quiz. Ses précieux retours d'ingénierie et sa vision logicielle ont grandement enrichi ma pratique du développement ;
+    \item \textbf{Selena \textsc{Hind Woodward}}, Directrice des Ressources Humaines d'Oxyl, pour sa confiance accordée dès le processus de recrutement, son accueil chaleureux et pour ses enseignements particulièrement formateurs sur les méthodes agiles et la dynamique collaborative au sein de l'entreprise ;
+    \item \textbf{Clément \textsc{Dubois}}, pour son coaching technique rigoureux lors des sprints backend et ses revues de code pointues, qui ont constitué un moteur constant d'apprentissage et d'élévation des standards de qualité ;
+    \item \textbf{Jeremy \textsc{Roca}}, développeur senior et chef d'équipe sur le projet de l'usine logicielle agentique, pour la qualité de son accueil, son \textit{onboarding} méthodique et sa pédagogie dans la transmission des enjeux d'architecture du moteur ;
+    \item \textbf{Jordan \textsc{Peter}} et \textbf{Alexandre \textsc{Danty}}, développeurs seniors et relais d'équipe au sein du projet de l'usine logicielle, pour leur disponibilité, leur écoute et leurs conseils techniques pertinents lors des phases de conception et de synchronisation d'équipe ;
+    \item \textbf{Mathéo \textsc{Allard}}, Scrum Master des projets internes, pour son pilotage précieux et ses orientations claires sur les attendus du projet d'usine logicielle, ainsi que pour ses conseils avisés sur les bonnes pratiques de revue de code et le déroulement des \textit{dailys} ;
+    \item \textbf{Pierre \textsc{Valat}}, collègue stagiaire et compagnon de route sur l'ensemble de ce parcours -- de la plateforme de quiz jusqu'à l'usine logicielle -- pour cette collaboration quotidienne stimulante, l'entraide technique et la dynamique d'équipe partagée ;
+    \item \textbf{Thibault \textsc{Cholez}}, mon enseignant-référent et tuteur académique à TELECOM Nancy, pour son suivi attentif, sa disponibilité et ses conseils méthodologiques tout au long de ce projet de fin d'études.
+\end{itemize}
 
-I pledge my life and honor to the Night's Watch, \\
-for this night and all the nights to come.''
-}
-
-\hspace{4cm} -- The Night's Watch oath
+Enfin, j'adresse mes sincères remerciements à l'ensemble des collaborateurs du Groupe Oxyl pour leur accueil et la richesse des échanges au quotidien, au corps professoral et à l'équipe pédagogique de TELECOM Nancy pour la solidité de la formation délivrée, ainsi qu'à ma famille et mes proches pour leur soutien indéfectible tout au long de mon cursus d'ingénieur.
 
 
 \cleardoublepage
@@ -201,11 +258,12 @@ Sur le plan technique, Oxyl concentre son cœur de métier autour de deux écosy
     \item \textbf{L'intelligence artificielle et l'automatisation logicielle :} conception d'architectures agentiques, intégration de modèles de langage (LLM) dans les flux de développement et R\&D sur la résolution autonome de tickets.
 \end{itemize}
 
-Face aux grandes entreprises généralistes du secteur (telles que Capgemini, Sopra Steria ou Atos) et aux ESN de taille intermédiaire (comme Zenika ou Ippon Technologies), Oxyl fonde son avantage concurrentiel sur une triple différenciation :
+Face aux grandes entreprises généralistes du secteur (telles que Capgemini, Sopra Steria ou Atos) et aux ESN de taille intermédiaire (comme Zenika ou Ippon Technologies), Oxyl fonde son avantage concurrentiel sur une différenciation stratégique majeure :
 \begin{enumerate}
-    \item \textbf{Une hyper-spécialisation technique :} un positionnement volontairement ciblé sur un socle de technologies maîtrisées d'excellence, évitant la dispersion technologique ;
-    \item \textbf{Une excellence démontrable et certifiée :} la garantie pour les clients d'intégrer des ingénieurs dont le niveau théorique et pratique est validé et attesté par des certifications officielles dès le démarrage des missions ;
-    \item \textbf{Une agilité et une proximité opérationnelle :} la réactivité d'une structure à taille humaine alliée à un ancrage fort en région parisienne.
+    \item \textbf{L'embauche et l'accélération de jeunes diplômés :} recruter des profils à fort potentiel directement en sortie d'école et leur prodiguer un parcours de formation initial intensif et certifiant, dont l'excellence technique est largement reconnue et plébiscitée par les clients grands comptes ;
+    \item \textbf{Une culture incarnée par des actes démontrables :} loin de se limiter à des déclarations de principe marketing, les valeurs d'excellence, de partage et de passion se traduisent par des dispositifs concrets (accompagnement tuteur, code reviews systématiques, colocations d'intégration, TechNights) ;
+    \item \textbf{Une avance technologique pionnière sur l'IA :} n'ayant pas attendu l'engouement médiatique généralisé pour s'emparer de l'intelligence artificielle agentique, Oxyl a déjà surmonté en interne sur ses projets de R\&D les défis méthodologiques et architecturaux que la plupart des entreprises découvrent aujourd'hui. Cette maturité permet à Oxyl de se positionner en éclaireur et de partager son expérience éprouvée lors d'interventions, de conférences et de publications techniques ;
+    \item \textbf{Une hyper-spécialisation et une proximité humaine :} un ancrage fort en région parisienne et une expertise ciblée sur les architectures d'entreprise (Java/Spring, TypeScript/Angular, Cloud et IA).
 \end{enumerate}
 
 Cette expertise s'exprime auprès d'un portefeuille de clients diversifiés, comprenant des grands comptes du secteur bancassurance et de la finance (Allianz Trade, BPCE - Casden, Société Générale, MyMoneyBank), des leaders de l'industrie et des services (Rexel, Lafarge, Eutelsat, JCDecaux, Vinci), ainsi que des éditeurs de logiciels et des startups technologiques (Finance Active, Wedia, PrimaSolutions, Hologarde, Wanaka).
@@ -249,21 +307,89 @@ Au terme de ce filtre, environ $40$~stagiaires sont intégrés chaque année, r�
 Durant les trois premiers mois du stage, l'ensemble des recrues suit un programme de formation intensive conçu pour homogénéiser le niveau technique et bâtir des réflexes d'ingénierie irréprochables. Ce parcours s'articule autour de deux composantes majeures :
 
 \paragraph{1. La validation par les certifications officielles :}
-Loin d'un simple apprentissage déclaratif, Oxyl impose la validation de certifications industrielles reconnues internationalement, faisant office de tiers de confiance indiscutable pour les clients :
+Loin d'un simple apprentissage déclaratif, Oxyl impose la validation de certifications industrielles reconnues internationalement, faisant office de tiers de confiance indiscutable pour les clients (voir Annexe~\ref{annexe:certifications}) :
 \begin{itemize}
-    \item \textit{Oracle Certified Associate (OCA) Java SE 8 Programmer I :} maîtrise rigoureuse des mécanismes fondamentaux du langage (cycle de vie, typage, modélisation objet, gestion des exceptions) ;
+    \item \textit{Oracle Certified Associate (OCA) Java SE 8 Programmer I :} maîtrise rigoureuse des mécanismes fondamentaux du langage (cycle de vie, typage, modélisation objet, gestion des exceptions) -- attestation officielle présentée en Figure~\ref{fig:certificat_oca} (Annexe~\ref{annexe:certifications}) ;
     \item \textit{Oracle Certified Professional (OCP) Java SE 21 Developer :} assimilation poussée des paradigmes avancés (programmation fonctionnelle, Streams, concurrence, I/O non bloquantes, modules JPMS) ;
-    \item \textit{AWS Certified Cloud Practitioner :} acquisition des bases de l'architecture Cloud, des modèles de sécurité partagée et des services managés d'Amazon Web Services.
+    \item \textit{AWS Certified Cloud Practitioner :} acquisition des bases de l'architecture Cloud, des modèles de sécurité partagée et des services managés d'Amazon Web Services -- accréditation officielle présentée en Figure~\ref{fig:certificat_aws} (Annexe~\ref{annexe:certifications}).
 \end{itemize}
-Cette préparation s'appuie sur la plateforme interne \textbf{MyNeuroFactory} (entraînement quotidien de $1$~heure le matin et examens blancs surveillés chaque vendredi après-midi).
+Cette préparation s'appuie sur la plateforme interne \textbf{MyNewroFactory (MNF)} (entraînement quotidien de $1$~heure le matin et examens blancs surveillés chaque vendredi après-midi).
 
 \paragraph{2. Le projet fil rouge « NewroFactory » (L'apprentissage par l'épreuve) :}
 En parallèle de l'étude théorique, chaque stagiaire doit redévelopper en autonomie une version complète de l'application de formation. Découpé en $8$~sprints itératifs, le projet force l'ingénieur à concevoir l'application d'abord en code bas niveau natif (CLI en Java pur, Servlets, JDBC), pour lui faire ressentir concrètement les limitations architecturales avant d'introduire successivement les couches d'abstraction industrielles (pools HikariCP, inversion de contrôle avec Spring Core, MVC, programmation orientée aspect -- AOP, ORM Hibernate/JPA, Spring Security, puis exposition en API RESTful et interface front-end). Chaque sprint est validé lors d'une revue de code (\textit{code review}) collective et intransigeante menée par la direction technique, où le respect des principes de \textit{Clean Code} (SOLID, DRY, KISS, YAGNI) est systématiquement audité.
 
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    scale=0.88,
+    transform shape,
+    font=\sffamily\scriptsize,
+    phasebox/.style={draw=blue!80!black, fill=blue!6, rounded corners=3pt, align=center, inner sep=6pt, line width=0.7pt, minimum width=3.3cm, minimum height=1.3cm},
+    detailbox/.style={draw=gray!50, fill=gray!5, rounded corners=2pt, align=left, inner sep=4pt, font=\sffamily\tiny, text width=3.1cm},
+    certbox/.style={draw=teal!80!black, fill=teal!8, rounded corners=2pt, align=center, inner sep=4pt, font=\sffamily\bfseries\tiny},
+    patharrow/.style={-{Latex[length=3mm]}, thick, draw=blue!80!black},
+    forkarrow/.style={-{Latex[length=2.5mm]}, thick, draw=teal!80!black}
+]
+
+    % Phase 1 : Recrutement
+    \node[phasebox] (p1) at (0, 0) {\textbf{\normalsize 1. Sélection}\\[1pt]\textit{Filtre d'Excellence}};
+    \node[detailbox, below=0.25cm of p1] (d1) {
+        $\bullet$ $>2000$ candidatures / an\\
+        $\bullet$ Test algo en ligne (1h)\\
+        $\bullet$ Entretien culturel RH\\
+        $\bullet$ Test dev pratique \& soutenance\\
+        $\bullet$ \textbf{$\sim$40 admis} en promo PFE
+    };
+
+    % Phase 2 : Formation & PFE
+    \node[phasebox, fill=teal!6, draw=teal!80!black] (p2) at (4.0, 0) {\textbf{\normalsize 2. PFE \& Formation}\\[1pt]\textit{3 mois d'accélération}};
+    \node[detailbox, below=0.25cm of p2] (d2) {
+        $\bullet$ \textbf{Projet NewroFactory} :\\
+        \phantom{..} 8 sprints \textit{from scratch}\\
+        \phantom{..} (CLI $\rightarrow$ Spring $\rightarrow$ Angular)\\
+        $\bullet$ Revues de code quotidiennes\\
+        $\bullet$ Entraînement MNF ($1\text{h}$/jour)
+    };
+    \node[certbox, below=0.15cm of d2] (cert) {\textbf{Certifications Validées :}\\Oracle OCA/OCP Java $\cdot$ AWS Cloud};
+
+    % Phase 3 : Double trajectoire
+    \node[phasebox, fill=orange!8, draw=orange!80!black, minimum width=3.4cm] (p3a) at (8.4, 0.85) {\textbf{\small Parcours « Padawan »}\\[1pt]\textit{Régie Client supervisée}};
+    \node[detailbox, right=0.15cm of p3a, text width=2.4cm] (d3a) {
+        $\bullet$ Binômage avec un \textit{Jedi}\\
+        $\bullet$ Écosystèmes grands comptes\\
+        $\bullet$ Pré-embauche CDI
+    };
+
+    \node[phasebox, fill=purple!8, draw=purple!80!black, minimum width=3.4cm] (p3b) at (8.4, -1.0) {\textbf{\small Pôle R\&D / Usine IA}\\[1pt]\textit{Projets Internes Innovants}};
+    \node[detailbox, right=0.15cm of p3b, text width=2.4cm] (d3b) {
+        $\bullet$ Usine logicielle agentique\\
+        $\bullet$ Banc d'essai industriel\\
+        $\bullet$ Outillage \& vitrine R\&D
+    };
+
+    % Phase 4 : Apprentissage continu
+    \node[draw=blue!80!black, fill=blue!10, rounded corners=3pt, align=center, inner sep=4pt, font=\sffamily\bfseries\tiny, fit={(d3a) (d3b) (p3a) (p3b)}] (box3) {};
+    % re-draw nodes to be on top
+    \node[phasebox, fill=orange!8, draw=orange!80!black, minimum width=3.4cm] at (8.4, 0.85) {\textbf{\small Parcours « Padawan »}\\[1pt]\textit{Régie Client supervisée}};
+    \node[phasebox, fill=purple!8, draw=purple!80!black, minimum width=3.4cm] at (8.4, -1.0) {\textbf{\small Pôle R\&D / Usine IA}\\[1pt]\textit{Projets Internes Innovants}};
+
+    % Connecteurs
+    \draw[patharrow] (p1) -- (p2);
+    \draw[forkarrow] (p2.east) -- ++(0.4,0) |- (p3a.west);
+    \draw[forkarrow] (p2.east) -- ++(0.4,0) |- (p3b.west);
+
+    % Cadre global formation continue
+    \node[draw=gray!60, dashed, rounded corners=4pt, fit={(p1) (d1) (p2) (cert) (p3a) (d3a) (p3b) (d3b)}, inner sep=8pt, label={[font=\sffamily\bfseries\scriptsize, text=blue!80!black]below:Intelligence Collective \& Formation Continue : MNF permanent $\cdot$ TechNights mensuelles $\cdot$ Café Tech $\cdot$ Veille collaborative}] {};
+
+\end{tikzpicture}
+\caption{Pipeline d'industrialisation du capital humain : du recrutement d'élite aux trajectoires opérationnelles chez Oxyl}
+\label{fig:pipeline_talents_oxyl}
+\end{figure}
+
 \subsection{Le cycle de vie du collaborateur et la dynamique d'apprentissage continu}
 \label{subsec:cycle_de_vie_formation_continue}
 
-À l'issue de cette phase d'accélération initiale de trois mois, le modèle d'Oxyl oriente les consultants vers deux trajectoires opérationnelles complémentaires selon les besoins stratégiques :
+Comme l'illustre la Figure~\ref{fig:pipeline_talents_oxyl}, à l'issue de cette phase d'accélération initiale de trois mois, le modèle d'Oxyl oriente les consultants vers deux trajectoires opérationnelles complémentaires selon les besoins stratégiques :
 \begin{itemize}
     \item \textbf{Le parcours « Padawan » en immersion client :} l'ingénieur est introduit en régie chez un client de l'ESN, sous le tutorat bienveillant d'un consultant senior d'Oxyl (le \og Jedi \fg{}). Ce dispositif, proposé sans refacturation additionnelle durant le stage, garantit une intégration sereine dans des écosystèmes industriels complexes et sécurise l'embauche en CDI à l'issue du cursus.
     \item \textbf{Le parcours R\&D et Projets Internes :} l'ingénieur rejoint l'équipe interne de développement d'Oxyl, dédiée à la conception de solutions innovantes et d'outils d'assistance logicielle (tels que l'extension \textit{OxaPocket} ou l'\textit{Usine Logicielle} agentique). Ce pôle constitue un véritable banc d'essai pour tester les ruptures technologiques et sert de vitrine de savoir-faire pour l'entreprise.
@@ -271,6 +397,7 @@ En parallèle de l'étude théorique, chaque stagiaire doit redévelopper en aut
 
 Ce cycle de vie professionnel est entretenu tout au long de la carrière du collaborateur par des dispositifs pérennes d'intelligence collective :
 \begin{itemize}
+    \item \textbf{L'entraînement continu sur MyNewroFactory (MNF) :} la plateforme reste accessible et utilisée tout au long de la carrière des consultants pour la montée en compétences continue, l'entretien des connaissances pointues et la préparation aux qualifications techniques lors du staffing chez de nouveaux clients ;
     \item \textbf{Les TechNights mensuelles :} conférences internes organisées le jeudi soir au siège, où les consultants en mission présentent des retours d'expérience (REX) ou explorent de nouveaux paradigmes (ex. Rust, Kotlin, Claude Code, architectures agentiques) ;
     \item \textbf{Les Café Tech :} ateliers réguliers de veille technique en binômes ;
     \item \textbf{Le portail de veille collective :} base de connaissances collaborative permettant de solliciter les experts internes et de capitaliser sur les solutions éprouvées en mission.
@@ -300,14 +427,14 @@ Face à ce constat, l'obligation d'un apprentissage \textit{from scratch} (de la
 \subsection{Le risque d'enfermement technologique (\textit{vendor lock-in}) : l'impératif d'une usine logicielle agnostique}
 \label{subsec:risque_vendor_lock_in}
 
-Parallèlement à la qualification du capital humain, l'automatisation de la chaîne de production logicielle par l'intelligence artificielle soulève un défi d'indépendance technologique sans précédent. L'intégration précipitée d'outils d'IA fermés au sein du cycle de développement (SDLC) expose les organisations à un triple risque de verrouillage :
+Parallèlement à la qualification du capital humain, l'automatisation de la chaîne de production logicielle par l'intelligence artificielle soulève un défi d'indépendance technologique sans précédent. Si le verrouillage technologique (\textit{vendor lock-in}) a toujours existé dans l'histoire de l'informatique, il s'accentue de manière critique avec les solutions d'IA générative et voit ses impacts potentiels fortement aggravés par les tensions géopolitiques contemporaines et les impératifs de souveraineté numérique :
 \begin{enumerate}
-    \item \textbf{L'hétérogénéité des environnements clients :} Oxyl intervient auprès d'une multiplicité de donneurs d'ordre, chacun imposant ses propres contraintes de sécurité, ses choix d'infrastructure (Cloud souverain, environnements \textit{on-premise}, conteneurisation privée) et ses stacks logicielles. Une usine de code interne ne peut être viable que si elle est capable de s'adapter dynamiquement à ces variables sans exiger une refonte de son architecture ;
-    \item \textbf{La volatilité économique et l'instabilité des API :} le modèle économique des fournisseurs de LLMs (OpenAI, Anthropic, Google, etc.) repose sur une tarification au jeton (\textit{token}) sujette à de fortes variations. Coupler rigidement une usine logicielle à une interface propriétaire exposerait l'entreprise à une dépendance financière et opérationnelle intenable ;
-    \item \textbf{La concurrence permanente entre modèles de langage :} l'état de l'art des modèles d'IA évolue à un rythme hebdomadaire. Un fournisseur surpassant les références du marché aujourd'hui peut être déclassé le mois suivant par un modèle concurrent ou une solution \textit{open-source} spécialisée (ex. DeepSeek, Llama). Pour maintenir un avantage concurrentiel maximal, l'usine logicielle doit pouvoir substituer son moteur d'inférence sous-jacent de manière totalement transparente.
+    \item \textbf{L'hétérogénéité des environnements et la souveraineté des données :} Oxyl intervient auprès d'une multiplicité de donneurs d'ordre (bancassurance, industrie, défense, secteur public), chacun imposant des contraintes drastiques de localisation des données (règlements RGPD, DORA, NIS~2), des hébergements Cloud souverains ou des environnements strictement \textit{on-premise}. Une usine de code interne ne peut être viable que si elle est capable de s'adapter dynamiquement à ces exigences sans aucune fuite de propriété intellectuelle vers des API tierces non souveraines ;
+    \item \textbf{La volatilité économique et l'instabilité des API :} le modèle économique des fournisseurs de LLMs (OpenAI, Anthropic, Google) repose sur une tarification au jeton (\textit{token}) sujette à des révisions unilatérales. Coupler rigidement une usine logicielle à une interface propriétaire exposerait l'entreprise à une dépendance financière et opérationnelle intenable ;
+    \item \textbf{La concurrence et la substituabilité permanente des modèles :} l'état de l'art des modèles d'IA évolue à un rythme effréné. Un fournisseur dominant le marché un mois donné peut être dépassé le mois suivant par une solution alternative ou un modèle \textit{open-source} spécialisé exécutable localement (ex. DeepSeek, Mistral, Llama). Pour préserver sa rentabilité et son avantage concurrentiel, l'usine logicielle doit pouvoir substituer son moteur d'inférence sous-jacent de manière totalement transparente.
 \end{enumerate}
 
-L'enjeu architectural consiste donc à concevoir une plateforme agentique rigoureusement agnostique, découplée des API tierces par des patrons d'abstraction formels, garantissant une flexibilité totale face aux évolutions du marché.
+L'enjeu architectural consiste donc à concevoir une plateforme agentique rigoureusement agnostique, découplée des API tierces par des patrons d'abstraction formels, garantissant une flexibilité totale face aux évolutions géopolitiques et technologiques du marché.
 
 \subsection{La synergie dialectique : redéfinir la valeur de l'ingénieur à l'ère agentique}
 \label{subsec:synergie_dialectique}
@@ -324,7 +451,64 @@ D'une part, au niveau \textbf{microscopique}, l'ingénieur devient un relecteur 
 
 D'autre part, au niveau \textbf{macroscopique}, l'ingénieur intervient comme le garant de la cohérence métier et architecturale. C'est à lui qu'incombe la responsabilité d'aligner le système sur les besoins complexes du domaine, d'arbitrer les compromis de conception globaux et de diriger les agents autonomes. Cette capacité de discernement global, indissociable de l'expérience et d'une solide culture d'ingénierie, constitue le rempart ultime contre les dérives fonctionnelles des systèmes automatisés.
 
-La double problématique d'Oxyl réside ainsi dans la construction d'un équilibre vertueux : forger des ingénieurs d'excellence capables de dominer intellectuellement les outils qu'ils utilisent, tout en concevant une usine logicielle résiliente et souveraine capable de démultiplier leur efficacité.
+La double problématique d'Oxyl réside ainsi dans la construction d'un équilibre vertueux illustré en Figure~\ref{fig:synergie_dialectique} : forger des ingénieurs d'excellence capables de dominer intellectuellement les outils qu'ils utilisent, tout en concevant une usine logicielle résiliente et souveraine capable de démultiplier leur efficacité.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    scale=0.88,
+    transform shape,
+    font=\sffamily\scriptsize,
+    pillarbox/.style={draw=blue!80!black, fill=blue!5, rounded corners=4pt, inner sep=8pt, line width=0.8pt, text width=5.2cm},
+    synergybox/.style={draw=teal!80!black, fill=teal!10, rounded corners=4pt, inner sep=8pt, line width=1.0pt, text width=11.6cm, align=center},
+    arrowstyle/.style={-{Latex[length=3mm]}, thick, draw=blue!70!black}
+]
+
+    % Pilier 1 : Capital Humain
+    \node[pillarbox] (humain) at (-3.2, 3.2) {
+        \textbf{\large\color{blue!80!black} Volet 1 : Capital Humain}\\[3pt]
+        \rule{5.0cm}{0.4pt}\\[4pt]
+        $\bullet$ \textbf{Standardisation des compétences} (Certifications Oracle OCP Java, AWS Cloud)\\
+        $\bullet$ \textbf{Compréhension intime des couches basses} (Mémoire JVM, concurrence, SQL natif)\\
+        $\bullet$ \textbf{Postures d'ingénierie :}
+        \begin{itemize}
+            \item Relecture critique d'élite (\textit{Code Review})
+            \item Spécification atomique des besoins
+            \item Conception architecturale \& Sécurité
+        \end{itemize}
+    };
+
+    % Pilier 2 : Capital Technique
+    \node[pillarbox, draw=purple!80!black, fill=purple!5] (technique) at (3.2, 3.2) {
+        \textbf{\large\color{purple!80!black} Volet 2 : Capital Technique}\\[3pt]
+        \rule{5.0cm}{0.4pt}\\[4pt]
+        $\bullet$ \textbf{Usine Logicielle Agentique} (Résolution automatisée de tickets SDLC)\\
+        $\bullet$ \textbf{Agnosticisme \& Souveraineté} (Patrons \textit{Factory}, \textit{Adapter}, \textit{Strategy})\\
+        $\bullet$ \textbf{Gains d'automatisation :}
+        \begin{itemize}
+            \item Génération de code \& tests unitaires
+            \item Suppression des tâches répétitives
+            \item Vélocité sur engagements au forfait
+        \end{itemize}
+    };
+
+    % Nœud central : Synergie
+    \node[synergybox] (synergie) at (0, 0) {
+        \textbf{\normalsize\color{teal!90!black} SYNERGIE DIALECTIQUE \& CRÉATION DE VALEUR}\\[3pt]
+        \rule{11.2cm}{0.4pt}\\[3pt]
+        $\checkmark$ \textbf{Fiabilité industrielle :} Le capital humain fournit les garde-fous, la direction architecturale et l'audit critique indispensables pour sécuriser le code produit par l'IA.\\
+        $\checkmark$ \textbf{Élévation de la valeur ingénieur :} L'usine libère l'ingénieur du codage mécanique, déplaçant 100\,\% de sa valeur ajoutée vers le cadrage et l'arbitrage critique.\\
+        $\checkmark$ \textbf{Pérennité ESN :} Maîtrise des coûts de développement, compétitivité sur les forfaits et indépendance stratégique sans verrouillage propriétaire.
+    };
+
+    % Flèches
+    \draw[arrowstyle, draw=blue!80!black] (humain.south) -- ++(0,-0.4) -| (-2.8, 0.95);
+    \draw[arrowstyle, draw=purple!80!black] (technique.south) -- ++(0,-0.4) -| (2.8, 0.95);
+
+\end{tikzpicture}
+\caption{Modèle de synergie dialectique : l'interdépendance vertueuse entre capital humain certifié et usine logicielle agentique agnostique}
+\label{fig:synergie_dialectique}
+\end{figure}
 
 \section{La stratégie d'ingénierie : Justification de la synergie entre formation continue et automatisation agentique}
 \label{sec:strategie_ingenierie}
@@ -385,11 +569,19 @@ Dans les premières phases d'expansion du secteur du numérique, la tension extr
 
 Aujourd'hui, le niveau d'exigence des donneurs d'ordre s'est considérablement accru. Les clients attendent des ESN des garanties tangibles sur la qualification de leurs consultants afin de sécuriser des projets d'envergure, soumis à de fortes contraintes de maintenabilité et de scalabilité. Pour répondre à cette exigence de réassurance, Oxyl a instauré un passage obligatoire de certifications industrielles reconnues dès la phase d'intégration des nouveaux collaborateurs :
 \begin{itemize}
-    \item \textbf{Oracle Certified Associate (OCA) \& Oracle Certified Professional (OCP) Java SE :} validation formelle de la maîtrise approfondie du langage Java, de sa syntaxe, de la gestion mémoire, du modèle de concurrence et des patrons de conception objet ;
-    \item \textbf{AWS Certified Cloud Practitioner :} certification attestant de la compréhension des architectures distribuées, des services cloud fondamentaux, de la sécurité et des modèles de déploiement industriels.
+    \item \textbf{Oracle Certified Associate (OCA) \& Oracle Certified Professional (OCP) Java SE :} validation formelle de la maîtrise approfondie du langage Java, de sa syntaxe, de la gestion mémoire, du modèle de concurrence et des patrons de conception objet (certificat officiel OCA reproduit en Figure~\ref{fig:certificat_oca}, Annexe~\ref{annexe:certifications}) ;
+    \item \textbf{AWS Certified Cloud Practitioner :} certification attestant de la compréhension des architectures distribuées, des services cloud fondamentaux, de la sécurité et des modèles de déploiement industriels (accréditation officielle reproduite en Figure~\ref{fig:certificat_aws}, Annexe~\ref{annexe:certifications}).
 \end{itemize}
 
 L'obtention de ces certifications ne constitue pas un simple label commercial, mais un jalon garantissant qu'un socle d'excellence homogène est partagé par l'ensemble des consultants avant leur projection en mission.
+
+L'impact quantitatif de la plateforme \textbf{MyNewroFactory (MNF)} sur cette démarche est spectaculaire :
+\begin{itemize}
+    \item \textbf{Avant MNF :} le cycle de révision et d'assimilation mobilisait en moyenne \textbf{$3$~mois} pour l'obtention de l'OCA et près d'\textbf{$1$~an} pour l'OCP ;
+    \item \textbf{Avec MNF :} la préparation de l'OCA est réduite à \textbf{moins d'un mois} (délai divisé par trois, $\div 3$) et celle de l'OCP à environ \textbf{$6$~mois} (délai réduit de moitié, $\div 2$).
+\end{itemize}
+
+Cette accélération mesurable sécurise le modèle économique d'Oxyl en réduisant drastiquement les délais d'intercontrat non facturés et en permettant un staffing client ultra-rapide sur des missions à haute valeur ajoutée. De surcroît, la plateforme MNF s'inscrit au cœur du cycle de vie complet du consultant : elle est activement exploitée pour la formation continue des profils confirmés et sert d'outil d'entraînement intensif pour préparer les entretiens techniques de qualification client.
 
 \subsection{Le socle Java et la programmation orientée objet comme vecteurs de qualité}
 \label{subsec:role_socle_java_poo}
@@ -421,8 +613,22 @@ Pour maximiser l'efficacité de l'entraînement, la plateforme devait intégrer 
 \begin{itemize}
     \item \textbf{Un tableau de bord de diagnostic des compétences :} Présentation claire et hiérarchisée des pourcentages de réussite par chapitre et par série, complétée par le taux de complétion des questions disponibles par notion. Cette double métrique permet au stagiaire d'identifier immédiatement les chapitres sous-travaillés ou mal assimilés ;
     \item \textbf{Deux modes d'entraînement complémentaires :} Un mode \textit{Entraînement} interactif (feedback immédiat et explications détaillées pour chaque proposition) et un mode \textit{Examen blanc} (chronométré, tirage étanche, conditions réelles) ;
-    \item \textbf{Export structuré JSON pour approfondissement via LLM :} Innovation clé développée sur la plateforme, l'interface de correction en mode entraînement propose un bouton d'exportation instantané au format JSON. Ce bouton copie dans le presse-papier l'intégralité du contexte de la question (énoncé, code snippet, propositions, statut de validation, explications). L'apprenant peut ainsi soumettre directement ces métadonnées à un grand modèle de langage (LLM) afin d'obtenir des explications interactives, des contre-exemples ou des variantes pédagogiques sur la notion précise abordée.
+    \item \textbf{Export structuré JSON pour approfondissement via LLM :} Innovation clé développée sur la plateforme, l'interface de correction en mode entraînement propose un bouton d'exportation instantané au format JSON (illustré en Figure~\ref{fig:ui_question_test}). Ce bouton copie dans le presse-papier l'intégralité du contexte de la question (énoncé, code snippet, propositions, statut de validation, explications). L'apprenant peut ainsi soumettre directement ces métadonnées à un grand modèle de langage (LLM) afin d'obtenir des explications interactives, des contre-exemples ou des variantes pédagogiques sur la notion précise abordée.
 \end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.92\textwidth]{figures/quiz_question_feedback_llm.png}
+    \caption{Interface de passation de test en mode entraînement : validation visuelle immédiate des réponses et boutons d'exportation contextuelle pour LLM (« Sans contexte » et « Avec contexte »)}
+    \label{fig:ui_question_test}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.72\textwidth]{figures/quiz_serie_terminee.png}
+    \caption{Écran de restitution finale à l'issue d'une série d'entraînement : score obtenu, taux de complétion et diagnostic de révision}
+    \label{fig:ui_serie_terminee}
+\end{figure}
 
 \subsubsection{Besoins encadrants : Gouvernance et assignation ciblée}
 Du côté de l'administration et du tutorat technique, les exigences comprenaient :
@@ -432,6 +638,69 @@ Du côté de l'administration et du tutorat technique, les exigences comprenaien
     \item \textbf{Création et assignation de séries personnalisées :} Capacité pour l'encadrant de composer des séries d'évaluation sur-mesure et de les assigner directement au tableau de bord de stagiaires ciblés pour remédier à des lacunes précises ;
     \item \textbf{Administration dynamique du référentiel pédagogique :} Outils complets de gestion (CRUD) des chapitres hiérarchiques, des questions, des propositions et de leurs explications associées.
 \end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    scale=0.88,
+    transform shape,
+    font=\sffamily\scriptsize,
+    stepbox/.style={draw=blue!80!black, fill=blue!6, rounded corners=3pt, align=center, inner sep=6pt, line width=0.7pt, minimum width=2.7cm, minimum height=1.1cm},
+    decision/.style={draw=orange!80!black, fill=orange!8, diamond, aspect=1.8, align=center, inner sep=3pt, line width=0.7pt, font=\sffamily\bfseries\tiny},
+    actionbox/.style={draw=teal!80!black, fill=teal!8, rounded corners=2pt, align=left, inner sep=4pt, font=\sffamily\tiny, text width=2.5cm},
+    flowarrow/.style={-{Latex[length=2.5mm]}, thick, draw=blue!80!black}
+]
+
+    % Étape 1 : Configuration
+    \node[stepbox] (step1) at (0, 0) {\textbf{1. Configuration}\\[1pt]Choix du module \& mode};
+    \node[actionbox, below=0.2cm of step1] (act1) {
+        $\bullet$ Sélection chapitre racine\\
+        $\bullet$ Volume de questions\\
+        $\bullet$ \textit{Entraînement} vs \textit{Examen}
+    };
+
+    % Étape 2 : Tirage
+    \node[stepbox, fill=teal!6, draw=teal!80!black] (step2) at (3.4, 0) {\textbf{2. Génération}\\[1pt]Tirage déterministe};
+    \node[actionbox, below=0.2cm of step2] (act2) {
+        $\bullet$ \code{RandomSerieRequest}\\
+        $\bullet$ Équilibrage sous-chapitres\\
+        $\bullet$ Isolation questions étanches
+    };
+
+    % Étape 3 : Déroulement
+    \node[stepbox, fill=purple!6, draw=purple!80!black] (step3) at (6.8, 0) {\textbf{3. Épreuve}\\[1pt]Passage du test};
+    \node[actionbox, below=0.2cm of step3] (act3) {
+        $\bullet$ QCM multi-réponses\\
+        $\bullet$ Chronomètre officiel\\
+        $\bullet$ Navigation libre entre Qs
+    };
+
+    % Étape 4 : Évaluation
+    \node[stepbox, fill=orange!6, draw=orange!80!black] (step4) at (10.2, 0) {\textbf{4. Évaluation}\\[1pt]Score \& Analyse};
+    \node[actionbox, below=0.2cm of step4] (act4) {
+        $\bullet$ Calcul sans pénalité\\
+        $\bullet$ Ventilation par sous-notion\\
+        $\bullet$ Export JSON pour LLM (Mode Entraînement)
+    };
+
+    % Étape 5 : Historisation
+    \node[stepbox, fill=blue!10, draw=blue!90!black] (step5) at (13.4, 0) {\textbf{5. Suivi}\\[1pt]Progression};
+    \node[actionbox, below=0.2cm of step5] (act5) {
+        $\bullet$ Enregistrement DB (\code{Serie})\\
+        $\bullet$ MAJ Tableau de bord\\
+        $\bullet$ Visibilité tuteurs/RH
+    };
+
+    % Flèches
+    \draw[flowarrow] (step1) -- (step2);
+    \draw[flowarrow] (step2) -- (step3);
+    \draw[flowarrow] (step3) -- (step4);
+    \draw[flowarrow] (step4) -- (step5);
+
+\end{tikzpicture}
+\caption{Workflow fonctionnel du parcours apprenant sur la plateforme NewroFactory : de la configuration de l'épreuve à la restitution analytique}
+\label{fig:workflow_parcours_quiz}
+\end{figure}
 
 \subsection{Objectifs d'ingénierie et exigences implicites}
 \label{subsec:objectifs_contraintes}
@@ -490,6 +759,15 @@ Cette modélisation permet d'effectuer des opérations ensemblistes hautement pe
     \item L'intégrité de l'arbre est protégée par une contrainte d'unicité composite sur \texttt{(name, parent\_path)} et par la mise en œuvre du mécanisme de suppression logique (\textit{Soft Delete}) via l'annotation Hibernate \code{@SoftDelete}.
 \end{itemize}
 
+La Figure~\ref{fig:ui_arborescence_chapitres} illustre la restitution dynamique de cette arborescence dans l'interface d'administration, où les chapitres, sous-chapitres et le nombre de questions rattachées sont consolidés à chaque niveau.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.92\textwidth]{figures/quiz_arborescence_chapitres.png}
+    \caption{Interface de gestion hiérarchique des compétences et chapitres : structuration arborescente dynamique exploitant le patron \textit{Materialized Path}}
+    \label{fig:ui_arborescence_chapitres}
+\end{figure}
+
 \subsubsection{Modélisation des questions et étanchéité des examens blancs}
 Les questions sont modélisées sous forme de Questionnaires à Choix Multiples (QCM) sans pénalité de points négatifs, conformes aux modalités réelles des certifications Oracle et AWS. Chaque question est rattachée à un chapitre spécifique et comporte un ensemble de propositions dont une ou plusieurs peuvent être valides.
 
@@ -507,10 +785,78 @@ La plateforme intègre deux modes d'évaluation distincts :
     \item \textbf{Le mode Examen (sommatif) :} simule l'épreuve officielle. Aucun feedback ni indice n'est retourné pendant le déroulement de la série. Le stagiaire ne découvre son score global qu'à l'issue de la soumission définitive, sans affichage des explications par question afin d'éviter toute fixation de réponses lors des sessions ultérieures.
 \end{itemize}
 
+Les Figures~\ref{fig:ui_assign_step1} et~\ref{fig:ui_assign_step2} illustrent le parcours de configuration et d'assignation d'une série personnalisée par l'encadrant ou l'apprenant.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.88\textwidth]{figures/quiz_assign_serie_step1.png}
+    \caption{Étape 1 de configuration d'une série : sélection du module de certification cible (Vue.js, Java OCA/OCP, Node CLI, Spring)}
+    \label{fig:ui_assign_step1}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.88\textwidth]{figures/quiz_assign_serie_step2.png}
+    \caption{Étape 2 de configuration d'une série : sélection granulaire du sous-chapitre dans l'arborescence et définition du volume de questions}
+    \label{fig:ui_assign_step2}
+\end{figure}
+
 \subsection{Architecture logicielle backend et services RESTful}
 \label{subsec:architecture_backend_spring}
 
-Le backend de \textit{NewroFactory} a été développé en Java avec le framework Spring, selon une architecture en couches étanches respectant les principes de responsabilité unique (\textit{Single Responsibility Principle} - SRP) et d'inversion de dépendances.
+Le backend de \textit{NewroFactory} a été développé en Java avec le framework Spring, selon une architecture en couches étanches respectant les principes de responsabilité unique (\textit{Single Responsibility Principle} - SRP) et d'inversion de dépendances (illustrée en Figure~\ref{fig:architecture_globale_quiz}).
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    scale=0.88,
+    transform shape,
+    font=\sffamily\scriptsize,
+    tierbox/.style={draw=blue!80!black, fill=blue!4, rounded corners=4pt, inner sep=6pt, line width=0.8pt},
+    compbox/.style={draw=blue!70!black, fill=white, rounded corners=2pt, align=center, inner sep=4pt, line width=0.6pt, font=\sffamily\scriptsize},
+    busarrow/.style={{Latex[length=2.5mm]}-{Latex[length=2.5mm]}, thick, draw=blue!80!black}
+]
+
+    % TIER 1 : FRONTEND
+    \node[tierbox, fill=teal!4, draw=teal!80!black, text width=13.0cm] (tier_front) at (0, 4.2) {
+        \textbf{\color{teal!80!black}\normalsize TIER 1 : Client Single Page Application (Angular 17)}\\[3pt]
+        \begin{tikzpicture}[node distance=0.4cm]
+            \node[compbox, fill=teal!10, draw=teal!70!black] (c1) at (-4.2, 0) {\textbf{Components UI}\\Quiz, Dashboard, Admin};
+            \node[compbox, fill=teal!10, draw=teal!70!black] (c2) at (-0.3, 0) {\textbf{Services TypeScript}\\State Management, Observables RxJS};
+            \node[compbox, fill=teal!10, draw=teal!70!black] (c3) at (3.8, 0) {\textbf{HTTP Interceptor}\\Gestion Token JWT \& Erreurs};
+        \end{tikzpicture}
+    };
+
+    % TIER 2 : BACKEND SPRING
+    \node[tierbox, text width=13.0cm] (tier_back) at (0, 1.2) {
+        \textbf{\color{blue!80!black}\normalsize TIER 2 : API REST Backend (Java / Spring Framework)}\\[3pt]
+        \begin{tikzpicture}
+            \node[compbox, fill=blue!10, text width=3.4cm] (b1) at (-4.2, 0) {\textbf{Couche Présentation}\\\code{ChapterController}\\\code{SerieController}\\\code{UserController}};
+            \node[compbox, fill=purple!10, draw=purple!70!black, text width=3.8cm] (b2) at (0, 0) {\textbf{Couche Métier / Services}\\\code{SerieService} (Tirage aléatoire)\\\code{ChapterService} (Materialized Path)\\\code{ScoreCalculatorService}};
+            \node[compbox, fill=blue!10, text width=3.4cm] (b3) at (4.2, 0) {\textbf{Couche Persistance}\\\code{ChapterRepository}\\\code{SerieRepository}\\\code{UserRepository}};
+            \draw[-{Latex}, thick, draw=blue!60!black] (b1) -- (b2);
+            \draw[-{Latex}, thick, draw=blue!60!black] (b2) -- (b3);
+        \end{tikzpicture}\\[3pt]
+        \centering\textit{\tiny Transverse : Spring Security (Filtre JWT) $\cdot$ Spring AOP (\code{LoggingAspect}, traduction d'exceptions DataAccessException)}
+    };
+
+    % TIER 3 : DATABASE
+    \node[tierbox, fill=orange!4, draw=orange!80!black, text width=13.0cm] (tier_db) at (0, -1.6) {
+        \textbf{\color{orange!80!black}\normalsize TIER 3 : Couche de Persistance \& Base de Données}\\[3pt]
+        \begin{tikzpicture}
+            \node[compbox, fill=orange!10, draw=orange!70!black, text width=5.5cm] (db1) at (-3.2, 0) {\textbf{Schéma Relationnel PostgreSQL / H2}\\Tables \code{chapter}, \code{question}, \code{answer}, \code{serie}, \code{user}};
+            \node[compbox, fill=orange!10, draw=orange!70!black, text width=5.5cm] (db2) at (3.2, 0) {\textbf{Indexation \& Requêtes Hiérarchiques}\\Index sur \code{parent_path} (Materialized Path) \& Soft Delete};
+        \end{tikzpicture}
+    };
+
+    % Connecteurs entre tiers
+    \draw[busarrow, draw=teal!80!black] (tier_front) -- node[right, font=\sffamily\tiny\bfseries, text=teal!80!black] {Échanges RESTful (JSON) / En-tête Authorization: Bearer JWT} (tier_back);
+    \draw[busarrow, draw=orange!80!black] (tier_back) -- node[right, font=\sffamily\tiny\bfseries, text=orange!80!black] {Spring Data JPA / Hibernate / Pool de connexions HikariCP} (tier_db);
+
+\end{tikzpicture}
+\caption{Architecture globale 3-tiers découplée de la plateforme NewroFactory (Angular, Spring Core REST et PostgreSQL)}
+\label{fig:architecture_globale_quiz}
+\end{figure}
 
 \subsubsection{Découpage en couches et exposition des API}
 L'architecture sépare rigoureusement la persistance, le domaine métier et l'exposition REST :
@@ -580,7 +926,21 @@ Tandis que le stagiaire accède à son tableau de bord personnel, l'encadrant te
 En tant qu'outil interne destiné à une ESN, la gouvernance des identités et la sécurité des échanges constituent un pilier central de l'architecture.
 
 \subsubsection{Gestion des sessions et création déléguée des comptes}
-Afin de préserver la confidentialité des contenus et de garantir le rattachement hiérarchique des métriques, l'auto-inscription publique a été proscrite. La création de compte est exclusivement réservée aux encadrants et administrateurs (\code{ROLE_ADMIN}). Lorsqu'un encadrant crée le profil d'un stagiaire, ce dernier est explicitement rattaché à sa promotion dans le système. Lors de sa première connexion avec ses identifiants temporaires, le stagiaire est invité à réinitialiser son mot de passe via un composant dédié (\code{update-password}), ce qui active l'historisation de ses statistiques sous la supervision de son tuteur.
+Afin de préserver la confidentialité des contenus et de garantir le rattachement hiérarchique des métriques, l'auto-inscription publique a été proscrite. La création de compte est exclusivement réservée aux encadrants et administrateurs (\code{ROLE_ADMIN}). Lorsqu'un encadrant crée le profil d'un stagiaire, ce dernier est explicitement rattaché à sa promotion dans le système (illustré en Figure~\ref{fig:ui_admin_users} et Figure~\ref{fig:ui_modal_edit_user}). Lors de sa première connexion avec ses identifiants temporaires, le stagiaire est invité à réinitialiser son mot de passe via un composant dédié (\code{update-password}), ce qui active l'historisation de ses statistiques sous la supervision de son tuteur.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.92\textwidth]{figures/quiz_admin_users.png}
+    \caption{Tableau de bord d'administration des utilisateurs : gestion des comptes, rattachement aux promotions et attribution des rôles applicatifs}
+    \label{fig:ui_admin_users}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.68\textwidth]{figures/quiz_modal_edit_user.png}
+    \caption{Boîte de dialogue modale de configuration d'un compte utilisateur (attribution des rôles, statut stagiaire, promotion et dates de stage)}
+    \label{fig:ui_modal_edit_user}
+\end{figure}
 
 \subsubsection{Authentification JWT par cookies sécurisés et résolution CORS}
 L'architecture applique un modèle sans état (\textit{stateless}) basé sur des jetons JSON Web Tokens (JWT) :
@@ -607,10 +967,24 @@ J'ai pris en charge la conception de la feuille de style globale, du design syst
 \subsubsection{Parcours utilisateur et navigation interactive}
 Le front-end s'organise autour de parcours fluides pilotés par les services Angular et RxJS :
 \begin{itemize}
-    \item \textbf{Le tableau de bord stagiaire :} synthèse visuelle présentant la progression globale, l'accès rapide aux séries d'entraînement par module et la liste des derniers examens blancs passés ;
-    \item \textbf{Le module d'examen interactif :} affichage séquentiel des questions avec sélection dynamique des réponses, bascule contextuelle entre mode entraînement (dévoilement animé des justifications) et mode examen, puis récapitulatif global avec ventilation des scores à la soumission ;
+    \item \textbf{Le tableau de bord stagiaire et diagnostic des compétences :} synthèse visuelle présentant la progression globale, l'accès rapide aux séries d'entraînement par module (Figure~\ref{fig:ui_stats_competence}) et la liste des derniers examens blancs passés ;
+    \item \textbf{Le module de suivi des séries en cours :} interface permettant de reprendre à tout moment un questionnaire entamé avec filtrage par date et par taux de réussite (Figure~\ref{fig:ui_series_en_cours}) ;
     \item \textbf{Le portail d'administration :} interface réservée aux tuteurs permettant la gestion des promotions, la création des comptes stagiaires et la consultation directe des métriques individuelles.
 \end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.92\textwidth]{figures/quiz_stats_par_competence.png}
+    \caption{Tableau de bord analytique des compétences : suivi quantitatif de la progression (total, questions réussies/ratées et taux de succès)}
+    \label{fig:ui_stats_competence}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.92\textwidth]{figures/quiz_series_en_cours.png}
+    \caption{Interface de suivi et de reprise des séries en cours : filtres multicritères et visualisation synthétique par carte}
+    \label{fig:ui_series_en_cours}
+\end{figure}
 
 \subsection{Dynamique d'ingénierie collaborative, gestion des risques et retours d'expérience}
 \label{subsec:dynamique_collaborative_rex}
@@ -650,6 +1024,8 @@ Ce choix s'explique par la volonté de comprendre en profondeur la mécanique in
     \item \textbf{Configuration explicite des filtres et servlets :} la mise en œuvre manuelle de la chaîne de filtres de sécurité (\code{SecurityFilterChain}), du découplage des aspects de journalisation (\code{LoggingAspect}) et de la gestion des erreurs HTTP a permis d'appréhender le fonctionnement exact du moteur Web de Spring (\code{DispatcherServlet}) sans subir d'abstractions opaques ;
     \item \textbf{Appropriation de l'architecture n-tiers :} l'explicitation du passage de données entre les contrôleurs REST, les services transactionnels et la persistance relationnelle a renforcé les réflexes de découplage et d'isolation des responsabilités (\textit{Single Responsibility Principle}).
 \end{itemize}
+
+Ce parti pris d'ingénierie procède d'une conviction pédagogique forte chez Oxyl : maîtriser les bases fondamentales et les concepts sous-jacents (spécifications JEE, Servlet API, conteneur IoC, cycle de vie JVM) permet à un ingénieur d'appréhender sans effort l'ensemble des frameworks du marché plutôt que d'être captif d'une seule technologie. Une fois la mécanique de JEE et de Spring Core intimement assimilée, la prise en main d'architectures plus récentes comme \textbf{Spring Boot} ou d'alternatives \textit{cloud-native} telles que \textbf{Quarkus} ou \textbf{Micronaut} devient fluide et immédiate, l'ingénieur comprenant exactement les mécanismes d'optimisation (tels que la compilation native GraalVM ou l'injection au build-time) masqués par ces outils.
 
 \subsection{Adoption d'Angular : Rigueur structurelle et opportunité de montée en compétences}
 \label{subsec:choix_angular}
@@ -700,10 +1076,17 @@ Historiquement, l'évaluation des capacités des LLMs s'appuyait sur des jeux de
 
 L'industrialisation moderne du SDLC requiert ainsi des modèles non seulement capables de rédiger de nouvelles implémentations, mais surtout de naviguer au sein de bases de code existantes, de diagnostiquer des régressions, et de proposer des diffs directement intégrables au workflow d'intégration continue (CI/CD).
 
+Dans la vision d'Oxyl, le point d'entrée universel de l'usine logicielle est le \textbf{ticket d'ingénierie} (issu indifféremment de GitLab Issues, GitHub Issues ou Jira). Cette approche unifiée permet d'adresser sans restriction l'intégralité du cycle de vie logiciel :
+\begin{itemize}
+    \item \textbf{La maintenance corrective (\textit{bug fixing}) :} reproduction automatisée de l'anomalie, isolation de la régression et génération du patch de correction ;
+    \item \textbf{Le développement de fonctionnalités (\textit{feature delivery}) :} implémentation de nouveaux services ou composants à partir de spécifications fonctionnelles formalisées ;
+    \item \textbf{La maintenance préventive et le nettoyage technique (\textit{refactoring / tech debt}) :} modernisation de dépendances, migration de syntaxe, typage strict et élimination de code mort.
+\end{itemize}
+
 \subsection{Évaluation agentique par SWE-bench et assistants en ligne de commande}
 \label{subsec:swebench_cli}
 
-Pour répondre aux limites des métriques de génération synthétiques, le benchmark \textbf{SWE-bench}~\cite{jimenez2023swebench} s'est imposé comme l'étalon-or scientifique pour l'évaluation des agents autonomes de génie logiciel. Basé sur l'extraction d'issues réelles issues de projets open-source Python d'envergure, SWE-bench confronte l'agent à une description de problème et à l'état complet du dépôt Git. La réussite est conditionnée par la capacité de l'agent à générer un patch validant l'ensemble de la suite de tests unitaires du projet sans introduire de régression.
+Pour répondre aux limites des métriques de génération synthétiques, le benchmark \textbf{SWE-bench}~\cite{jimenez2023swebench} s'est imposé comme l'étalon-or scientifique pour l'évaluation des agents autonomes de génie logiciel. Basé sur l'extraction de tickets réels issues de projets open-source Python d'envergure, SWE-bench confronte l'agent à une description de problème et à l'état complet du dépôt Git. La réussite est conditionnée par la capacité de l'agent à générer un patch validant l'ensemble de la suite de tests unitaires du projet sans introduire de régression.
 
 Dans une perspective d'intégration opérationnelle au court terme, le choix des interfaces d'exécution s'oriente vers des outils joignables par \textbf{ligne de commande (CLI)}, notamment :
 \begin{itemize}
@@ -725,15 +1108,15 @@ Le Tableau~\ref{tab:comparatif_agents} synthétise la comparaison entre l'approc
 \centering
 \caption{Analyse comparative des solutions agentiques du marché vs l'Usine IA Oxyl}
 \label{tab:comparatif_agents}
-\small
-\begin{tabular}{|p{3.2cm}|p{2.8cm}|p{2.8cm}|p{2.8cm}|p{3.2cm}|}
+\footnotesize
+\begin{tabularx}{\textwidth}{|l|X|X|X|X|}
 \hline
 \textbf{Solution} & \textbf{Intégration CLI / CI-CD} & \textbf{Agnosticisme LLM (Anti lock-in)} & \textbf{Scope d'édition code} & \textbf{Extensibilité des workflows} \\ \hline
 \textbf{GitHub Copilot} & Faible (IDE/Web) & Propriétaire (OpenAI) & Fichier / In-line & Limitée (Extensions) \\ \hline
 \textbf{Devin / SaaS proprietary} & Web / Clôturé & Propriétaire / Intégré & Projet complet & Configurable (SaaS) \\ \hline
 \textbf{Cursor / Claude Code} & CLI / IDE local & Multi-modèles restreint & Projet complet & Scriptable \\ \hline
 \textbf{Usine IA Oxyl (Proposée)} & \textbf{Native CLI \& CI-CD} & \textbf{Agnostique (Google/OpenAI/Claude)} & \textbf{Multi-fichiers complet} & \textbf{Totale (Patrons de conception \& SDK)} \\ \hline
-\end{tabular}
+\end{tabularx}
 \end{table}
 
 Cette analyse met en évidence que l'usine logicielle Oxyl privilégie l'indépendance technologique et la personnalisation fine des flux agentiques, combinant la souplesse d'exécution CLI à un contrôle total sur l'infrastructure de développement.
@@ -767,26 +1150,51 @@ La Figure~\ref{fig:diagramme_uml_adapter_llm} schématise cette organisation str
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[
-    node distance=1.8cm,
-    interface/.style={draw, rectangle, fill=blue!10, rounded corners, minimum width=5.2cm, minimum height=1.3cm, align=center, font=\small},
-    adapter/.style={draw, rectangle, fill=green!10, minimum width=3.8cm, minimum height=1.4cm, align=center, font=\footnotesize},
-    resolver/.style={draw, rectangle, fill=orange!10, dashed, minimum width=4.8cm, minimum height=1.2cm, align=center, font=\small},
-    arrow/.style={-{Latex[length=3mm]}, thick},
-    implements/.style={-{Triangle[open, length=3mm]}, dashed, thick}
+    scale=0.85,
+    transform shape,
+    font=\sffamily\scriptsize,
+    interface/.style={draw=blue!80!black, fill=blue!10, rounded corners=3pt, minimum width=5.2cm, minimum height=1.3cm, align=left},
+    adapter/.style={draw=teal!80!black, fill=teal!10, rounded corners=3pt, minimum width=4.0cm, minimum height=1.3cm, align=left},
+    resolver/.style={draw=orange!80!black, fill=orange!10, dashed, rounded corners=3pt, minimum width=4.8cm, minimum height=1.2cm, align=left},
+    arrow/.style={-{Latex[length=2.5mm]}, thick, draw=orange!80!black},
+    impl/.style={-{Triangle[open, length=2.5mm]}, dashed, thick, draw=teal!80!black}
 ]
     % Nodes
-    \node[interface] (provider) {\textbf{<<interface>>}\\ \textbf{LLMProvider}\\ \scriptsize + invokeAgent(step: Step): Promise<ExecutionResult>\\ + formatPrompt(context, prompt): string};
+    \node[interface] (provider) at (0, 0) {
+        \textbf{<<interface>> LLMProvider}\\
+        \rule{5.0cm}{0.4pt}\\
+        + invokeAgent(step: Step): Promise<ExecutionResult>\\
+        + formatPrompt(context, prompt): string
+    };
     
-    \node[adapter, below left=1.5cm and -0.8cm of provider] (claude) {\textbf{ClaudeCodeAdapter}\\ \scriptsize - apiKey: string\\ + invokeAgent()\\ + spawnCliProcess()};
+    \node[adapter] (claude) at (-3.4, -2.6) {
+        \textbf{ClaudeCodeAdapter}\\
+        \rule{3.8cm}{0.4pt}\\
+        - apiKey: string\\
+        + invokeAgent()\\
+        + spawnCliProcess()
+    };
     
-    \node[adapter, below right=1.5cm and -0.8cm of provider] (antigravity) {\textbf{AntigravityAdapter}\\ \scriptsize - oauthSession: OAuthToken\\ + invokeAgent()\\ + initSession()};
+    \node[adapter] (antigravity) at (3.4, -2.6) {
+        \textbf{AntigravityAdapter}\\
+        \rule{3.8cm}{0.4pt}\\
+        - oauthSession: OAuthToken\\
+        + invokeAgent()\\
+        + initSession()
+    };
     
-    \node[resolver, above=1.2cm of provider] (resolver) {\textbf{LLMProviderResolver}\\ \scriptsize - instance: LLMProvider | null\\ + createLLMProvider(config): void\\ + getLLMProvider(): LLMProvider};
+    \node[resolver] (resolver) at (0, 2.2) {
+        \textbf{LLMProviderResolver}\\
+        \rule{4.6cm}{0.4pt}\\
+        - instance: LLMProvider | null\\
+        + createLLMProvider(config): void\\
+        + getLLMProvider(): LLMProvider
+    };
 
     % Links
-    \draw[implements] (claude) -- (provider.south west);
-    \draw[implements] (antigravity) -- (provider.south east);
-    \draw[arrow] (resolver) -- node[right, font=\scriptsize] {Instancie / Retourne} (provider);
+    \draw[impl] (claude.north) -- (provider.south west);
+    \draw[impl] (antigravity.north) -- (provider.south east);
+    \draw[arrow] (resolver.south) -- node[right=3pt, font=\tiny] {Instancie / Retourne} (provider.north);
 \end{tikzpicture}
 \caption{Diagramme conceptuel du patron Adapter appliqué au découplage des moteurs LLM}
 \label{fig:diagramme_uml_adapter_llm}
@@ -831,12 +1239,69 @@ Cette section détaille les mécanismes de contrôle, de résilience et de gouve
 
 L'un des risques majeurs inhérents aux systèmes agentiques réside dans le phénomène de « boucle de raisonnement infinie » (\textit{infinite reasoning loop}). Lorsqu'un modèle se heurte à une anomalie sans parvenir à la corriger, il tend à multiplier les essais infructueux, engendrant une consommation exponentielle de tokens et un temps d'occupation critique des conteneurs.
 
-Pour juguler ce risque, notre moteur intègre une politique de plafonnement à deux niveaux :
+Pour juguler ce risque, notre moteur intègre une politique de plafonnement à deux niveaux (illustrée en Figure~\ref{fig:resilience_retry_verrou}) :
 \begin{itemize}
     \item \textbf{Plafond local par étape (\code{max_retries}) :} Chaque étape élémentaire du workflow d'un worker (par exemple la génération de code, l'analyse d'architecture ou l'exécution de la suite de tests) est assortie d'un quota strict de tentatives. Si une étape échoue (erreur de compilation, échec de linting), le moteur évalue le nombre d'essais consommés (\code{getRetryCount(step.id)}). Tant que \code{retryCount < step.max_retries}, une nouvelle tentative ciblée est autorisée ; dans le cas contraire, le traitement de l'étape est interrompu.
     \item \textbf{Disjoncteur global par ticket (\code{Circuit Breaker}) :} Au-delà des limites par étape, un compteur d'essais cumulés (\code{globalAttempts}) est maintenu pour l'ensemble du cycle de vie du worker sur un ticket donné. Dès que ce compteur atteint le seuil critique \code{maxGlobalAttempts} (défini par les limites globales de l'usine), le disjoncteur se déclenche immédiatement (\textit{circuit breaker triggered}), interrompant définitivement le traitement afin d'éviter tout surcoût financier ou blocage de la file de tâches.
     \item \textbf{Routage conditionnel sur échec (\code{on_fail} et \code{max_on_fail}) :} Lorsqu'une défaillance survient, le moteur analyse et classifie l'erreur (\code{classifyFailure}). Si un gestionnaire de déviation est configuré (ex. \code{goto diagnostic_step}), le flux est redirigé vers une étape spécialisée, tout en plafonnant le nombre total de déviations via \code{max_on_fail} pour empêcher les cycles de redirection infinis.
 \end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    scale=0.86,
+    transform shape,
+    font=\sffamily\scriptsize,
+    statebox/.style={draw=blue!80!black, fill=blue!6, rounded corners=3pt, align=center, inner sep=6pt, line width=0.7pt, minimum width=3.2cm},
+    decision/.style={draw=orange!80!black, fill=orange!8, diamond, aspect=1.8, align=center, inner sep=2.5pt, line width=0.7pt, font=\sffamily\bfseries\tiny},
+    errbox/.style={draw=red!70!black, fill=red!6, rounded corners=2pt, align=left, inner sep=4pt, font=\sffamily\tiny, text width=3.0cm},
+    succbox/.style={draw=teal!80!black, fill=teal!8, rounded corners=2pt, align=center, inner sep=4pt, font=\sffamily\bfseries\tiny, text width=2.8cm},
+    flowarrow/.style={-{Latex[length=2.5mm]}, thick, draw=blue!80!black}
+]
+
+    % Étape 1 : Exécution LLM
+    \node[statebox] (exec) at (0, 3.8) {\textbf{Exécution de l'Étape}\\Invocation LLM (Claude CLI)};
+    
+    % Étape 2 : Évaluation résultat
+    \node[decision] (eval) at (0, 1.8) {Succès de\\l'étape ?};
+
+    % Branche Succès
+    \node[statebox, fill=teal!6, draw=teal!80!black] (val) at (5.0, 1.8) {\textbf{Validation Mécanique}\\(\code{validateMechanical})};
+    \node[succbox, below=0.2cm of val] (commit) {$\checkmark$ Commit de progrès (SHA)\\\code{manifest.json} mis à jour\\$\rightarrow$ Étape suivante};
+
+    % Branche Échec & Disjoncteur
+    \node[statebox, fill=red!4, draw=red!70!black] (classif) at (-5.0, 1.8) {\textbf{Classification de l'erreur}\\(\code{classifyFailure})};
+    \node[errbox, below=0.2cm of classif] (errdetail) {
+        $\bullet$ Type: \code{syntax_error / test_fail}\\
+        $\bullet$ Erreur extraite \& tronquée\\
+        $\bullet$ Incrément compteurs
+    };
+
+    \node[decision] (breaker) at (-5.0, -1.6) {Vérification\\Plafonds ?};
+
+    \node[statebox, fill=purple!6, draw=purple!80!black] (retry) at (0, -1.6) {\textbf{Compression Contextuelle}\\(\code{buildRetryContext})};
+    \node[succbox, fill=purple!8, draw=purple!70!black, below=0.2cm of retry] (retrydetail) {Injection minimale de l'erreur en tête de prompt\\$\rightarrow$ Ré-essai ciblé sans pollution contextuelle};
+
+    \node[statebox, fill=red!10, draw=red!90!black] (halt) at (-5.0, -3.8) {\textbf{Arrêt Sécurisé \& Notification}\\Disjoncteur déclenché (Circuit Breaker)};
+
+    % Flèches
+    \draw[flowarrow] (exec) -- (eval);
+    \draw[flowarrow, draw=teal!80!black] (eval) -- node[above, font=\sffamily\bfseries\tiny, text=teal!80!black] {OUI} (val);
+    \draw[flowarrow, draw=teal!80!black] (val) -- (commit);
+
+    \draw[flowarrow, draw=red!70!black] (eval) -- node[above, font=\sffamily\bfseries\tiny, text=red!70!black] {NON} (classif);
+    \draw[flowarrow, draw=red!70!black] (classif) -- (errdetail);
+    \draw[flowarrow, draw=red!70!black] (errdetail) -- (breaker);
+
+    \draw[flowarrow, draw=teal!80!black] (breaker) -- node[above, font=\sffamily\bfseries\tiny, text=teal!80!black] {$\text{retries} < \text{Max}$} (retry);
+    \draw[flowarrow, draw=purple!80!black] (retry) -- ++(3.2,0) |- (exec);
+
+    \draw[flowarrow, draw=red!90!black] (breaker) -- node[right, font=\sffamily\bfseries\tiny, text=red!90!black] {Seuil atteint} (halt);
+
+\end{tikzpicture}
+\caption{Cycle de résilience et gouvernance mécanique : double verrou de réessai, disjoncteur et compression contextuelle par le Manifest}
+\label{fig:resilience_retry_verrou}
+\end{figure}
 
 \subsection{Gestion du flux de sortie et compression contextuelle : Le rôle du Manifest}
 \label{subsec:gestion_flux_manifest}
@@ -853,10 +1318,11 @@ Pour rationaliser ces flux de sortie, nous appliquons une stratégie de gestion 
 \subsection{Sécurité, étanchéité des conteneurs et assainissement des secrets}
 \label{subsec:securite_secrets}
 
-L'exécution autonome d'instructions shell et la manipulation de code source par des modèles tiers exigent un cadre de sécurité intransigeant :
+L'exécution autonome d'instructions shell et la manipulation de code source par des modèles tiers exigent un cadre de sécurité intransigeant. Chez Oxyl, la posture opérationnelle consiste à s'adapter rigoureusement aux politiques de sécurité et de conformité de chaque client :
 \begin{itemize}
-    \item \textbf{Isolation en conteneurs éphémères :} Chaque agent s'exécute au sein d'un conteneur Docker dédié, instancié à la volée avec des privilèges restreints et détruit à l'issue de la tâche. Cette conteneurisation garantit l'étanchéité totale du système hôte vis-à-vis des commandes exécutées par l'IA.
-    \item \textbf{Purification systématique des flux (\code{redactSecrets}) :} Les variables d'environnement des conteneurs hébergent des identifiants sensibles (clés d'API LLM, tokens Git). Une fonction d'assainissement intercepte et masque systématiquement ces secrets au sein des flux \code{stdout}, \code{stderr} et des messages d'erreur avant toute sauvegarde dans les rapports d'audit ou affichage dans les logs.
+    \item \textbf{Adaptation aux politiques de gouvernance client :} pour les clients appliquant des règles d'étanchéité strictes (secteur bancaire, défense), l'usine est déployée en environnement fermé avec des modèles exécutés localement (\textit{on-premise}) sans aucun transit de données vers l'extérieur. Pour les clients autorisant les services d'inférence Cloud, les flux s'appuient sur des accords d'entreprise garantissant la non-rétention des données (\textit{zero-data retention}) ;
+    \item \textbf{Isolation en conteneurs éphémères :} Chaque agent s'exécute au sein d'un conteneur Docker dédié, instancié à la volée avec des privilèges restreints et détruit à l'issue de la tâche. Cette conteneurisation garantit l'étanchéité totale du système hôte vis-à-vis des commandes exécutées par l'IA ;
+    \item \textbf{Purification systématique des flux (\code{redactSecrets}) :} Les variables d'environnement des conteneurs hébergent des identifiants sensibles (clés d'API LLM, tokens Git). Une fonction d'assainissement intercepte et masque systématiquement ces secrets au sein des flux \code{stdout}, \code{stderr} et des messages d'erreur avant toute sauvegarde dans les rapports d'audit ou affichage dans les logs ;
     \item \textbf{Cloisonnement des permissions d'outils (\textit{Tool Gating}) :} Conformément au principe du moindre privilège, les étapes ne nécessitant pas de modification de code (revue, vérification) se voient interdire l'accès à l'outil d'écriture de code (\code{Edit}), restreignant ainsi la surface d'attaque.
 \end{itemize}
 
@@ -1012,7 +1478,7 @@ La Figure~\ref{fig:archi-moteur} illustre l'architecture globale du moteur agnos
 \begin{tikzpicture}[
     scale=0.82,
     transform shape,
-    font=\sffamily\footnotesize,
+    font=\sffamily\scriptsize,
     >=Latex,
     forge/.style={draw=blue!70!black, fill=blue!10, rounded corners=4pt, minimum width=2.4cm, minimum height=0.85cm, align=center, font=\scriptsize\bfseries},
     boxsupervisor/.style={draw=orange!80!black, fill=orange!8, rounded corners=6pt, line width=0.8pt},
@@ -1042,13 +1508,13 @@ La Figure~\ref{fig:archi-moteur} illustre l'architecture globale du moteur agnos
     \draw[boxworktree] (-5.8, 0.7) rectangle (5.8, -3.5);
     \node[anchor=west, font=\scriptsize\bfseries\color{teal!90!black}] at (-5.6, 0.45) {Espace de travail isolé (Git Worktree \& Launcher V5) — Confinement Sandbox};
 
-    \node[compteal, fill=gray!12] (git_local) at (-4.1, -0.6) {\textbf{Git Worktree Local}\\ \tiny \code{.worktrees/<branch>}\\ \tiny \code{+ .task/}};
+    \node[compteal, fill=gray!12] (git_local) at (-4.1, -0.6) {\textbf{Git Worktree Local}\\ \tiny \texttt{.worktrees/<branch>}\\ \tiny \texttt{+ .task/}};
     \node[compteal, fill=teal!15] (runner) at (0, -0.6) {\textbf{Workflow Runner}\\ \tiny Analyse $\rightarrow$ Plan $\rightarrow$ Tests $\rightarrow$ Code};
     \node[guardbox] (guards) at (4.1, -0.6) {\textbf{Garde-fous}\\ \tiny validateMechanical / Linters};
 
     \node[agentbox] (llm_agent) at (0, -2.4) {\textbf{Agent IA Confiné (Claude Code CLI / Antigravity)}\\ \scriptsize \color{red!80!black}\textbf{Accès I/O fichiers locaux uniquement — Zéro token forge}};
 
-    \node[scriptbox] (mr_creator) at (0, -4.4) {Script Déterministe \code{create-mr.ts}\\ \tiny CodeBaseProvider.handleMergeRequest() avec tokens typés (\code{brandAs})};
+    \node[scriptbox] (mr_creator) at (0, -4.4) {Script Déterministe \texttt{create-mr.ts}\\ \tiny CodeBaseProvider.handleMergeRequest() avec tokens typés (\texttt{brandAs})};
 
     \draw[<->, thick, draw=blue!70!black] (0, 4.3) -- node[fill=white, inner sep=2pt, font=\tiny] {1. Polling périodique \& Claiming atomique par labels} (0, 3.8);
 
@@ -1214,6 +1680,112 @@ La chaîne de valeur automatisée a été éprouvée avec succès selon une dém
     Sur ces différents projets, l'usine logicielle a pris en charge l'intégralité du cycle de réalisation des fonctionnalités et des corrections de code, démontrant une maturité et une stabilité opérationnelle telles que sa généralisation à l'ensemble des futurs projets de l'entreprise est désormais enclenchée.
 \end{enumerate}
 
+\subsection{Analyse empirique d'un cycle d'exécution et gestion des défaillances : Étude de cas sur le Ticket \#17}
+\label{subsec:etude_cas_ticket_17}
+
+Afin d'illustrer la mécanique concrète de l'orchestrateur en conditions opérationnelles, nous analysons ci-après les traces d'audit réelles générées par le superviseur et le worker lors du traitement du Ticket~\#17 (intitulé \og \textit{Fix element picker: escape key does not deactivate element picker} \fg{}, exécuté sous le workflow standard \code{usine-PIerreV::full}). 
+
+Ce cas d'usage réel met en lumière l'enchaînement des étapes (schématisé en Figure~\ref{fig:cycle_de_vie_ticket_usine}), l'allocation dynamique d'outils, ainsi que la résilience face à une anomalie d'infrastructure lors de la phase d'intégration.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    scale=0.86,
+    transform shape,
+    font=\sffamily\scriptsize,
+    stepnode/.style={draw=blue!80!black, fill=blue!6, rounded corners=3pt, align=center, inner sep=6pt, line width=0.7pt, minimum width=3.0cm},
+    detailnode/.style={draw=gray!40, fill=gray!5, rounded corners=2pt, align=left, inner sep=4pt, font=\sffamily\tiny, text width=2.8cm},
+    arrow/.style={-{Latex[length=2.5mm]}, thick, draw=blue!80!black}
+]
+
+    % Jalon 1 : Superviseur
+    \node[stepnode, fill=orange!8, draw=orange!80!black] (s1) at (0, 0) {\textbf{1. Superviseur}\\[1pt]Découverte \& Verrou};
+    \node[detailnode, below=0.2cm of s1] (d1) {
+        $\bullet$ Polling périodique\\
+        $\bullet$ Filtrage \code{is_not_claimed}\\
+        $\bullet$ Pose label \code{claimed:*}\\
+        $\bullet$ Spawn conteneur Worker
+    };
+
+    % Jalon 2 : Planification
+    \node[stepnode, fill=teal!8, draw=teal!80!black] (s2) at (3.5, 0) {\textbf{2. Planification}\\[1pt]Étape \code{plan}};
+    \node[detailnode, below=0.2cm of s2] (d2) {
+        $\bullet$ CLI Claude (/plan)\\
+        $\bullet$ Outils lecture seule\\
+        $\bullet$ Fichier \code{.task/plan.md}\\
+        $\bullet$ Validation mécanique
+    };
+
+    % Jalon 3 : Implémentation
+    \node[stepnode, fill=purple!8, draw=purple!80!black] (s3) at (7.0, 0) {\textbf{3. Implémentation}\\[1pt]Étape \code{code-full}};
+    \node[detailnode, below=0.2cm of s3] (d3) {
+        $\bullet$ CLI Claude (/code-full)\\
+        $\bullet$ 7 outils (\code{Edit}, \code{Bash})\\
+        $\bullet$ Modif code + 5 tests\\
+        $\bullet$ Commit SHA \code{ae722be9}
+    };
+
+    % Jalon 4 : Intégration
+    \node[stepnode, fill=blue!10, draw=blue!90!black] (s4) at (10.5, 0) {\textbf{4. Intégration}\\[1pt]Étape \code{push} \& MR};
+    \node[detailnode, below=0.2cm of s4] (d4) {
+        $\bullet$ Script déterministe\\
+        $\bullet$ Double verrou retry\\
+        $\bullet$ Push Git \& Création MR\\
+        $\bullet$ Retrait label \code{claimed}
+    };
+
+    % Jalon 5 : Clôture
+    \node[stepnode, fill=green!10, draw=green!70!black] (s5) at (13.8, 0) {\textbf{5. Revue Humaine}\\[1pt]\textit{Merge Request}};
+    \node[detailnode, below=0.2cm of s5] (d5) {
+        $\bullet$ Audit critique senior\\
+        $\bullet$ Contrôle non-régression\\
+        $\bullet$ Fusion vers \code{dev}
+    };
+
+    % Flèches
+    \draw[arrow, draw=orange!80!black] (s1) -- (s2);
+    \draw[arrow, draw=teal!80!black] (s2) -- (s3);
+    \draw[arrow, draw=purple!80!black] (s3) -- (s4);
+    \draw[arrow, draw=blue!80!black] (s4) -- (s5);
+
+\end{tikzpicture}
+\caption{Cycle de vie séquentiel d'exécution d'un ticket au sein de l'usine logicielle agentique (du superviseur à la revue humaine)}
+\label{fig:cycle_de_vie_ticket_usine}
+\end{figure}
+
+\subsubsection{1. Découverte, polling et exclusion mutuelle du Superviseur}
+Les journaux du superviseur (\code{Supervisor V5}) démontrent l'efficacité de la boucle de surveillance périodique (\code{Poll cycle \#20} à \code{\#30}) et du mécanisme de verrouillage distribué :
+\begin{itemize}
+    \item \textbf{Filtrage d'éligibilité (\code{is_not_claimed}) :} Pendant qu'un worker traite activement le ticket, les cycles de polling successifs détectent bien le ticket \#17 mais le rejettent systématiquement de la file d'attribution (\textit{\og [ELIGIBILITY] \#17 rejeté par "is\_not\_claimed": label claimed:* présent \fg{}}). Cette exclusion mutuelle stricte empêche tout conflit de concurrence ou double instanciation ;
+    \item \textbf{Surveillance active (\textit{Heartbeat}) :} Le superviseur maintient un comptage précis des ressources allouées (\code{activeWorkers: 1, inFlightTickets: 1}) et vérifie la vivacité du système (\code{isAlive}).
+\end{itemize}
+
+\subsubsection{2. Étape de planification formelle (\texttt{plan}) et validation mécanique}
+Le worker instancie l'agent sous CLI Claude pour formaliser l'intervention dans l'artefact pivot \code{.task/plan.md} :
+\begin{itemize}
+    \item \textbf{Découpage modulaire :} L'agent établit un contrat d'implémentation précis comprenant l'ajout d'un point de terminaison \code{ELEMENT_PICKER_CANCEL}, les gestionnaires d'annulation associés dans les contrôleurs de script de contenu (\textit{content-script}) et d'arrière-plan (\textit{background}), ainsi que l'écouteur de la touche \textit{Escape} dans le composant d'interface \code{Chat.vue} avec nettoyage strict au cycle de vie (\code{onBeforeUnmount}) ;
+    \item \textbf{Contrôle déterministe :} L'étape se conclut par une validation mécanique réussie (\code{Mechanical validation passed}), confirmant l'absence de modification opportuniste du code source (\textit{\og No source files were modified --- just the plan \fg{}}), la sauvegarde de l'état dans \code{manifest.json} et la transition vers l'étape \code{code-full}.
+\end{itemize}
+
+\subsubsection{3. Étape d'implémentation (\texttt{code-full}) et contrainte d'isolation sandbox}
+Lors du passage à la phase de développement, le worker configure l'environnement d'exécution :
+\begin{itemize}
+    \item \textbf{Cloisonnement de l'outillage (\textit{Tool Gating}) :} Sept outils ciblés sont alloués à l'agent (\code{Read}, \code{Write}, \code{Glob}, \code{Grep}, \code{Bash}, \code{Edit}, \code{Task}), lui conférant les privilèges d'édition requis tout en confinant son rayon d'action au \textit{Git Worktree} isolé (\code{/repo/.worktrees/17/}) ;
+    \item \textbf{Modifications atomiques et tests dédiés :} L'agent produit les modifications sur les quatre fichiers cibles et crée une suite de 5 tests unitaires (\code{Chat.elementPicker.spec.ts}) couvrant les cas nominaux et limites ;
+    \item \textbf{Contrainte d'étanchéité réseau :} L'agent relève une contrainte opérationnelle typique de l'isolation en bac à sable : l'absence de \code{node_modules} pré-installés et le blocage des flux externes (\textit{offline mode}) empêchent l'exécution immédiate de \code{npm install}. L'agent consigne rigoureusement cette limitation dans \code{.task/code-report.md}, démontrant la transparence de l'auditabilité documentaire ;
+    \item \textbf{Commit de progression :} L'étape est validée mécaniquement et un commit intermédiaire de sauvegarde est automatiquement généré (SHA \code{ae722be9}).
+\end{itemize}
+
+\subsubsection{4. Étape d'intégration (\texttt{push}) et résilience face aux défaillances Git}
+L'étape terminale \code{push} exécute un script déterministe autonome (sans sollicitation de l'IA) :
+\begin{itemize}
+    \item \textbf{Détection de l'incident d'authentification :} La commande \code{git push --force origin 17-...} échoue avec le code de sortie 128 (\textit{\og fatal: could not read Username for 'https://git.oxyl.fr': No such device or address \fg{}}), révélant une absence d'identifiants Git injectés dans le conteneur pour ce dépôt ;
+    \item \textbf{Classification et politique de réessai bornée :} Le moteur intercepte l'erreur, la classifie (\code{Failure classified: unknown, isRetryable: false}) et enclenche la politique de réessai paramétrée (\code{maxRetries = 2}). Deux tentatives successives sont exécutées (\code{retry (1/2)} puis \code{retry (2/2)}) ;
+    \item \textbf{Disjoncteur et arrêt sécurisé :} Dès l'atteinte du plafond d'essais autorisé, le moteur interrompt immédiatement la chaîne (\textit{\og Max retries reached for step push (2) \fg{}}), empêchant tout emballement du processus et consignant l'état d'échec dans le journal global.
+\end{itemize}
+
+Cette étude de cas empirique prouve la solidité de l'architecture : même en présence d'une panne d'infrastructure externe (authentification Git), les garde-fous déterministes assurent une terminaison propre et prédictible, protégeant l'usine de toute boucle infinie ou dérive de ressources.
+
 \subsection{Repositionnement du rôle de l'ingénieur : Le paradigme \textit{Human-in-the-Loop}}
 \label{subsec:role_ingenieur_revue}
 
@@ -1326,6 +1898,22 @@ Bien que le parcours de certification et la plateforme de quiz (Volet~1) soient 
 
 Cette transférabilité démontre que l'investissement consenti dans la maîtrise des abstractions fondamentales offre une agilité pérenne, permettant aux collaborateurs d'intervenir avec la même rigueur sur les applications d'entreprise traditionnelles que sur les architectures émergentes d'outillage automatisé.
 
+\subsection{La boucle vertueuse d'apprentissage continu : Synergie directe \texorpdfstring{MNF $\times$ Usine IA}{MNF x Usine IA}}
+\label{subsec:synergie_directe_mnf_usine}
+
+Au-delà de la transférabilité méthodologique, une synergie fonctionnelle directe unit la plateforme \textbf{MyNewroFactory (MNF)} et l'\textbf{Usine Logicielle agentique}. L'objectif stratégique d'Oxyl est de faire collaborer ces deux systèmes pour maintenir et perfectionner en continu l'excellence technique des consultants.
+
+Lors du cycle de vie d'un ticket traité par l'usine, les agents de revue (\textit{code review}) analysent en profondeur les modifications de code et identifient les concepts critiques sollicités (par exemple : la gestion fine de la concurrence, les niveaux d'isolation des transactions relationnelles, la manipulation des flux réactifs ou le respect des patrons de conception). 
+
+Dans cette architecture convergente :
+\begin{enumerate}
+    \item L'agent superviseur de l'usine extrait les notions techniques clés ou les faiblesses récurrentes décelées lors des revues de code ;
+    \item Il interroge dynamiquement la banque de questions de \textbf{MyNewroFactory} pour sélectionner des questions d'évaluation ciblées en rapport exact avec les problématiques rencontrées ;
+    \item Ces questions sont automatiquement proposées au consultant lors de ses sessions de veille ou de formation continue pour réactiver et ancrer durablement la maîtrise du concept sous-jacent.
+\end{enumerate}
+
+Cette boucle de rétroaction automatisée garantit que l'expérience acquise sur le terrain technique par l'usine nourrit en temps réel la capitalisation humaine, évitant toute atrophie des compétences au profit d'un cercle vertueux d'apprentissage perpétuel.
+
 \section{Impact économique et technologique : ROI, réduction du vendor lock-in, gains de productivité et attractivité client}
 \label{sec:impact_eco}
 
@@ -1336,9 +1924,9 @@ L'industrialisation conjointe du capital humain et du capital technique dépasse
 
 L'évaluation de la rentabilité de l'usine logicielle (Volet~2) repose sur une comparaison directe entre le coût marginal d'inférence de la machine et le coût horaire d'ingénierie humaine.
 
-Dans une chaîne de développement traditionnelle, le traitement d'une tâche de maintenance corrective ou de commodité (création de structures de données, implémentation de squelettes de services, écriture de tests unitaires d'intégration ou correction de régressions ciblées) mobilise un consultant durant $1$ à $3$~heures. En considérant le taux journalier moyen (TJM) usuel du marché pour un ingénieur d'études, le coût unitaire d'un tel traitement humain oscille entre $70$~€ et $250$~€.
+Dans une chaîne de développement traditionnelle, le traitement d'un micro-ticket de commodité ou de maintenance corrective ciblée (création de structures de données, implémentation de squelettes de services, écriture de tests unitaires d'intégration ou correction de régressions locales) mobilise un consultant durant $1$ à $3$~heures. En considérant le taux journalier moyen (TJM) usuel du marché pour un ingénieur d'études, le coût unitaire d'un tel traitement humain oscille entre $70$~€ et $250$~€.
 
-À l'inverse, l'exécution complète d'un pipeline de résolution par notre usine logicielle agentique — comprenant l'analyse du dépôt Git, la navigation dans l'arbre syntaxique, la planification, la génération du patch et la validation par les suites de tests — consomme en moyenne entre $50\,000$ et $200\,000$~jetons (\textit{tokens}) selon la complexité du contexte. Au tarif en vigueur des modèles d'inférence avancés, ce cycle automatisé représente un coût machine direct compris entre $0{,}20$~€ et $1{,}50$~€ par ticket. Même en intégrant le temps humain indispensable de supervision, de relecture critique et de validation finale ($10$ à $15$~minutes), le coût global de traitement d'une tâche standardisée s'en trouve réduit de manière spectaculaire.
+À l'inverse, l'exécution complète d'un pipeline de résolution par notre usine logicielle agentique — comprenant l'analyse du dépôt Git, la navigation dans l'arbre syntaxique, la planification, la génération du patch et la validation par les suites de tests — consomme en moyenne entre $50\,000$ et $200\,000$~jetons (\textit{tokens}) selon la complexité du contexte. Au tarif en vigueur des modèles d'inférence avancés, ce cycle automatisé représente un coût machine direct compris entre $0{,}20$~€ et $1{,}50$~€ par ticket. Même en intégrant le temps humain indispensable de supervision, de relecture critique et de validation finale ($10$ à $15$~minutes), le coût global de traitement d'un micro-ticket ciblé s'en trouve réduit de manière spectaculaire.
 
 Le Tableau~\ref{tab:comparatif_economique} récapitule cette confrontation technico-économique entre les deux approches.
 
@@ -1351,7 +1939,7 @@ Le Tableau~\ref{tab:comparatif_economique} récapitule cette confrontation techn
 \hline
 \textbf{Critère d'évaluation} & \textbf{Traitement manuel (Consultant)} & \textbf{Usine logicielle agentique} \\
 \hline
-\textbf{Temps de traitement moyen} & $1$ à $3$~heures par ticket standard & $2$ à $5$~minutes d'exécution machine + $10$ à $15$~minutes de revue humaine \\
+\textbf{Temps de traitement moyen} & $1$ à $3$~heures par micro-ticket ciblé & $2$ à $5$~minutes d'exécution machine + $10$ à $15$~minutes de revue humaine \\
 \hline
 \textbf{Coût direct unitaire} & $70$~€ à $250$~€ (selon le TJM du consultant) & $0{,}20$~€ à $1{,}50$~€ de jetons ($+$\,temps de revue ingénieur) \\
 \hline
@@ -1372,12 +1960,14 @@ Sur le plan opérationnel, cette automatisation engendre des gains d'efficacité
 \end{itemize}
 
 \paragraph{Projection de gains à l'échelle d'une équipe projet type :}
-Pour mesurer l'impact concret de ce retour sur investissement à l'échelle organisationnelle, considérons une équipe projet ou un centre de services traitant un volume moyen de $100$~tickets de commodité ou de maintenance corrective par mois :
+Pour mesurer l'impact concret de ce retour sur investissement à l'échelle organisationnelle, considérons une équipe projet ou un centre de services traitant un volume moyen de $100$~micro-tickets de commodité ou de maintenance corrective par mois :
 \begin{itemize}
     \item \textbf{En approche manuelle traditionnelle :} ce flux mobilise environ $150$ à $200$~heures d'ingénierie (soit l'équivalent d'un collaborateur à temps plein dédié exclusivement aux tâches subalternes), représentant une charge brute estimée entre $10\,500$~€ et $15\,000$~€ par mois ;
     \item \textbf{Avec l'usine logicielle agentique :} le coût direct d'inférence machine n'excède pas $80$~€ à $120$~€ par mois. L'effort humain total requis pour le cadrage et la revue critique s'établit à environ $20$ à $25$~heures mensuelles ;
     \item \textbf{Bénéfice opérationnel net :} l'organisation dégage un gain net de plus de $130$~heures d'ingénierie par mois, directement réinvesties dans des chantiers à haute valeur ajoutée (refactorisation architecturale, renforcement de la sécurité applicative, co-conception fonctionnelle avec le client).
 \end{itemize}
+
+Aujourd'hui, l'estimation précise de cet impact financier s'appuie principalement sur les projets internes et le patrimoine logiciel de R\&D entièrement maîtrisés au sein d'Oxyl, au sein desquels la viabilité et la fiabilité de la chaîne agentique ont été rigoureusement démontrées. Avec l'essor progressif de la demande client et la maturation des pratiques de l'industrie, Oxyl déploie désormais des expérimentations plus larges sur des contextes diversifiés et fait évoluer en continu la solution pour s'adapter à la réalité opérationnelle de chaque donneur d'ordre.
 
 \subsection{Optimisation financière par l'arbitrage dynamique et l'anti-lock-in}
 \label{subsec:arbitrage_anti_lockin}
@@ -1385,7 +1975,7 @@ Pour mesurer l'impact concret de ce retour sur investissement à l'échelle orga
 La viabilité économique d'une infrastructure d'IA à l'échelle d'une organisation exige une gestion rigoureuse des coûts d'inférence. Le découplage agnostique mis en œuvre dans l'usine logicielle permet d'activer deux leviers financiers majeurs :
 
 \paragraph{1. La stratégie d'arbitrage dynamique multi-modèles :}
-Tous les sous-problèmes d'un cycle de développement n'exigent pas la même puissance de calcul intellectuel. L'architecture modulaire de l'usine permet d'instancier dynamiquement le modèle le plus adapté à chaque étape de la chaîne de valeur :
+Tous les sous-problèmes d'un cycle de développement n'exigent pas la même puissance de calcul intellectuel. L'architecture modulaire de l'usine permet d'instancier dynamiquement le modèle le plus adapté à chaque étape de la chaîne de valeur, selon le compromis souhaité par le client entre budget d'inférence et rapidité d'exécution :
 \begin{itemize}
     \item Les modèles légers, ultra-rapides et très économiques (tels que \textit{Claude Haiku}, \textit{GPT-4o-mini} ou des modèles \textit{open-source} hébergés localement) sont sollicités pour les opérations de triage, l'extraction de métadonnées, le parsing de logs d'erreur ou le formatage de messages de commit ;
     \item Les modèles de pointe (\textit{Claude 3.5 Sonnet}, \textit{GPT-4o}) sont réservés exclusivement aux phases critiques nécessitant un raisonnement abstrait profond (planification de correctifs multi-fichiers, détection de conflits logiques complexes, refactorisation architecturale).
@@ -1400,15 +1990,22 @@ En s'affranchissant de toute dépendance propriétaire grâce aux patrons \texti
 
 L'impact économique de la stratégie d'Oxyl ne se limite pas à l'outillage technique ; il s'exprime avec la même intensité à travers la standardisation du capital humain (Volet~1).
 
+\paragraph{Rentabilité directe de l'accélération d'apprentissage (MNF) :}
+Le retour sur investissement de la plateforme \textbf{MyNewroFactory (MNF)} se mesure d'abord par la réduction spectaculaire des temps d'assimilation :
+\begin{itemize}
+    \item Le passage de la préparation OCA de $3$~mois à moins d'$1$~mois ($\div 3$) et de l'OCP de $12$~mois à $6$~mois ($\div 2$) permet à l'entreprise d'économiser plusieurs semaines de coûts de formation non refacturés ;
+    \item Les jeunes consultants acquièrent une autonomie opérationnelle précoce, rendant possible un placement accéléré sur les missions clients les plus exigeantes avec un taux de réussite technique optimal.
+\end{itemize}
+
 \paragraph{Réduction drastique du coût de non-qualité :}
-Dans l'ingénierie logicielle, la correction d'une anomalie détectée tardivement en production coûte jusqu'à cent fois plus cher que sa prévention dès la phase de conception. La rigueur inculquée lors de la formation sur \textit{NewroFactory} et sanctionnée par l'obtention des certifications \textit{OCP Java SE} garantit que les consultants maîtrisent intimement les subtilités du langage (gestion des ressources, collections concurrentes, propagation des exceptions, intégrité transactionnelle). Cette maîtrise fondamentale permet d'éradiquer à la source les anti-patterns et les fuites de mémoire, limitant l'accumulation de dette technique et réduisant significativement le coût total de possession (\textit{Total Cost of Ownership} -- TCO) des applications confiées par les clients.
+Dans l'ingénierie logicielle, la correction d'une anomalie détectée tardivement en production coûte jusqu'à cent fois plus cher que sa prévention dès la phase de conception. La rigueur inculquée lors de la formation sur \textit{MyNewroFactory} et sanctionnée par l'obtention des certifications \textit{OCP Java SE} garantit que les consultants maîtrisent intimement les subtilités du langage (gestion des ressources, collections concurrentes, propagation des exceptions, intégrité transactionnelle). Cette maîtrise fondamentale permet d'éradiquer à la source les anti-patterns et les fuites de mémoire, limitant l'accumulation de dette technique et réduisant significativement le coût total de possession (\textit{Total Cost of Ownership} -- TCO) des applications confiées par les clients.
 
 \paragraph{Attractivité commerciale et valorisation du TJM :}
 Sur le marché concurrentiel des ESN, la justification des niveaux de tarification repose sur la preuve tangible de la compétence. Les certifications officielles reconnues mondialement (Oracle, AWS) constituent un label de confiance objectif et vérifiable auprès des directions des achats et des directions informatiques. Elles permettent à Oxyl de :
 \begin{itemize}
     \item Se positionner avec succès sur des appels d'offres à forte valeur ajoutée exigeant des niveaux d'accréditation stricts ;
     \item Valoriser le TJM de ses consultants juniors et confirmés en démontrant un niveau de qualification effectif supérieur à la moyenne du marché ;
-    \item Réduire à néant le temps de montée en compétence (\textit{ramp-up}) lors de l'intégration des collaborateurs au sein des équipes clientes.
+    \item Réduire significativement la durée de montée en compétence technique (\textit{ramp-up}) lors de l'intégration chez le client, permettant au collaborateur de concentrer immédiatement son apprentissage sur les spécificités métiers et l'architecture applicative du projet.
 \end{itemize}
 
 \subsection{Attractivité client et renouveau du modèle de service de l'ESN}
@@ -1419,7 +2016,7 @@ L'association d'un capital humain d'élite et d'un capital technique automatisé
 \paragraph{La rassurance des DSI grands comptes :}
 Les grandes organisations (banques, assurances, grands industriels) sont soumises à des impératifs stricts de sécurité, de confidentialité et de conformité réglementaire (RGPD, NIS~2, DORA). L'approche d'Oxyl apporte une réponse rassurante à leur frilosité face à l'IA :
 \begin{itemize}
-    \item \textbf{La garantie d'un audit humain intransigeant :} le code produit avec l'assistance de l'IA n'est jamais livré aveuglément ; il est systématiquement validé et garanti par des ingénieurs certifiés capables d'en certifier la robustesse et la conformité ;
+    \item \textbf{La garantie d'un audit humain intransigeant :} le code produit avec l'assistance de l'IA n'est jamais livré aveuglément ; il est systématiquement relu, testé et validé par des ingénieurs certifiés à même d'en assurer la robustesse et la conformité ;
     \item \textbf{La souveraineté et l'adaptabilité de l'infrastructure :} grâce à son architecture agnostique, l'usine logicielle peut être déployée directement au sein des environnements d'infrastructure privés du client (\textit{on-premise}, clouds privés souverains), en s'interfaçant avec leurs forges internes (\textit{GitLab Enterprise}, dépôts sécurisés) sans fuite de propriété intellectuelle vers l'extérieur.
 \end{itemize}
 
@@ -1494,6 +2091,77 @@ Enfin, le travail quotidien aux côtés d'une usine logicielle introduit de nouv
     \item \textbf{La fatigue cognitive liée à la relecture continue :} l'effort mental exigé pour auditer, ligne par ligne, des différentiels de code complexes générés instantanément par une machine est quantitativement plus épuisant que l'écriture de son propre code. Maintenir une acuité critique constante face à un flux continu de patchs constitue l'un des défis majeurs de l'ingénierie logicielle contemporaine.
 \end{itemize}
 
+Cette redistribution fondamentale des compétences et de la charge cognitive est synthétisée en Figure~\ref{fig:evolution_charge_cognitive}.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    scale=0.88,
+    transform shape,
+    font=\sffamily\scriptsize,
+    barbox/.style={draw=blue!80!black, fill=blue!6, rounded corners=3pt, align=center, inner sep=6pt, line width=0.7pt, text width=6.0cm},
+    catbox/.style={draw=gray!50, fill=white, rounded corners=2pt, align=left, inner sep=4pt, font=\sffamily\tiny}
+]
+
+    % Colonne 1 : Approche Traditionnelle
+    \node[barbox] (trad) at (-3.8, 3.2) {
+        \textbf{\large\color{blue!80!black} Ingénierie Traditionnelle}\\[2pt]
+        \textit{Écriture manuelle du code}
+    };
+    
+    \node[catbox, fill=red!10, draw=red!70!black, below=0.2cm of trad, text width=5.6cm] (t1) {
+        \textbf{\normalsize 70\,\% --- Écriture Mécanique de Code}\\
+        $\bullet$ Saisie manuelle de syntaxe, CRUD, boilerplate\\
+        $\bullet$ Implémentation répétitive de composants\\
+        $\bullet$ Résolution manuelle des cas nominaux
+    };
+    
+    \node[catbox, fill=orange!10, draw=orange!70!black, below=0.15cm of t1, text width=5.6cm] (t2) {
+        \textbf{\normalsize 20\,\% --- Conception \& Architecture}\\
+        $\bullet$ Cadrage fonctionnel et modélisation du domaine\\
+        $\bullet$ Choix de patterns et découpage modulaire
+    };
+
+    \node[catbox, fill=teal!10, draw=teal!70!black, below=0.15cm of t2, text width=5.6cm] (t3) {
+        \textbf{\normalsize 10\,\% --- Revue de Code \& Tests}\\
+        $\bullet$ Relecture des pairs (souvent hâtive en fin de cycle)\\
+        $\bullet$ Rédaction des tests unitaires et d'intégration
+    };
+
+    % Colonne 2 : Ère Agentique
+    \node[barbox, draw=purple!80!black, fill=purple!6] (ia) at (3.8, 3.2) {
+        \textbf{\large\color{purple!80!black} Ère Agentique (Usine IA)}\\[2pt]
+        \textit{Supervision \& Architecture}
+    };
+
+    \node[catbox, fill=teal!15, draw=teal!80!black, below=0.2cm of ia, text width=5.6cm] (i1) {
+        \textbf{\normalsize 45\,\% --- Spécification Atomique \& Prompting}\\
+        $\bullet$ Découpage ultra-fin des tickets sans ambiguïté\\
+        $\bullet$ Cadrage des garde-fous et directives d'architecture\\
+        $\bullet$ Définition des jeux d'essais et cas limites
+    };
+
+    \node[catbox, fill=blue!15, draw=blue!80!black, below=0.15cm of i1, text width=5.6cm] (i2) {
+        \textbf{\normalsize 40\,\% --- Audit Critique \& Revue d'Élite}\\
+        $\bullet$ Relecture ligne par ligne des diffs d'agents\\
+        $\bullet$ Détection des régressions, fuites et failles de sécurité\\
+        $\bullet$ Validation des architectures et du Clean Code
+    };
+
+    \node[catbox, fill=red!8, draw=red!60!black, below=0.15cm of i2, text width=5.6cm] (i3) {
+        \textbf{\normalsize 15\,\% --- Implémentation Résiduelle}\\
+        $\bullet$ Ajustements ponctuels et déblocage de cas complexes\\
+        $\bullet$ Arbitrage des micro-détails d'intégration
+    };
+
+    % Flèche centrale de transformation
+    \draw[-{Latex[length=4mm]}, very thick, draw=purple!80!black] (-0.6, 0.4) -- node[above=2pt, font=\sffamily\bfseries\tiny, text=purple!90!black, align=center] {Mutation de la\\valeur ajoutée} (0.6, 0.4);
+
+\end{tikzpicture}
+\caption{Évolution de la répartition du temps de travail et de la charge cognitive de l'ingénieur logiciel (Développement traditionnel vs Ère Agentique)}
+\label{fig:evolution_charge_cognitive}
+\end{figure}
+
 \cleardoublepage
 
 \chapter{Conclusion Générale}
@@ -1561,6 +2229,7 @@ Fort des compétences acquises tout au long de ce parcours d'ingénieur, j'envis
 \lstlistoflistings
 \cleardoublepage
 
+\glsaddall
 \printnoidxglossaries
 
 \cleardoublepage
@@ -1573,18 +2242,708 @@ Fort des compétences acquises tout au long de ce parcours d'ingénieur, j'envis
 
 \chapter{Attestations des certifications obtenues}
 \label{annexe:certifications}
-Insérer ici les justificatifs des certifications obtenues durant le stage.
+
+Cette annexe regroupe les justificatifs et accréditations officielles validant l'obtention des certifications industrielles durant le stage au sein du Groupe Oxyl.
+
+\section{Oracle Certified Associate (OCA) -- Java SE 8 Programmer}
+\label{annexe:sec_certif_oca}
+
+La Figure~\ref{fig:certificat_oca} reproduit l'attestation officielle délivrée par Oracle University certifiant la réussite de l'examen \textit{Oracle Certified Associate, Java SE 8 Programmer}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.92\textwidth]{figures/oca-java-se-8-programmer.pdf}
+    \caption{Certificat officiel Oracle Certified Associate (OCA) -- Java SE 8 Programmer}
+    \label{fig:certificat_oca}
+\end{figure}
+
 \cleardoublepage
 
-\chapter{Diagrammes de classe / Schémas d'architecture}
+\section{AWS Certified Cloud Practitioner}
+\label{annexe:sec_certif_aws}
+
+La Figure~\ref{fig:certificat_aws} présente le badge et l'accréditation officielle délivrée par Amazon Web Services Training and Certification validant le titre \textit{AWS Certified Cloud Practitioner}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.52\textwidth]{figures/aws-certified-cloud-practitioner.png}
+    \caption{Accréditation et badge officiel AWS Certified Cloud Practitioner}
+    \label{fig:certificat_aws}
+\end{figure}
+\cleardoublepage
+
+\chapter{Diagrammes de classe et Schémas d'architecture logicielle}
 \label{annexe:diagrammes}
-Présentation des schémas d'architecture globale et des diagrammes de classes clés de la plateforme et de l'agent.
+
+Cette annexe rassemble les diagrammes de classes UML et les schémas d'architecture détaillant la conception structurelle des différents systèmes développés au cours du projet de fin d'études, extraits directement de l'analyse des dépôts de code sources réels (\code{newro-factory-back-avril}, \code{newro-factory-front-avril} et \code{usine-logicielle}).
+
+\section{Plateforme d'Évaluation : Modèle du Domaine Métier (Backend Spring)}
+\label{annexe:sec_uml_domaine_quiz}
+
+Le diagramme de la Figure~\ref{fig:annexe_uml_domaine_quiz} présente les classes du domaine métier de l'application backend. Il met en lumière l'organisation arborescente des connaissances via le patron de chemin matérialisé (\code{parentPath}), l'étanchéité des séries d'entraînement et d'examen (\code{Serie}, \code{SerieQuestion}, \code{SerieReponse}), ainsi que la gestion de l'historique et des utilisateurs.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    scale=0.70,
+    transform shape,
+    font=\sffamily\scriptsize,
+    classbox/.style={draw=blue!80!black, fill=blue!5, rounded corners=2pt, align=left, inner sep=5pt, line width=0.6pt},
+    enumbox/.style={draw=orange!80!black, fill=orange!8, rounded corners=2pt, align=left, inner sep=4pt, line width=0.6pt},
+    assoc/.style={-{Latex[length=2.5mm]}, thick, draw=blue!70!black},
+    comp/.style={{Diamond[open, length=3mm]}-{Latex[length=2.5mm]}, thick, draw=blue!70!black}
+]
+
+    % --- Ligne 1 : Connaissances & Questions ---
+    \node[classbox, minimum width=4.0cm] (chapter) at (-6.8, 5.0) {
+        \textbf{\large Chapter}\\
+        \rule{3.8cm}{0.4pt}\\
+        - id: Long\\
+        - name: String\\
+        - parentPath: String\\
+        - isDeleted: Boolean\\
+        \rule{3.8cm}{0.4pt}\\
+        + getId(): Long\\
+        + getParentPath(): String
+    };
+
+    \node[classbox, minimum width=4.0cm] (question) at (0.0, 5.0) {
+        \textbf{\large Question}\\
+        \rule{3.8cm}{0.4pt}\\
+        - id: Long\\
+        - title: String\\
+        - statement: String\\
+        - chapter: Chapter\\
+        - isDeleted: Boolean\\
+        \rule{3.8cm}{0.4pt}\\
+        + getChapter(): Chapter\\
+        + getStatement(): String
+    };
+
+    \node[classbox, minimum width=4.0cm] (answer) at (6.8, 5.0) {
+        \textbf{\large Answer}\\
+        \rule{3.8cm}{0.4pt}\\
+        - id: Long\\
+        - label: String\\
+        - text: String\\
+        - isValidAnswer: boolean\\
+        - question: Question\\
+        \rule{3.8cm}{0.4pt}\\
+        + isValid(): boolean
+    };
+
+    % --- Ligne 2 : Séries d'examen & Entraînement ---
+    \node[classbox, minimum width=4.0cm] (serie) at (-6.8, 0.2) {
+        \textbf{\large Serie}\\
+        \rule{3.8cm}{0.4pt}\\
+        - id: Long\\
+        - user: User\\
+        - chapter: Chapter\\
+        - startDate: LocalDateTime\\
+        - endDate: LocalDateTime\\
+        - responseTime: long\\
+        - status: SerieStatus
+    };
+
+    \node[classbox, minimum width=4.0cm] (serieq) at (0.0, 0.2) {
+        \textbf{\large SerieQuestion}\\
+        \rule{3.8cm}{0.4pt}\\
+        - serieId: Long\\
+        - questionId: Long\\
+        - status: SerieQuestionStatus\\
+        \rule{3.8cm}{0.4pt}\\
+        + getStatus(): SerieQuestionStatus
+    };
+
+    \node[enumbox, minimum width=3.8cm] (enum_seriestat) at (6.8, 0.2) {
+        \textbf{<<enumeration>> SerieStatus}\\
+        \rule{3.6cm}{0.4pt}\\
+        + FINISHED\\
+        + NOT\_FINISHED\\
+        \vspace{3pt}
+        \textbf{<<enumeration>> SerieQuestionStatus}\\
+        \rule{3.6cm}{0.4pt}\\
+        + CORRECT \quad + INCORRECT\\
+        + AWAITING
+    };
+
+    % --- Ligne 3 : Utilisateurs & Promotion ---
+    \node[classbox, minimum width=4.0cm] (user) at (-6.8, -4.8) {
+        \textbf{\large User}\\
+        \rule{3.8cm}{0.4pt}\\
+        - id: Long\\
+        - email: String\\
+        - password: String\\
+        - roles: Set<Role>\\
+        - internId: Long\\
+        \rule{3.8cm}{0.4pt}\\
+        + getRoles(): Set<Role>
+    };
+
+    \node[classbox, minimum width=4.0cm] (intern) at (0.0, -4.8) {
+        \textbf{\large Intern}\\
+        \rule{3.8cm}{0.4pt}\\
+        - id: Long\\
+        - firstName: String\\
+        - lastName: String\\
+        - startDate: LocalDate\\
+        - endDate: LocalDate\\
+        - promotion: Promotion
+    };
+
+    \node[classbox, minimum width=4.0cm] (promo) at (6.8, -4.8) {
+        \textbf{\large Promotion}\\
+        \rule{3.8cm}{0.4pt}\\
+        - id: Long\\
+        - name: String\\
+        - isDeleted: Boolean
+    };
+
+    \node[classbox, minimum width=3.4cm] (role) at (-6.8, -8.2) {
+        \textbf{\large Role}\\
+        \rule{3.2cm}{0.4pt}\\
+        - id: Long\\
+        - name: String\\
+        \rule{3.2cm}{0.4pt}\\
+        + getName(): String
+    };
+
+    % --- Relations avec étiquettes parfaitement positionnées et sans superposition ---
+    \draw[assoc] (question.west) -- (chapter.east);
+    \path (chapter.east) -- node[pos=0.15, above=2pt, font=\tiny] {1}
+                           node[pos=0.5, above=2pt, font=\tiny] {appartient à}
+                           node[pos=0.85, above=2pt, font=\tiny] {1..*} (question.west);
+
+    \draw[comp] (question.east) -- (answer.west);
+    \path (question.east) -- node[pos=0.15, above=2pt, font=\tiny] {1}
+                            node[pos=0.5, above=2pt, font=\tiny] {contient}
+                            node[pos=0.85, above=2pt, font=\tiny] {2..*} (answer.west);
+
+    \draw[assoc] (serie.north) -- (chapter.south);
+    \path (serie.north) -- node[midway, right=3pt, font=\tiny] {concerne 1} (chapter.south);
+
+    \draw[comp] (serie.east) -- (serieq.west);
+    \path (serie.east) -- node[pos=0.15, above=2pt, font=\tiny] {1}
+                         node[pos=0.5, above=2pt, font=\tiny] {compose}
+                         node[pos=0.85, above=2pt, font=\tiny] {1..*} (serieq.west);
+
+    \draw[assoc] (serieq.north) -- (question.south);
+    \path (serieq.north) -- node[midway, right=3pt, font=\tiny] {référence 1} (question.south);
+
+    \draw[assoc] (serie.south) -- (user.north);
+    \path (serie.south) -- node[midway, right=3pt, font=\tiny] {passée par 1} (user.north);
+
+    \draw[assoc] (user.east) -- (intern.west);
+    \path (user.east) -- node[pos=0.5, above=2pt, font=\tiny] {associé}
+                        node[pos=0.85, above=2pt, font=\tiny] {0..1} (intern.west);
+
+    \draw[assoc] (intern.east) -- (promo.west);
+    \path (intern.east) -- node[pos=0.5, above=2pt, font=\tiny] {inscrit dans}
+                          node[pos=0.85, above=2pt, font=\tiny] {0..*} (promo.west);
+
+    \draw[assoc] (user.south) -- (role.north);
+    \path (user.south) -- node[midway, right=3pt, font=\tiny] {possède 1..*} (role.north);
+
+\end{tikzpicture}
+\caption{Diagramme de classes UML du domaine métier de la plateforme d'évaluation (Backend)}
+\label{fig:annexe_uml_domaine_quiz}
+\end{figure}
+
 \cleardoublepage
 
-\chapter{Exemples de traces d'exécution de l'agent IA}
-\label{annexe:traces}
-Exemples détaillés de logs et de parcours de résolution de bugs par l'agent autonome d'IA.
+\section{Plateforme d'Évaluation : Architecture Logicielle en Couches et Aspects (Spring)}
+\label{annexe:sec_uml_couches_quiz}
 
+La Figure~\ref{fig:annexe_uml_couches_quiz} détaille le découpage en couches de l'application backend Java, illustrant le flux d'exécution type d'une requête REST (du contrôleur jusqu'à la base de données via DAOs et Repositories), ainsi que l'interception non-intrusive assurée par Spring AOP pour la journalisation, la sécurité et la métrologie de performance.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    scale=0.76,
+    transform shape,
+    font=\sffamily\scriptsize,
+    layer/.style={draw=blue!80!black, fill=blue!3, rounded corners=4pt, line width=0.7pt},
+    compctrl/.style={draw=blue!80!black, fill=blue!12, rounded corners=2pt, minimum width=3.4cm, minimum height=0.9cm, align=center},
+    compserv/.style={draw=teal!80!black, fill=teal!12, rounded corners=2pt, minimum width=3.4cm, minimum height=0.9cm, align=center},
+    compdao/.style={draw=orange!80!black, fill=orange!12, rounded corners=2pt, minimum width=3.4cm, minimum height=0.9cm, align=center},
+    compent/.style={draw=purple!80!black, fill=purple!12, rounded corners=2pt, minimum width=3.4cm, minimum height=0.9cm, align=center},
+    aspectbox/.style={draw=red!70!black, fill=red!8, dashed, rounded corners=3pt, minimum width=3.5cm, minimum height=0.85cm, align=center},
+    call/.style={-{Latex[length=2.5mm]}, thick, draw=gray!80!black}
+]
+
+    % Cadres des couches avec titre bien au-dessus
+    \draw[layer] (-6.4, 6.0) rectangle (2.2, 3.8);
+    \node[anchor=north west, font=\scriptsize\bfseries\color{blue!80!black}] at (-6.2, 5.85) {Couche Présentation (REST Controllers)};
+
+    \draw[layer] (-6.4, 3.4) rectangle (2.2, 1.2);
+    \node[anchor=north west, font=\scriptsize\bfseries\color{teal!80!black}] at (-6.2, 3.25) {Couche Métier \& Mappings (Services, Mappers, DTOs)};
+
+    \draw[layer] (-6.4, 0.8) rectangle (2.2, -1.4);
+    \node[anchor=north west, font=\scriptsize\bfseries\color{orange!80!black}] at (-6.2, 0.65) {Couche d'Accès aux Données (DAOs \& Repositories)};
+
+    \draw[layer] (-6.4, -1.8) rectangle (2.2, -4.0);
+    \node[anchor=north west, font=\scriptsize\bfseries\color{purple!80!black}] at (-6.2, -1.95) {Couche de Persistance \& Base de Données (Entities, JPA/JDBC)};
+
+    % Composants Couche Présentation
+    \node[compctrl] (ctrl_chap) at (-4.2, 4.6) {\textbf{ChapterController}\\ \tiny /api/chapters};
+    \node[compctrl] (ctrl_quest) at (0.2, 4.6) {\textbf{QuestionController}\\ \tiny /api/questions};
+
+    % Composants Couche Service
+    \node[compserv] (serv_chap) at (-4.2, 2.0) {\textbf{ChapterService}\\ \tiny getTree(), createChapter()};
+    \node[compserv] (serv_quest) at (0.2, 2.0) {\textbf{QuestionService}\\ \tiny getByChapter(), validate()};
+
+    % Composants Couche DAO
+    \node[compdao] (dao_chap) at (-4.2, -0.6) {\textbf{ChapterDao / Repo}\\ \tiny findByParentPath()};
+    \node[compdao] (dao_quest) at (0.2, -0.6) {\textbf{QuestionDao / Repo}\\ \tiny findByChapterId()};
+
+    % Composants Couche Entity
+    \node[compent] (ent_chap) at (-4.2, -3.2) {\textbf{ChapterEntity}\\ \tiny Table: chapter};
+    \node[compent] (ent_quest) at (0.2, -3.2) {\textbf{QuestionEntity}\\ \tiny Table: question};
+
+    % Flux d'appels verticaux
+    \draw[call] (ctrl_chap) -- (serv_chap);
+    \draw[call] (ctrl_quest) -- (serv_quest);
+    \draw[call] (serv_chap) -- (dao_chap);
+    \draw[call] (serv_quest) -- (dao_quest);
+    \draw[call] (dao_chap) -- (ent_chap);
+    \draw[call] (dao_quest) -- (ent_quest);
+
+    % Boîte Aspects Transverses (Spring AOP)
+    \draw[draw=red!70!black, fill=red!3, rounded corners=4pt, line width=0.7pt] (3.0, 6.0) rectangle (7.6, -4.0);
+    \node[anchor=north, font=\scriptsize\bfseries\color{red!80!black}, align=center] at (5.3, 5.8) {Préoccupations Transversales\\ (Spring AOP \& Sécurité)};
+
+    \node[aspectbox] (asp_log) at (5.3, 4.4) {\textbf{@Aspect LoggingAspect}\\ \tiny Journalisation entrées/sorties};
+    \node[aspectbox] (asp_perf) at (5.3, 2.0) {\textbf{@Aspect PerformanceAspect}\\ \tiny Mesure temps de réponse (\texttt{Around})};
+    \node[aspectbox] (asp_sec) at (5.3, -0.6) {\textbf{@Aspect SecurityLogging}\\ \tiny Audit des accès privilégiés};
+    \node[aspectbox, fill=orange!8, draw=orange!80!black] (jwt) at (5.3, -3.0) {\textbf{TokenResolver / Filter}\\ \tiny Validation JWT cookie \& Claims};
+
+    % Liens de tissage AOP ciblés
+    \draw[draw=red!70!black, dashed, -{Latex[length=2mm]}] (asp_log.west) -- (serv_quest.east);
+    \draw[draw=red!70!black, dashed, -{Latex[length=2mm]}] (asp_perf.west) -- (dao_quest.east);
+    \draw[draw=red!70!black, dashed, -{Latex[length=2mm]}] (jwt.west) -- (ctrl_quest.east);
+
+\end{tikzpicture}
+\caption{Architecture logicielle en couches et tissage des aspects transverses (Spring Core / AOP)}
+\label{fig:annexe_uml_couches_quiz}
+\end{figure}
+
+\cleardoublepage
+
+\section{Plateforme d'Évaluation : Architecture Frontend Réactive (Angular)}
+\label{annexe:sec_uml_front_angular}
+
+La Figure~\ref{fig:annexe_uml_front_angular} présente la structure de l'application cliente Angular du projet \code{newro-factory-front-avril}. Elle met en évidence l'architecture modulaire séparant les composants conteneurs dynamiques (\textit{Smart Components}), les composants de présentation réutilisables (\textit{Dumb Components}), ainsi que les services d'infrastructure et d'accès aux API distantes.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    scale=0.76,
+    transform shape,
+    font=\sffamily\scriptsize,
+    rootbox/.style={draw=red!80!black, fill=red!10, rounded corners=3pt, minimum width=3.8cm, minimum height=0.9cm, align=center, font=\scriptsize\bfseries},
+    smartbox/.style={draw=blue!80!black, fill=blue!10, rounded corners=3pt, minimum width=3.8cm, minimum height=0.95cm, align=center},
+    dumbbox/.style={draw=teal!80!black, fill=teal!10, rounded corners=3pt, minimum width=3.6cm, minimum height=0.85cm, align=center},
+    servbox/.style={draw=orange!80!black, fill=orange!10, rounded corners=3pt, minimum width=3.6cm, minimum height=0.85cm, align=center},
+    provbox/.style={draw=purple!80!black, fill=purple!10, rounded corners=3pt, minimum width=3.6cm, minimum height=0.85cm, align=center},
+    wire/.style={-{Latex[length=2.5mm]}, thick, draw=gray!70!black}
+]
+
+    % Composant racine
+    \node[rootbox] (app) at (0, 6.6) {AppComponent\\ \tiny Racine applicative \& RouterOutlet};
+
+    % Smart Components
+    \draw[draw=blue!60!black, fill=blue!2, rounded corners=4pt] (-6.8, 5.5) rectangle (6.8, 3.1);
+    \node[anchor=north west, font=\scriptsize\bfseries\color{blue!80!black}] at (-6.6, 5.35) {Composants Conteneurs / Pages (Smart Components)};
+
+    \node[smartbox] (c_chap) at (-4.4, 4.0) {\textbf{ChaptersListComponent}\\ \tiny Gestion arbre \& stats chapitres};
+    \node[smartbox] (c_admin) at (0, 4.0) {\textbf{ChaptersAdminAction}\\ \tiny Création/Édition nœuds};
+    \node[smartbox] (c_user) at (4.4, 4.0) {\textbf{UserCreateComponent}\\ \tiny Attribution rôles \& promotions};
+
+    % Dumb Components
+    \draw[draw=teal!60!black, fill=teal!2, rounded corners=4pt] (-6.8, 2.5) rectangle (6.8, 0.1);
+    \node[anchor=north west, font=\scriptsize\bfseries\color{teal!80!black}] at (-6.6, 2.35) {Composants de Présentation Réutilisables (Dumb UI Components)};
+
+    \node[dumbbox] (d_tree) at (-4.4, 1.0) {\textbf{ChapterTreeNode}\\ \tiny Affichage récursif du nœud};
+    \node[dumbbox] (d_dialog) at (0, 1.0) {\textbf{DeleteDialog}\\ \tiny Confirmation modale};
+    \node[dumbbox] (d_roles) at (4.4, 1.0) {\textbf{RolesBox}\\ \tiny Sélection des permissions};
+
+    % Services HTTP & Providers
+    \draw[draw=orange!60!black, fill=orange!2, rounded corners=4pt] (-6.8, -0.5) rectangle (6.8, -2.9);
+    \node[anchor=north west, font=\scriptsize\bfseries\color{orange!80!black}] at (-6.6, -0.65) {Couche Services Métier, Mappers \& Providers Transverses};
+
+    \node[servbox] (s_chap) at (-4.4, -1.9) {\textbf{ChapterService}\\ \tiny HttpClient $\rightarrow$ API Spring};
+    \node[servbox] (s_auth) at (0, -1.9) {\textbf{AuthService}\\ \tiny Gestion session \& signin};
+    \node[servbox] (s_user) at (4.4, -1.9) {\textbf{UserService}\\ \tiny CRUD stagiaires/tuteurs};
+
+    % Liens verticaux directs par colonne (aucun croisement)
+    \draw[wire] (app.south) -- (c_chap.north);
+    \draw[wire] (app.south) -- (c_admin.north);
+    \draw[wire] (app.south) -- (c_user.north);
+
+    \draw[wire] (c_chap.south) -- (d_tree.north);
+    \draw[wire] (c_admin.south) -- (d_dialog.north);
+    \draw[wire] (c_user.south) -- (d_roles.north);
+
+    \draw[wire] (d_tree.south) -- (s_chap.north);
+    \draw[wire] (d_dialog.south) -- (s_auth.north);
+    \draw[wire] (d_roles.south) -- (s_user.north);
+
+\end{tikzpicture}
+\caption{Architecture des composants réactifs et des flux de services (Angular Standalone)}
+\label{fig:annexe_uml_front_angular}
+\end{figure}
+
+\cleardoublepage
+
+\section{Usine Logicielle : Patrons de Conception et Abstractions des Fournisseurs}
+\label{annexe:sec_uml_usine_patterns}
+
+La Figure~\ref{fig:annexe_uml_usine_patterns} expose les diagrammes de classes UML régissant le découplage technologique de l'usine logicielle du projet \code{usine-logicielle}. On y retrouve l'application combinée des patrons \textit{Adapter}, \textit{Factory/Resolver} et \textit{Branded Types} pour garantir l'interchangeabilité des forges logicielles (\code{BacklogProvider}, \code{CodeBaseProvider}) sans couplage fort avec les librairies externes.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    scale=0.74,
+    transform shape,
+    font=\sffamily\scriptsize,
+    intbox/.style={draw=blue!80!black, fill=blue!10, rounded corners=3pt, minimum width=5.4cm, minimum height=1.4cm, align=left},
+    adapbox/.style={draw=teal!80!black, fill=teal!10, rounded corners=3pt, minimum width=4.0cm, minimum height=1.3cm, align=left},
+    factbox/.style={draw=orange!80!black, fill=orange!10, rounded corners=3pt, minimum width=5.0cm, minimum height=1.2cm, align=left},
+    brandbox/.style={draw=purple!80!black, fill=purple!10, dashed, rounded corners=3pt, minimum width=5.6cm, minimum height=1.4cm, align=left},
+    arrow/.style={-{Latex[length=2.5mm]}, thick, draw=orange!80!black},
+    impl/.style={-{Triangle[open, length=2.5mm]}, dashed, thick, draw=teal!80!black}
+]
+
+    % Interfaces de Fournisseurs (Ligne 1)
+    \node[intbox] (backlog_int) at (-4.4, 5.6) {
+        \textbf{<<interface>> BacklogProvider}\\
+        \rule{5.2cm}{0.4pt}\\
+        + fetchReadyTickets(label, priority): Promise<Ticket[]>\\
+        + getTicket(id): Promise<Ticket>\\
+        + claimTicket(id, lockLabel): Promise<void>\\
+        + postComment(id, body): Promise<void>
+    };
+
+    \node[intbox] (codebase_int) at (4.4, 5.6) {
+        \textbf{<<interface>> CodeBaseProvider}\\
+        \rule{5.2cm}{0.4pt}\\
+        + handleMergeRequest(params: MergeRequest):\\
+        \quad Promise<MergeRequestResult>\\
+        + pushBranch(worktreeDir, branch): Promise<void>
+    };
+
+    % Adaptateurs Concrets (Ligne 2)
+    \node[adapbox] (gitlab_back) at (-4.4, 2.2) {
+        \textbf{GitLabBacklogAdapter}\\
+        \rule{3.8cm}{0.4pt}\\
+        - client: GitlabApiClient\\
+        - token: GitLabToken\\
+        \rule{3.8cm}{0.4pt}\\
+        + fetchReadyTickets()\\
+        + postComment()
+    };
+
+    \node[adapbox] (gitlab_code) at (2.0, 2.2) {
+        \textbf{GitLabCodeBaseAdapter}\\
+        \rule{3.8cm}{0.4pt}\\
+        - token: GitLabToken\\
+        \rule{3.8cm}{0.4pt}\\
+        + handleMergeRequest()
+    };
+
+    \node[adapbox] (gitea_code) at (6.6, 2.2) {
+        \textbf{GiteaCodeBaseAdapter}\\
+        \rule{3.8cm}{0.4pt}\\
+        - token: GiteaToken\\
+        \rule{3.8cm}{0.4pt}\\
+        + handleMergeRequest()
+    };
+
+    % Resolvers / Factory (Ligne 3 avec espacement vertical)
+    \node[factbox] (backlog_res) at (-4.4, -1.6) {
+        \textbf{BacklogProviderResolver}\\
+        \rule{4.8cm}{0.4pt}\\
+        - instance: BacklogProvider | null\\
+        \rule{4.8cm}{0.4pt}\\
+        + createBacklogProvider(): void\\
+        + getBacklogProvider(): BacklogProvider
+    };
+
+    \node[factbox] (codebase_res) at (4.4, -1.6) {
+        \textbf{CodeBaseProviderResolver}\\
+        \rule{4.8cm}{0.4pt}\\
+        - instance: CodeBaseProvider | null\\
+        \rule{4.8cm}{0.4pt}\\
+        + createCodeBaseProvider(info): void\\
+        + getCodeBaseProvider(): CodeBaseProvider
+    };
+
+    % Branded Types Box (Ligne 4 bien séparée)
+    \node[brandbox] (brands) at (0.0, -5.0) {
+        \textbf{<<Nominal Typing>> Branded Types System}\\
+        \rule{5.4cm}{0.4pt}\\
+        + \texttt{brandAs<Brand>(value: string): Branded<string, Brand>}\\
+        + \texttt{type GitLabToken = Branded<string, 'GitLabToken'>}\\
+        + \texttt{type GiteaToken = Branded<string, 'GiteaToken'>}
+    };
+
+    % Liens d'implémentation
+    \draw[impl] (gitlab_back.north) -- (backlog_int.south);
+    \draw[impl] (gitlab_code.north) -- (codebase_int.south west);
+    \draw[impl] (gitea_code.north) -- (codebase_int.south east);
+
+    % Liens des Factory
+    \draw[arrow] (backlog_res.north) -- node[right=3pt, font=\tiny] {Instancie} (gitlab_back.south);
+    \draw[arrow] (codebase_res.north west) -- node[left=3pt, font=\tiny] {Résout} (gitlab_code.south);
+    \draw[arrow] (codebase_res.north east) -- node[right=3pt, font=\tiny] {Résout} (gitea_code.south);
+
+    % Liens Branded Types
+    \draw[draw=purple!80!black, dashed, ->] (brands.north west) -- (backlog_res.south);
+    \draw[draw=purple!80!black, dashed, ->] (brands.north east) -- (codebase_res.south);
+
+\end{tikzpicture}
+\caption{Diagramme de classes UML des abstractions et adaptateurs de forges (Usine Logicielle)}
+\label{fig:annexe_uml_usine_patterns}
+\end{figure}
+
+\cleardoublepage
+
+\section{Usine Logicielle : Moteurs de Validation Mécanique et Cycle du Worker}
+\label{annexe:sec_uml_usine_worker}
+
+La Figure~\ref{fig:annexe_uml_usine_worker} schématise l'organisation interne du moteur d'exécution (\texttt{Worker}) et de ses garde-fous mécaniques, garantissant l'étanchéité contextuelle et la résilience aux pannes via la persistance d'états dans le fichier \code{manifest.json}.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    scale=0.76,
+    transform shape,
+    font=\sffamily\scriptsize,
+    corebox/.style={draw=blue!80!black, fill=blue!10, rounded corners=3pt, minimum width=4.2cm, minimum height=1.1cm, align=center},
+    guardbox/.style={draw=red!80!black, fill=red!10, rounded corners=3pt, minimum width=3.2cm, minimum height=0.9cm, align=center},
+    manifestbox/.style={draw=teal!80!black, fill=teal!10, rounded corners=3pt, minimum width=4.4cm, minimum height=1.1cm, align=center},
+    retrybox/.style={draw=orange!80!black, fill=orange!10, rounded corners=3pt, minimum width=4.2cm, minimum height=1.1cm, align=center},
+    arrow/.style={-{Latex[length=2.5mm]}, thick, draw=gray!80!black}
+]
+
+    % Composant central Worker
+    \node[corebox] (worker) at (0, 6.2) {
+        \textbf{Worker Main Loop (\texttt{run.ts})}\\
+        \tiny - worktreeDir: string\\
+        - workflow: WorkflowDefinition\\
+        \rule{4.0cm}{0.4pt}\\
+        + executeStep(step): Promise<void>
+    };
+
+    % Moteur de Garde-fous mécaniques
+    \draw[draw=red!70!black, fill=red!2, rounded corners=4pt] (-6.8, 4.6) rectangle (6.8, 2.0);
+    \node[anchor=north west, font=\scriptsize\bfseries\color{red!80!black}] at (-6.6, 4.45) {Moteur de Garde-fous Déclaratifs (\texttt{validateMechanical.ts})};
+
+    \node[guardbox] (g_scope) at (-4.8, 3.1) {\textbf{checkScope()}\\ \tiny Fichiers modifiés conformes};
+    \node[guardbox] (g_supp) at (-1.6, 3.1) {\textbf{checkSuppressions()}\\ \tiny Interdiction \texttt{@ts-ignore}};
+    \node[guardbox] (g_src) at (1.6, 3.1) {\textbf{checkSourceFiles()}\\ \tiny Vérification intégrité};
+    \node[guardbox] (g_tests) at (4.8, 3.1) {\textbf{checkTestsScope()}\\ \tiny Non-régression unitaire};
+
+    % Persistance d'état & Manifest (parfaitement alignés sous les garde-fous)
+    \node[manifestbox] (manifest) at (-4.0, -1.2) {
+        \textbf{Manifest Store (\texttt{manifest.json})}\\
+        \tiny - stepHistory: StepRecord[]\\
+        - attemptNumber: number\\
+        - errorSnippet: string | null\\
+        \rule{4.2cm}{0.4pt}\\
+        + saveManifest() / loadManifest()
+    };
+
+    % Moteur de Réessai et Classification
+    \node[retrybox] (retry) at (4.0, -1.2) {
+        \textbf{Retry \& Recovery Engine}\\
+        \tiny + classifyError(logs): ErrorCategory\\
+        + buildRetryContext(manifest): string\\
+        + handleRetry(attempt): boolean
+    };
+
+    % Relations et flux (droits et verticaux, zéro collision)
+    \draw[arrow] (worker.south) -- (0, 4.6);
+
+    \draw[arrow] (-4.0, 2.0) -- node[midway, left=8pt, font=\tiny\bfseries\color{teal!80!black}] {Succès étape} (manifest.north);
+    \draw[arrow] (4.0, 2.0) -- node[midway, right=8pt, font=\tiny\bfseries\color{red!80!black}] {Échec validation} (retry.north);
+
+    \draw[arrow, <->] (manifest.east) -- node[above=2pt, font=\tiny] {Injection contexte minimal} (retry.west);
+    \draw[arrow] (retry.east) -- ++(1.4,0) |- node[pos=0.25, right=3pt, font=\tiny] {Ré-invocation ciblée} (worker.east);
+
+\end{tikzpicture}
+\caption{Architecture du moteur de validation mécanique et boucle de réessai du Worker}
+\label{fig:annexe_uml_usine_worker}
+\end{figure}
+\cleardoublepage
+
+\chapter{Exemples de traces d'exécution de l'usine logicielle}
+\label{annexe:traces}
+
+Cette annexe présente un relevé exhaustif de journaux d'audit (\textit{execution logs}) générés en environnement conteneurisé lors du traitement automatisé d'un ticket d'ingénierie (Ticket~\#17 : \og \textit{Fix element picker: escape key does not deactivate element picker} \fg{}).
+
+Les événements sont émis au format JSON Lines structuré, intégrant l'horodatage ISO-8601 (\code{ts}), le niveau de sévérité (\code{level}), le composant émetteur (\code{component} : \code{supervisor} ou \code{worker}), l'identifiant d'exécution unique (\code{runId}), ainsi que les métriques et métadonnées d'étape.
+
+\section{Journal brut d'exécution (Format JSON Lines)}
+\label{annexe:sec_logs_bruts}
+
+Le Listing~\ref{lst:logs_usine_ticket17} reproduit la séquence complète des logs, depuis la finalisation du plan d'action jusqu'à la détection de défaillance d'authentification lors de l'étape finale d'intégration Git.
+
+\begin{lstlisting}[basicstyle=\ttfamily\fontsize{6.5pt}{7.5pt}\selectfont, breaklines=true, frame=single, caption={Extrait des traces d'exécution de l'usine logicielle sur le Ticket \#17}, label={lst:logs_usine_ticket17}]
+usine-usine  | {"ts":"2026-08-27T15:58:00.937Z","level":"INFO","component":"worker","msg":"Claude execution completed","runId":"1017-17-20260827T155453Z","stepId":"plan","exitCode":0,"outputLength":409,"output":"Ticket #17's implementation plan is ready in .task/plan.md. It covers: adding an ELEMENT_PICKER_CANCEL endpoint, a new cancel handler in both the content-script and background element picker controllers, an Escape-key listener in Chat.vue (sidebar) gated on picker-active state with proper mount/unmount cleanup, and matching test cases in Chat.spec.ts. No source files were modified -- just the plan.\n","stderrLength":0,"stderrlog":""}
+usine-usine  | {"ts":"2026-08-27T15:58:00.938Z","level":"DEBUG","component":"worker","msg":"Global attempt incremented","runId":"1017-17-20260827T155453Z","total":2}
+usine-usine  | {"ts":"2026-08-27T15:58:00.939Z","level":"DEBUG","component":"worker","msg":"Mechanical validation passed","runId":"1017-17-20260827T155453Z","stepId":"plan"}
+usine-usine  | {"ts":"2026-08-27T15:58:00.939Z","level":"INFO","component":"worker","msg":"Step execution completed","runId":"1017-17-20260827T155453Z","stepId":"plan","success":true,"exitCode":0}
+usine-usine  | {"ts":"2026-08-27T15:58:01.159Z","level":"WARN","component":"worker","msg":"Commit failed","runId":"1017-17-20260827T155453Z","stepId":"plan","error":"Command failed: git commit -m usine: plan -- success"}
+usine-usine  | {"ts":"2026-08-27T15:58:01.161Z","level":"INFO","component":"worker","msg":"Step notification","runId":"1017-17-20260827T155453Z","stepId":"plan","status":"success","durationMs":65220,"nextStepId":"code-full"}
+usine-usine  | {"ts":"2026-08-27T15:58:01.161Z","level":"DEBUG","component":"worker","msg":"Execution log appended","runId":"1017-17-20260827T155453Z","stepId":"plan","totalEntries":2}
+usine-usine  | {"ts":"2026-08-27T15:58:01.170Z","level":"DEBUG","component":"worker","msg":"Manifest saved","runId":"1017-17-20260827T155453Z","path":"/repo/.worktrees/17/.task/manifest.json","currentStep":"code-full"}
+usine-usine  | {"ts":"2026-08-27T15:58:01.170Z","level":"INFO","component":"worker","msg":"=== Step starting","runId":"1017-17-20260827T155453Z","stepId":"code-full","index":2,"dispatchReason":"initial"}
+usine-usine  | {"ts":"2026-08-27T15:58:01.174Z","level":"DEBUG","component":"worker","msg":"Step execution starting","runId":"1017-17-20260827T155453Z","stepId":"code-full","type":"prompt"}
+usine-usine  | {"ts":"2026-08-27T15:58:01.174Z","level":"DEBUG","component":"worker","msg":"Tools allocated for step","runId":"1017-17-20260827T155453Z","stepId":"code-full","tools":["Read","Write","Glob","Grep","Bash","Edit","Task"]}
+usine-usine  | {"ts":"2026-08-27T15:58:01.175Z","level":"INFO","component":"worker","msg":"Executing prompt step","runId":"1017-17-20260827T155453Z","stepId":"code-full","command":"/code-full","tools":7}
+usine-usine  | {"ts":"2026-08-27T15:58:01.177Z","level":"DEBUG","component":"worker","msg":"Spawning claude CLI (prompt sent via stdin)","runId":"1017-17-20260827T155453Z","binary":"claude","args":["--print","--output-format","text","--verbose","--session-id","777a71ca-b8ce-4507-9876-669a2d2aee47","--allowed-tools","Read,Write,Glob,Grep,Bash,Edit,Task"]}
+usine-usine  | {"ts":"2026-08-27T15:58:06.263Z","level":"DEBUG","component":"supervisor","msg":"Poll cycle #20","activeWorkers":1,"inFlightTickets":1}
+usine-usine  | {"ts":"2026-08-27T15:58:26.267Z","level":"DEBUG","component":"supervisor","msg":"Poll cycle #21","activeWorkers":1,"inFlightTickets":1}
+usine-usine  | {"ts":"2026-08-27T15:58:46.275Z","level":"DEBUG","component":"supervisor","msg":"Poll cycle #22","activeWorkers":1,"inFlightTickets":1}
+usine-usine  | {"ts":"2026-08-27T15:59:06.272Z","level":"DEBUG","component":"supervisor","msg":"Poll cycle #23","activeWorkers":1,"inFlightTickets":1}
+usine-usine  | {"ts":"2026-08-27T15:59:26.278Z","level":"DEBUG","component":"supervisor","msg":"Poll cycle #24","activeWorkers":1,"inFlightTickets":1}
+usine-usine  | {"ts":"2026-08-27T15:59:27.354Z","level":"DEBUG","component":"supervisor","msg":"found workflow: usine-PIerreV::full for ticket id=17","id":17}
+usine-usine  | {"ts":"2026-08-27T15:59:27.359Z","level":"DEBUG","component":"supervisor","msg":"[ELIGIBILITY] #17 rejete par \"is_not_claimed\": label claimed:* present","iid":17,"rule":"is_not_claimed"}
+usine-usine  | {"ts":"2026-08-27T15:59:46.288Z","level":"DEBUG","component":"supervisor","msg":"Poll cycle #25","activeWorkers":1,"inFlightTickets":1}
+usine-usine  | {"ts":"2026-08-27T15:59:47.172Z","level":"DEBUG","component":"supervisor","msg":"found workflow: usine-PIerreV::full for ticket id=17","id":17}
+usine-usine  | {"ts":"2026-08-27T15:59:47.173Z","level":"DEBUG","component":"supervisor","msg":"[ELIGIBILITY] #17 rejete par \"is_not_claimed\": label claimed:* present","iid":17,"rule":"is_not_claimed"}
+usine-usine  | {"ts":"2026-08-27T16:00:06.296Z","level":"DEBUG","component":"supervisor","msg":"Poll cycle #26","activeWorkers":1,"inFlightTickets":1}
+usine-usine  | {"ts":"2026-08-27T16:00:07.026Z","level":"DEBUG","component":"supervisor","msg":"found workflow: usine-PIerreV::full for ticket id=17","id":17}
+usine-usine  | {"ts":"2026-08-27T16:00:07.026Z","level":"DEBUG","component":"supervisor","msg":"[ELIGIBILITY] #17 rejete par \"is_not_claimed\": label claimed:* present","iid":17,"rule":"is_not_claimed"}
+usine-usine  | {"ts":"2026-08-27T16:00:26.307Z","level":"DEBUG","component":"supervisor","msg":"Poll cycle #27","activeWorkers":1,"inFlightTickets":1}
+usine-usine  | {"ts":"2026-08-27T16:00:27.265Z","level":"DEBUG","component":"supervisor","msg":"found workflow: usine-PIerreV::full for ticket id=17","id":17}
+usine-usine  | {"ts":"2026-08-27T16:00:27.265Z","level":"DEBUG","component":"supervisor","msg":"[ELIGIBILITY] #17 rejete par \"is_not_claimed\": label claimed:* present","iid":17,"rule":"is_not_claimed"}
+usine-usine  | {"ts":"2026-08-27T16:00:46.315Z","level":"DEBUG","component":"supervisor","msg":"Poll cycle #28","activeWorkers":1,"inFlightTickets":1}
+usine-usine  | {"ts":"2026-08-27T16:00:47.417Z","level":"DEBUG","component":"supervisor","msg":"found workflow: usine-PIerreV::full for ticket id=17","id":17}
+usine-usine  | {"ts":"2026-08-27T16:00:47.418Z","level":"DEBUG","component":"supervisor","msg":"[ELIGIBILITY] #17 rejete par \"is_not_claimed\": label claimed:* present","iid":17,"rule":"is_not_claimed"}
+usine-usine  | {"ts":"2026-08-27T16:01:06.315Z","level":"DEBUG","component":"supervisor","msg":"Poll cycle #29","activeWorkers":1,"inFlightTickets":1}
+usine-usine  | {"ts":"2026-08-27T16:01:07.107Z","level":"DEBUG","component":"supervisor","msg":"found workflow: usine-PIerreV::full for ticket id=17","id":17}
+usine-usine  | {"ts":"2026-08-27T16:01:07.108Z","level":"DEBUG","component":"supervisor","msg":"[ELIGIBILITY] #17 rejete par \"is_not_claimed\": label claimed:* present","iid":17,"rule":"is_not_claimed"}
+usine-usine  | {"ts":"2026-08-27T16:01:26.185Z","level":"INFO","component":"supervisor","msg":"isAlive","activeWorkers":1,"inFlightTickets":1}
+usine-usine  | {"ts":"2026-08-27T16:01:26.318Z","level":"DEBUG","component":"supervisor","msg":"Poll cycle #30","activeWorkers":1,"inFlightTickets":1}
+usine-usine  | {"ts":"2026-08-27T16:01:27.407Z","level":"DEBUG","component":"supervisor","msg":"found workflow: usine-PIerreV::full for ticket id=17","id":17}
+usine-usine  | {"ts":"2026-08-27T16:01:27.409Z","level":"DEBUG","component":"supervisor","msg":"[ELIGIBILITY] #17 rejete par \"is_not_claimed\": label claimed:* present","iid":17,"rule":"is_not_claimed"}
+usine-usine  | {"ts":"2026-08-27T16:01:41.120Z","level":"INFO","component":"worker","msg":"Claude execution completed","runId":"1017-17-20260827T155453Z","stepId":"code-full","exitCode":0,"outputLength":1268,"output":"Ticket #17 implemented by the code-full subagent in two phases.\n\n**Source changes** (Escape key now deactivates the element picker):\n- Endpoint.enum.ts -- new ELEMENT_PICKER_CANCEL endpoint\n- content-script/.../ElementPicker.controller.ts -- cancelPicker handler calling the idempotent deactivatePickMode()\n- background/controllers/ElementPicker.controller.ts -- forwardCancelToTab forwarding to the active tab (mirrors forwardStartToTab)\n- sidebar/front/components/chat/Chat.vue -- isPickerActive ref, window keydown listener sending ELEMENT_PICKER_CANCEL on Escape only when active, cleaned up in new onBeforeUnmount\n\n**Tests**: new tests/components/chat/Chat.elementPicker.spec.ts -- 5 tests (START on activation, CANCEL on active Escape, no CANCEL when inactive, single-fire on repeated Escape, listener cleanup on unmount).\n\n**Limitation flagged by the subagent**: the worktree has no node_modules and npm install fails offline, so build/lint/type-check/tests were **not executed**. The spec mirrors the existing working Chat.spec.ts scaffold, but someone needs to run npm test in a provisioned environment to confirm green + coverage.\n\nReports written to .task/code-report.md, .task/test-report.md, .task/staged-files.txt.\n","stderrLength":0,"stderrlog":""}
+usine-usine  | {"ts":"2026-08-27T16:01:41.120Z","level":"DEBUG","component":"worker","msg":"Global attempt incremented","runId":"1017-17-20260827T155453Z","total":3}
+usine-usine  | {"ts":"2026-08-27T16:01:42.187Z","level":"DEBUG","component":"worker","msg":"Mechanical validation passed","runId":"1017-17-20260827T155453Z","stepId":"code-full"}
+usine-usine  | {"ts":"2026-08-27T16:01:42.187Z","level":"INFO","component":"worker","msg":"Step execution completed","runId":"1017-17-20260827T155453Z","stepId":"code-full","success":true,"exitCode":0}
+usine-usine  | {"ts":"2026-08-27T16:01:42.552Z","level":"INFO","component":"worker","msg":"Progress committed","runId":"1017-17-20260827T155453Z","stepId":"code-full","sha":"ae722be9"}
+usine-usine  | {"ts":"2026-08-27T16:01:43.003Z","level":"WARN","component":"worker","msg":"Push failed (commit only)","runId":"1017-17-20260827T155453Z","stepId":"code-full"}
+usine-usine  | {"ts":"2026-08-27T16:01:43.009Z","level":"INFO","component":"worker","msg":"Step notification","runId":"1017-17-20260827T155453Z","stepId":"code-full","status":"success","durationMs":219946,"nextStepId":"push"}
+usine-usine  | {"ts":"2026-08-27T16:01:43.011Z","level":"DEBUG","component":"worker","msg":"Execution log appended","runId":"1017-17-20260827T155453Z","stepId":"code-full","totalEntries":3}
+usine-usine  | {"ts":"2026-08-27T16:01:43.037Z","level":"DEBUG","component":"worker","msg":"Manifest saved","runId":"1017-17-20260827T155453Z","path":"/repo/.worktrees/17/.task/manifest.json","currentStep":"push"}
+usine-usine  | {"ts":"2026-08-27T16:01:43.037Z","level":"INFO","component":"worker","msg":"=== Step starting","runId":"1017-17-20260827T155453Z","stepId":"push","index":3,"dispatchReason":"initial"}
+usine-usine  | {"ts":"2026-08-27T16:01:43.041Z","level":"DEBUG","component":"worker","msg":"Step execution starting","runId":"1017-17-20260827T155453Z","stepId":"push","type":"script"}
+usine-usine  | {"ts":"2026-08-27T16:01:43.057Z","level":"INFO","component":"worker","msg":"Executing script step","runId":"1017-17-20260827T155453Z","stepId":"push","commandCount":4,"preview":"git rm -r --cached .task/ 2>/dev/null || true; git add $(cat .task/staged-files.txt)"}
+usine-usine  | {"ts":"2026-08-27T16:01:43.604Z","level":"WARN","component":"worker","msg":"Script execution failed","runId":"1017-17-20260827T155453Z","stepId":"push","exitCode":128,"output":"","error":"+ git rm -r --cached .task/\n+ true\n++ cat .task/staged-files.txt\n+ git add src/common/shared/models/Endpoint.enum.ts src/content-script/content/controllers/ElementPicker.controller.ts src/background/controllers/ElementPicker.controller.ts src/sidebar/front/components/chat/Chat.vue tests/components/chat/Chat.elementPicker.spec.ts\n+ git diff --cached --quiet\n+ git push --force origin 17-fix-element-picker-escape-key-does-not-deactivate-element-pi\nfatal: could not read Username for 'https://git.oxyl.fr': No such device or address\n","failedCommand":"git push --force origin 17-fix-element-picker-escape-key-does-not-deactivate-element-pi"}
+usine-usine  | {"ts":"2026-08-27T16:01:43.606Z","level":"DEBUG","component":"worker","msg":"Global attempt incremented","runId":"1017-17-20260827T155453Z","total":4}
+usine-usine  | {"ts":"2026-08-27T16:01:43.607Z","level":"INFO","component":"worker","msg":"Step execution completed","runId":"1017-17-20260827T155453Z","stepId":"push","success":false,"exitCode":128}
+usine-usine  | {"ts":"2026-08-27T16:01:43.610Z","level":"INFO","component":"worker","msg":"Failure classified","runId":"1017-17-20260827T155453Z","stepId":"push","category":"unknown","isRetryable":false}
+usine-usine  | {"ts":"2026-08-27T16:01:43.611Z","level":"INFO","component":"worker","msg":"Retrying step","runId":"1017-17-20260827T155453Z","stepId":"push","retryCount":1,"maxRetries":2}
+usine-usine  | {"ts":"2026-08-27T16:01:43.612Z","level":"DEBUG","component":"worker","msg":"Retry count incremented","runId":"1017-17-20260827T155453Z","stepId":"push","count":1}
+usine-usine  | {"ts":"2026-08-27T16:01:43.630Z","level":"DEBUG","component":"worker","msg":"Manifest saved","runId":"1017-17-20260827T155453Z","path":"/repo/.worktrees/17/.task/manifest.json","currentStep":"push"}
+usine-usine  | {"ts":"2026-08-27T16:01:43.632Z","level":"INFO","component":"worker","msg":"Retrying step (1/2)","runId":"1017-17-20260827T155453Z","stepId":"push"}
+usine-usine  | {"ts":"2026-08-27T16:01:43.636Z","level":"INFO","component":"worker","msg":"=== Step starting","runId":"1017-17-20260827T155453Z","dispatchReason":"retry (1/2)","stepId":"push","index":3}
+usine-usine  | {"ts":"2026-08-27T16:01:43.636Z","level":"DEBUG","component":"worker","msg":"Step execution starting","runId":"1017-17-20260827T155453Z","dispatchReason":"retry (1/2)","stepId":"push","type":"script"}
+usine-usine  | {"ts":"2026-08-27T16:01:43.659Z","level":"INFO","component":"worker","msg":"Executing script step","runId":"1017-17-20260827T155453Z","dispatchReason":"retry (1/2)","stepId":"push","commandCount":4,"preview":"git rm -r --cached .task/ 2>/dev/null || true; git add $(cat .task/staged-files.txt)"}
+usine-usine  | {"ts":"2026-08-27T16:01:44.052Z","level":"WARN","component":"worker","msg":"Script execution failed","runId":"1017-17-20260827T155453Z","dispatchReason":"retry (1/2)","stepId":"push","exitCode":128,"output":"","error":"+ git rm -r --cached .task/\n+ true\n++ cat .task/staged-files.txt\n+ git add src/common/shared/models/Endpoint.enum.ts src/content-script/content/controllers/ElementPicker.controller.ts src/background/controllers/ElementPicker.controller.ts src/sidebar/front/components/chat/Chat.vue tests/components/chat/Chat.elementPicker.spec.ts\n+ git diff --cached --quiet\n+ git push --force origin 17-fix-element-picker-escape-key-does-not-deactivate-element-pi\nfatal: could not read Username for 'https://git.oxyl.fr': No such device or address\n","failedCommand":"git push --force origin 17-fix-element-picker-escape-key-does-not-deactivate-element-pi"}
+usine-usine  | {"ts":"2026-08-27T16:01:44.052Z","level":"DEBUG","component":"worker","msg":"Global attempt incremented","runId":"1017-17-20260827T155453Z","dispatchReason":"retry (1/2)","total":5}
+usine-usine  | {"ts":"2026-08-27T16:01:44.052Z","level":"INFO","component":"worker","msg":"Step execution completed","runId":"1017-17-20260827T155453Z","dispatchReason":"retry (1/2)","stepId":"push","success":false,"exitCode":128}
+usine-usine  | {"ts":"2026-08-27T16:01:44.053Z","level":"INFO","component":"worker","msg":"Failure classified","runId":"1017-17-20260827T155453Z","dispatchReason":"retry (1/2)","stepId":"push","category":"unknown","isRetryable":false}
+usine-usine  | {"ts":"2026-08-27T16:01:44.055Z","level":"INFO","component":"worker","msg":"Retrying step","runId":"1017-17-20260827T155453Z","dispatchReason":"retry (1/2)","stepId":"push","retryCount":2,"maxRetries":2}
+usine-usine  | {"ts":"2026-08-27T16:01:44.055Z","level":"DEBUG","component":"worker","msg":"Retry count incremented","runId":"1017-17-20260827T155453Z","dispatchReason":"retry (1/2)","stepId":"push","count":2}
+usine-usine  | {"ts":"2026-08-27T16:01:44.069Z","level":"DEBUG","component":"worker","msg":"Manifest saved","runId":"1017-17-20260827T155453Z","dispatchReason":"retry (1/2)","path":"/repo/.worktrees/17/.task/manifest.json","currentStep":"push"}
+usine-usine  | {"ts":"2026-08-27T16:01:44.071Z","level":"INFO","component":"worker","msg":"Retrying step (2/2)","runId":"1017-17-20260827T155453Z","dispatchReason":"retry (1/2)","stepId":"push"}
+usine-usine  | {"ts":"2026-08-27T16:01:44.072Z","level":"INFO","component":"worker","msg":"=== Step starting","runId":"1017-17-20260827T155453Z","dispatchReason":"retry (2/2)","stepId":"push","index":3}
+usine-usine  | {"ts":"2026-08-27T16:01:44.072Z","level":"DEBUG","component":"worker","msg":"Step execution starting","runId":"1017-17-20260827T155453Z","dispatchReason":"retry (2/2)","stepId":"push","type":"script"}
+usine-usine  | {"ts":"2026-08-27T16:01:44.072Z","level":"INFO","component":"worker","msg":"Executing script step","runId":"1017-17-20260827T155453Z","dispatchReason":"retry (2/2)","stepId":"push","commandCount":4,"preview":"git rm -r --cached .task/ 2>/dev/null || true; git add $(cat .task/staged-files.txt)"}
+usine-usine  | {"ts":"2026-08-27T16:01:44.322Z","level":"WARN","component":"worker","msg":"Script execution failed","runId":"1017-17-20260827T155453Z","dispatchReason":"retry (2/2)","stepId":"push","exitCode":128,"output":"","error":"+ git rm -r --cached .task/\n+ true\n++ cat .task/staged-files.txt\n+ git add src/common/shared/models/Endpoint.enum.ts src/content-script/content/controllers/ElementPicker.controller.ts src/background/controllers/ElementPicker.controller.ts src/sidebar/front/components/chat/Chat.vue tests/components/chat/Chat.elementPicker.spec.ts\n+ git diff --cached --quiet\n+ git push --force origin 17-fix-element-picker-escape-key-does-not-deactivate-element-pi\nfatal: could not read Username for 'https://git.oxyl.fr': No such device or address\n","failedCommand":"git push --force origin 17-fix-element-picker-escape-key-does-not-deactivate-element-pi"}
+usine-usine  | {"ts":"2026-08-27T16:01:44.322Z","level":"DEBUG","component":"worker","msg":"Global attempt incremented","runId":"1017-17-20260827T155453Z","dispatchReason":"retry (2/2)","total":6}
+usine-usine  | {"ts":"2026-08-27T16:01:44.323Z","level":"INFO","component":"worker","msg":"Step execution completed","runId":"1017-17-20260827T155453Z","dispatchReason":"retry (2/2)","stepId":"push","success":false,"exitCode":128}
+usine-usine  | {"ts":"2026-08-27T16:01:44.323Z","level":"INFO","component":"worker","msg":"Failure classified","runId":"1017-17-20260827T155453Z","dispatchReason":"retry (2/2)","stepId":"push","category":"unknown","isRetryable":false}
+usine-usine  | {"ts":"2026-08-27T16:01:44.325Z","level":"WARN","component":"worker","msg":"max_on_fail reached for script step, exiting","runId":"1017-17-20260827T155453Z","dispatchReason":"retry (2/2)","stepId":"push","onFailCount":0,"maxOnFail":null}
+usine-usine  | {"ts":"2026-08-27T16:01:44.326Z","level":"INFO","component":"worker","msg":"[X] Step failed: Max retries reached for step push (2)","runId":"1017-17-20260827T155453Z","dispatchReason":"retry (2/2)","stepId":"push","exitCode":1,"durationMs":250}
+\end{lstlisting}
+
+\section{Analyse détaillée des jalons de l'exécution}
+\label{annexe:sec_analyse_jalons}
+
+L'examen pas-à-pas de ce journal d'audit confirme l'application effective des principes architecturaux détaillés dans les Chapitres~\ref{chap:usine_ia} et~\ref{chap:infra_agnostique} :
+
+\begin{enumerate}
+    \item \textbf{Gestion distribuée de la concurrence (Superviseur) :}
+    Les lignes émises par le composant \code{supervisor} démontrent l'efficacité de la règle d'exclusion mutuelle \code{is_not_claimed}. Alors que le worker exécute les sous-étapes dans son \textit{Git Worktree} isolé, le superviseur détecte le ticket \#17 à chaque cycle de scrutation (\code{Poll cycle \#20} à \code{\#30}) mais ignore son traitement car le label de verrouillage (\code{claimed:*}) est actif.
+
+    \item \textbf{Étanchéité et formalisation de la phase de planification (\texttt{plan}) :}
+    L'étape \code{plan} instancie Claude CLI avec des arguments explicites (\code{--session-id}, \code{--allowed-tools}). L'agent formalise le plan dans \code{.task/plan.md} sans toucher au code source. Le moteur applique ensuite la validation mécanique (\code{Mechanical validation passed}), enregistre l'état dans \code{manifest.json} et ordonnance le passage à l'étape suivante.
+
+    \item \textbf{Cloisonnement de l'outillage et traçabilité documentaire (\texttt{code-full}) :}
+    L'étape d'implémentation ouvre l'outil d'édition (\code{Edit}) parmi les 7 outils autorisés. L'agent réalise les modifications sur 4 fichiers sources et rédige un fichier de test dédié (\code{Chat.elementPicker.spec.ts}). L'agent note explicitement l'environnement hermétique (\textit{offline}) du conteneur empêchant l'installation de dépendances npm, consignant cette remarque dans \code{.task/code-report.md}. Un commit de progrès est scellé sous le SHA \code{ae722be9}.
+
+    \item \textbf{Gouvernance déterministe et disjoncteur face aux erreurs (\texttt{push}) :}
+    Lors de l'étape finale scriptée, la commande \code{git push} échoue par absence d'identifiants interactifs (erreur Git standard en environnement d'intégration non configuré). Le moteur de résilience classifie l'erreur, incrémente les compteurs de réessai (\code{retryCount: 1} puis \code{2}) et interrompt proprement la chaîne lorsque le seuil est atteint (\code{Max retries reached}), évitant tout blocage indéfini du conteneur.
+\end{enumerate}
+
+\cleardoublepage
+
+\chapter{Vues d'écrans et Interfaces complémentaires de la plateforme NewroFactory}
+\label{annexe:interfaces_quiz}
+
+Cette annexe rassemble les captures d'écran des interfaces d'authentification, d'administration et de catalogue de la plateforme web \textit{NewroFactory}, complétant les vues fonctionnelles présentées au Chapitre~\ref{chap:quiz}.
+
+\section{Authentification et Contrôle d'accès}
+\label{annexe:sec_login}
+
+La Figure~\ref{fig:ui_annexe_login} présente la page d'accueil et d'authentification de la plateforme, garantissant un accès sécurisé et cloisonné selon les rôles attribués (\code{ROLE_USER} ou \code{ROLE_ADMIN}).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.68\textwidth]{figures/quiz_login.png}
+    \caption{Page d'authentification et de connexion sécurisée à la plateforme NewroFactory}
+    \label{fig:ui_annexe_login}
+\end{figure}
+
+\section{Tableau de bord général de supervision administrateur}
+\label{annexe:sec_admin_dash}
+
+La Figure~\ref{fig:ui_annexe_dashboard} illustre le tableau de bord d'accueil de l'administrateur et encadrant technique, consolidant les indicateurs clés (volume de compétences, nombre d'utilisateurs et de stagiaires actifs) et proposant des raccourcis vers les modules de gouvernance.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.92\textwidth]{figures/quiz_admin_dashboard.png}
+    \caption{Tableau de bord général de l'administrateur avec métriques consolidées et raccourcis de gouvernance}
+    \label{fig:ui_annexe_dashboard}
+\end{figure}
+
+\section{Référentiel des compétences et modules de formation}
+\label{annexe:sec_competences_list}
+
+La Figure~\ref{fig:ui_annexe_competences} présente le catalogue centralisé des compétences et certifications gérées sur la plateforme (Vue.js, Java OCA, Java OCP, Asynchronisme, ES6-ES11, Node CLI, Event Loop, File System, Process/OS, Spring Framework).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.92\textwidth]{figures/quiz_competences_list.png}
+    \caption{Catalogue et référentiel des compétences de formation et modules d'évaluation}
+    \label{fig:ui_annexe_competences}
+\end{figure}
+
+\section{Historique global et filtrage multicritères des séries}
+\label{annexe:sec_stats_toutes_series}
+
+La Figure~\ref{fig:ui_annexe_toutes_series} présente l'interface d'historique exhaustif des séries d'entraînement, dotée d'un curseur de filtrage interactif par taux de réussite (0\% à 100\%) et de mécanismes de tri chronologique.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.92\textwidth]{figures/quiz_stats_toutes_series.png}
+    \caption{Interface de consultation et de filtrage dynamique de l'historique complet des séries}
+    \label{fig:ui_annexe_toutes_series}
+\end{figure}
 
 \cleardoublepage
 \thispagestyle{empty}
@@ -1592,51 +2951,26 @@ Exemples détaillés de logs et de parcours de résolution de bugs par l'agent a
 \section*{Résumé}
 \addcontentsline{toc}{chapter}{Résumé}
 
-No foe may pass amet, sun green dreams, none so dutiful no song so sweet et
-dolore magna aliqua. Ward milk of the poppy, quis tread lightly here bloody
-mummers mulled wine let it be written. Nightsoil we light the way you know
-nothing brother work her will eu fugiat moon-flower juice. Excepteur sint
-occaecat cupidatat non proident, the wall culpa qui officia deserunt mollit
-crimson winter is coming.
+Dans un secteur des Entreprises de Services du Numérique (ESN) en pleine mutation vers les engagements au forfait et confronté à l'avènement de l'intelligence artificielle générative, la rentabilité et l'excellence technique imposent une refonte des chaînes de production logicielle. Ce mémoire présente les travaux d'ingénierie menés au sein du Groupe Oxyl, articulés autour d'une double industrialisation : celle du \textbf{capital humain} et celle du \textbf{capital technique}.
 
-Moon and stars lacus. Nulla gravida orci a dagger. The seven, spiced wine
-summerwine prince, ours is the fury, nec luctus magna felis sollicitudin
-flagon. As high as honor full of terrors. He asked too many questions arbor
-gold. Honeyed locusts in his cups. Mare's milk. Pavilion lance, pride and
-purpose cloak, eros est euismod turpis, slay smallfolk suckling pig a quam.
-Our sun shines bright. Green dreams. None so fierce your grace. Righteous in
-wrath, others mace, commodo eget, old bear, brothel. Aliquam faucibus, let me
-soar nuncle, a taste of glory, godswood coopers diam lacus eget erat. Night's
-watch the wall. Trueborn ironborn. Never resting. Bloody mummers chamber,
-dapibus quis, laoreet et, dwarf sellsword, fire. Honed and ready, mollis maid,
-seven hells, manhood in, king. Throne none so wise dictumst.
+Le premier volet formalise la standardisation des compétences à travers la conception d'une plateforme d'évaluation et de préparation aux certifications industrielles (Oracle OCP Java, AWS), architecturée en Spring Core et Angular. Le second volet porte sur le développement d'une \textbf{usine logicielle agentique} en TypeScript, orchestrant des agents d'IA autonomes pour la résolution automatisée de tickets de développement et de maintenance. Afin de prévenir tout verrouillage propriétaire (\textit{vendor lock-in}), une couche d'abstraction logicielle fondée sur les patrons de conception (\textit{Factory}, \textit{Adapter}, \textit{Strategy}) garantit une stricte indépendance vis-à-vis des modèles de langage (LLM) et des forges logicielles (GitLab, GitHub, Jira).
 
-{\bf Mots-clés :}
+L'analyse démontre la synergie fondamentale entre ces deux piliers : loin de remplacer l'ingénieur, l'usine logicielle déplace sa charge cognitive vers l'architecture et l'arbitrage critique, exigeant une maîtrise théorique accrue pour superviser le code généré. Cette approche hybride optimise les coûts d'inférence, réduit le coût de non-qualité et pérennise l'avance technologique et l'attractivité commerciale de l'entreprise.
+
+\vspace{0.3cm}
+{\bf Mots-clés :} Génie Logiciel, Usine Logicielle, Agents IA, Modèles de Langage (LLM), Agnosticisme Technologique, Patrons de Conception, Capital Humain, Certifications Java (OCP), Spring Core, Angular, TypeScript.
 
 
 \section*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
 
-Green dreams mulled wine. Feed it to the goats. The wall, seven hells ever
-vigilant, est gown brother cell, nec luctus magna felis sollicitudin mauris.
-Take the black we light the way. Honeyed locusts ours is the fury smallfolk.
-Spare me your false courtesy. The seven. Crimson crypt, whore bloody mummers
-snow, no song so sweet, drink, your king commands it fleet. Raiders fermentum
-consequat mi. Night's watch. Pellentesque godswood nulla a mi. Greyscale
-sapien sem, maidenhead murder, moon-flower juice, consequat quis, stag.
-Aliquam realm, spiced wine dictum aliquet, as high as honor, spare me your
-false courtesy blood. Darkness mollis arbor gold. Nullam arcu. Never resting.
-Sandsilk green dreams, mulled wine, betrothed et, pretium ac, nuncle. Whore
-your grace, mollis quis, suckling pig, clansmen king, half-man. In hac
-baseborn old bear.
+In the IT services and consulting industry (ESN), driven by an accelerated shift towards fixed-price engagements and the rise of generative artificial intelligence, sustained profitability and technical excellence require a comprehensive industrialization of software engineering workflows. This master's thesis presents the engineering achievements developed within Groupe Oxyl, structured around a dual-pillar strategy: the industrialization of \textbf{human capital} and \textbf{technical capital}.
 
+The first pillar formalizes skills standardization through the design of a training and certification assessment platform (Oracle OCP Java, AWS), engineered with Spring Core and Angular. The second pillar focuses on the development of an \textbf{agentic software factory} in TypeScript, orchestrating autonomous AI agents to resolve development and maintenance tickets. To prevent vendor lock-in, an abstraction layer based on design patterns (\textit{Factory}, \textit{Adapter}, \textit{Strategy}) ensures complete architectural independence from large language model (LLM) providers and software forges (GitLab, GitHub, Jira).
 
-Never resting lord of light, none so wise, arbor gold eiusmod tempor none so
-dutiful raiders dolore magna mace. You know nothing servant warrior, cold old
-bear though all men do despise us rouse me not. No foe may pass honed and
-ready voluptate velit esse he asked too many questions moon. Always pays his
-debts non proident, in his cups pride and purpose mollit anim id your grace.
+The analysis highlights the systemic synergy between both pillars: rather than replacing the engineer, the software factory elevates the cognitive workload toward architecture, specification, and critical review, demanding deeper theoretical mastery to supervise machine-generated code. This hybrid approach optimizes inference costs, mitigates the cost of non-quality, and secures a lasting technological edge and commercial attractiveness for the enterprise.
 
-{\bf Keywords :}
+\vspace{0.3cm}
+{\bf Keywords :} Software Engineering, Software Factory, AI Agents, Large Language Models (LLM), Vendor Lock-in Prevention, Design Patterns, Human Capital, Java Certification (OCP), Spring Core, Angular, TypeScript.
 
 \end{document}
