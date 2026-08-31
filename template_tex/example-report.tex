@@ -191,7 +191,7 @@ Pour soutenir cette démarche, Oxyl recrute principalement des élèves-ingénie
 Le travail réalisé durant ce stage s'articule autour de deux axes complémentaires :
 
 \begin{enumerate}
-    \item \textbf{La standardisation des compétences (Volet 1 - Le Quiz) :} Pour répondre aux attentes des clients, les compétences techniques des consultants doivent être solides et certifiées. Oxyl prépare ses recrues aux certifications Oracle (\textit{OCA} et \textit{OCP Java SE}) et \textit{AWS Certified Cloud Practitioner}. Pour faciliter cette préparation, nous avons développé une plateforme web sur-mesure en Spring Core et Angular. Elle sert à la fois de projet pratique d'apprentissage pour les stagiaires et d'outil quotidien d'entraînement et de suivi pédagogique pour l'entreprise.
+    \item \textbf{La standardisation des compétences (Volet 1 - Le Quiz) :} Pour répondre aux attentes des clients, les compétences techniques des consultants doivent être solides et certifiées. Oxyl prépare ses recrues aux certifications Oracle (\textit{OCA} et \textit{OCP Java SE}~\cite{boyarsky2020ocp}) et \textit{AWS Certified Cloud Practitioner}. Pour faciliter cette préparation, nous avons développé une plateforme web sur-mesure en Spring Core~\cite{walls2022spring} et Angular. Elle sert à la fois de projet pratique d'apprentissage pour les stagiaires et d'outil quotidien d'entraînement et de suivi pédagogique pour l'entreprise.
     \item \textbf{L'industrialisation du capital technique (Volet 2 - L'Usine Logicielle) :} Pour automatiser le traitement des tickets récurrents (corrections de bugs, nouvelles fonctionnalités, tests), Oxyl développe une \og Usine Logicielle \fg{} agentique en TypeScript. Face aux coûts des API de LLM et aux exigences de confidentialité des clients, un impératif d'architecture s'est imposé : rendre le moteur totalement indépendant (\textit{agnostique}) des fournisseurs de modèles (OpenAI, Claude, Google, modèles locaux) et des forges logicielles (GitLab, GitHub, Gitea, Jira, Bitbucket).
 \end{enumerate}
 
@@ -280,7 +280,7 @@ Oxyl applique une organisation inspirée des principes de l'entreprise libérée
 La culture d'entreprise repose sur trois valeurs partagées :
 \begin{itemize}
     \item \textbf{La Passion :} recruter des profils motivés par le développement logiciel et les défis techniques ;
-    \item \textbf{L'Excellence :} maintenir des standards élevés de qualité de code (\textit{Clean Code}, architecture modulaire, tests) ;
+    \item \textbf{L'Excellence :} maintenir des standards élevés de qualité de code (\textit{Clean Code}~\cite{martin2008clean}, architecture modulaire, tests) ;
     \item \textbf{Le Partage :} encourager la transmission des connaissances entre seniors et juniors et l'entraide d'équipe.
 \end{itemize}
 
@@ -322,9 +322,9 @@ En parallèle, chaque stagiaire redéveloppe l'application de formation au cours
     scale=0.88,
     transform shape,
     font=\sffamily\scriptsize,
-    phasebox/.style={draw=blue!80!black, fill=blue!6, rounded corners=3pt, align=center, inner sep=6pt, line width=0.7pt, minimum width=3.3cm, minimum height=1.3cm},
-    detailbox/.style={draw=gray!50, fill=gray!5, rounded corners=2pt, align=left, inner sep=4pt, font=\sffamily\tiny, text width=3.1cm},
-    certbox/.style={draw=teal!80!black, fill=teal!8, rounded corners=2pt, align=center, inner sep=4pt, font=\sffamily\bfseries\tiny},
+    phasebox/.style={draw=blue!80!black, fill=blue!6, rounded corners=3pt, align=center, inner sep=5pt, line width=0.7pt, text width=3.3cm, minimum height=1.3cm},
+    detailbox/.style={draw=gray!50, fill=gray!5, rounded corners=2pt, align=left, inner sep=4pt, font=\sffamily\tiny, text width=3.3cm},
+    certbox/.style={draw=teal!80!black, fill=teal!8, rounded corners=2pt, align=center, inner sep=4pt, font=\sffamily\bfseries\tiny, text width=3.3cm},
     patharrow/.style={-{Latex[length=3mm]}, thick, draw=blue!80!black},
     forkarrow/.style={-{Latex[length=2.5mm]}, thick, draw=teal!80!black}
 ]
@@ -340,7 +340,7 @@ En parallèle, chaque stagiaire redéveloppe l'application de formation au cours
     };
 
     % Phase 2 : Formation & PFE
-    \node[phasebox, fill=teal!6, draw=teal!80!black] (p2) at (4.0, 0) {\textbf{\normalsize 2. PFE \& Formation}\\[1pt]\textit{3 mois intensifs}};
+    \node[phasebox, fill=teal!6, draw=teal!80!black] (p2) at (4.5, 0) {\textbf{\normalsize 2. PFE \& Formation}\\[1pt]\textit{3 mois intensifs}};
     \node[detailbox, below=0.25cm of p2] (d2) {
         $\bullet$ \textbf{Projet NewroFactory} :\\
         \phantom{..} 8 sprints progressifs\\
@@ -351,14 +351,14 @@ En parallèle, chaque stagiaire redéveloppe l'application de formation au cours
     \node[certbox, below=0.15cm of d2] (cert) {\textbf{Certifications Validées :}\\Oracle OCA/OCP Java $\cdot$ AWS Cloud};
 
     % Phase 3 : Double trajectoire
-    \node[phasebox, fill=orange!8, draw=orange!80!black, minimum width=3.4cm] (p3a) at (8.4, 0.85) {\textbf{\small Parcours en Régie}\\[1pt]\textit{Immersion Client supervisée}};
+    \node[phasebox, fill=orange!8, draw=orange!80!black, text width=3.2cm] (p3a) at (9.0, 0.9) {\textbf{\small Parcours en Régie}\\[1pt]\textit{Immersion Client}};
     \node[detailbox, right=0.15cm of p3a, text width=2.4cm] (d3a) {
         $\bullet$ Binôme avec un senior\\
         $\bullet$ Projets grands comptes\\
         $\bullet$ Pré-embauche CDI
     };
 
-    \node[phasebox, fill=purple!8, draw=purple!80!black, minimum width=3.4cm] (p3b) at (8.4, -1.0) {\textbf{\small Pôle R\&D / Usine IA}\\[1pt]\textit{Projets Internes}};
+    \node[phasebox, fill=purple!8, draw=purple!80!black, text width=3.2cm] (p3b) at (9.0, -1.1) {\textbf{\small Pôle R\&D / Usine IA}\\[1pt]\textit{Projets Internes}};
     \node[detailbox, right=0.15cm of p3b, text width=2.4cm] (d3b) {
         $\bullet$ Usine logicielle agentique\\
         $\bullet$ Banc d'essai technique\\
@@ -366,9 +366,10 @@ En parallèle, chaque stagiaire redéveloppe l'application de formation au cours
     };
 
     % Connecteurs
-    \draw[patharrow] (p1) -- (p2);
-    \draw[forkarrow] (p2.east) -- ++(0.4,0) |- (p3a.west);
-    \draw[forkarrow] (p2.east) -- ++(0.4,0) |- (p3b.west);
+    \draw[patharrow] (p1.east) -- (p2.west);
+    \draw[thick, draw=teal!80!black] (p2.east) -- ++(0.5, 0) coordinate (fork);
+    \draw[forkarrow] (fork) |- (p3a.west);
+    \draw[forkarrow] (fork) |- (p3b.west);
 
     % Cadre global formation continue
     \node[draw=gray!60, dashed, rounded corners=4pt, fit={(p1) (d1) (p2) (cert) (p3a) (d3a) (p3b) (d3b)}, inner sep=8pt, label={[font=\sffamily\bfseries\scriptsize, text=blue!80!black]below:Formation Continue : Plateforme MNF $\cdot$ TechNights mensuelles $\cdot$ Veille partagée}] {};
@@ -435,7 +436,7 @@ La réponse apportée par Oxyl repose sur la complémentarité directe des deux 
 ]
 
     % Pilier 1 : Capital Humain
-    \node[pillarbox] (humain) at (-3.2, 3.2) {
+    \node[pillarbox] (humain) at (-3.3, 0) {
         \textbf{\large\color{blue!80!black} Volet 1 : Compétences Humaines}\\[3pt]
         \rule{5.0cm}{0.4pt}\\[4pt]
         $\bullet$ \textbf{Certifications reconnues} (Oracle OCP Java, AWS Cloud)\\
@@ -449,7 +450,7 @@ La réponse apportée par Oxyl repose sur la complémentarité directe des deux 
     };
 
     % Pilier 2 : Capital Technique
-    \node[pillarbox, draw=purple!80!black, fill=purple!5] (technique) at (3.2, 3.2) {
+    \node[pillarbox, draw=purple!80!black, fill=purple!5] (technique) at (3.3, 0) {
         \textbf{\large\color{purple!80!black} Volet 2 : Usine Logicielle}\\[3pt]
         \rule{5.0cm}{0.4pt}\\[4pt]
         $\bullet$ \textbf{Automatisation agentique} (Traitement de tickets de dev/maintenance)\\
@@ -463,7 +464,8 @@ La réponse apportée par Oxyl repose sur la complémentarité directe des deux 
     };
 
     % Nœud central : Synergie
-    \node[synergybox] (synergie) at (0, 0) {
+    \path (humain.south) -- (technique.south) coordinate[midway] (mid);
+    \node[synergybox, anchor=north] (synergie) at ([yshift=-0.9cm]mid) {
         \textbf{\normalsize\color{teal!90!black} COMPLÉMENTARITÉ ET CRÉATION DE VALEUR}\\[3pt]
         \rule{11.2cm}{0.4pt}\\[3pt]
         $\checkmark$ \textbf{Qualité technique :} L'ingénieur apporte les garde-fous, l'architecture et la validation nécessaires pour fiabiliser le code généré par l'IA.\\
@@ -472,8 +474,8 @@ La réponse apportée par Oxyl repose sur la complémentarité directe des deux 
     };
 
     % Flèches
-    \draw[arrowstyle, draw=blue!80!black] (humain.south) -- ++(0,-0.4) -| (-2.8, 0.95);
-    \draw[arrowstyle, draw=purple!80!black] (technique.south) -- ++(0,-0.4) -| (2.8, 0.95);
+    \draw[arrowstyle, draw=blue!80!black] (humain.south) -- (humain.south |- synergie.north);
+    \draw[arrowstyle, draw=purple!80!black] (technique.south) -- (technique.south |- synergie.north);
 
 \end{tikzpicture}
 \caption{Complémentarité entre compétences certifiées et usine logicielle agnostique}
@@ -732,7 +734,7 @@ Les Figures~\ref{fig:ui_assign_step1} et~\ref{fig:ui_assign_step2} illustrent la
 \subsection{Architecture logicielle backend (Spring)}
 \label{subsec:architecture_backend_spring}
 
-Le backend est structuré en couches distinctes selon les principes de responsabilité unique (\textit{Single Responsibility Principle}) et d'inversion de dépendances (Figure~\ref{fig:architecture_globale_quiz}).
+Le backend est structuré en couches distinctes selon les principes de responsabilité unique (\textit{Single Responsibility Principle}), d'inversion de dépendances et de \textit{Clean Architecture}~\cite{martin2017cleanarch} (Figure~\ref{fig:architecture_globale_quiz}).
 
 \begin{figure}[htbp]
 \centering
@@ -746,40 +748,45 @@ Le backend est structuré en couches distinctes selon les principes de responsab
 ]
 
     % TIER 1 : FRONTEND
-    \node[tierbox, fill=teal!4, draw=teal!80!black, text width=13.0cm] (tier_front) at (0, 4.2) {
-        \textbf{\color{teal!80!black}\normalsize TIER 1 : Frontend Single Page Application (Angular 17)}\\[3pt]
+    \node[tierbox, fill=teal!4, draw=teal!80!black, text width=13.2cm] (tier_front) at (0, 0) {
+        \textbf{\color{teal!80!black}\normalsize TIER 1 : Frontend Single Page Application (Angular 17)}\\[4pt]
+        \centering
         \begin{tikzpicture}[node distance=0.4cm]
-            \node[compbox, fill=teal!10, draw=teal!70!black] (c1) at (-4.2, 0) {\textbf{Composants UI}\\Quiz, Dashboard, Admin};
-            \node[compbox, fill=teal!10, draw=teal!70!black] (c2) at (-0.3, 0) {\textbf{Services TypeScript}\\Gestion d'état, Observables RxJS};
-            \node[compbox, fill=teal!10, draw=teal!70!black] (c3) at (3.8, 0) {\textbf{HTTP Interceptor}\\Cookies JWT \& Gestion d'erreurs};
+            \node[compbox, fill=teal!10, draw=teal!70!black, text width=3.5cm] (c1) at (-4.4, 0) {\textbf{Composants UI}\\Quiz, Dashboard, Admin};
+            \node[compbox, fill=teal!10, draw=teal!70!black, text width=3.8cm] (c2) at (0, 0) {\textbf{Services TypeScript}\\Gestion d'état, RxJS};
+            \node[compbox, fill=teal!10, draw=teal!70!black, text width=3.5cm] (c3) at (4.4, 0) {\textbf{HTTP Interceptor}\\Cookies JWT \& Erreurs};
+            \draw[-{Latex}, thick, draw=teal!70!black] (c1) -- (c2);
+            \draw[-{Latex}, thick, draw=teal!70!black] (c2) -- (c3);
         \end{tikzpicture}
     };
 
     % TIER 2 : BACKEND SPRING
-    \node[tierbox, text width=13.0cm] (tier_back) at (0, 1.2) {
-        \textbf{\color{blue!80!black}\normalsize TIER 2 : API REST Backend (Java / Spring Framework)}\\[3pt]
+    \node[tierbox, text width=13.2cm, below=1.2cm of tier_front] (tier_back) {
+        \textbf{\color{blue!80!black}\normalsize TIER 2 : API REST Backend (Java / Spring Framework)}\\[4pt]
+        \centering
         \begin{tikzpicture}
-            \node[compbox, fill=blue!10, text width=3.4cm] (b1) at (-4.2, 0) {\textbf{Contrôleurs REST}\\\code{ChapterController}\\\code{SerieController}\\\code{UserController}};
-            \node[compbox, fill=purple!10, draw=purple!70!black, text width=3.8cm] (b2) at (0, 0) {\textbf{Services Métier}\\\code{SerieService} (Tirage aléatoire)\\\code{ChapterService} (Materialized Path)\\\code{ScoreCalculatorService}};
-            \node[compbox, fill=blue!10, text width=3.4cm] (b3) at (4.2, 0) {\textbf{Couche Persistance}\\\code{ChapterRepository}\\\code{SerieRepository}\\\code{UserRepository}};
+            \node[compbox, fill=blue!10, text width=3.6cm] (b1) at (-4.4, 0) {\textbf{Contrôleurs REST}\\{\ttfamily\tiny ChapterController}\\{\ttfamily\tiny SerieController}\\{\ttfamily\tiny UserController}};
+            \node[compbox, fill=purple!10, draw=purple!70!black, text width=4.1cm] (b2) at (0, 0) {\textbf{Services Métier}\\{\ttfamily\tiny SerieService} (Tirage)\\{\ttfamily\tiny ChapterService} (Path)\\{\ttfamily\tiny ScoreCalculatorService}};
+            \node[compbox, fill=blue!10, text width=3.6cm] (b3) at (4.4, 0) {\textbf{Couche Persistance}\\{\ttfamily\tiny ChapterRepository}\\{\ttfamily\tiny SerieRepository}\\{\ttfamily\tiny UserRepository}};
             \draw[-{Latex}, thick, draw=blue!60!black] (b1) -- (b2);
             \draw[-{Latex}, thick, draw=blue!60!black] (b2) -- (b3);
-        \end{tikzpicture}\\[3pt]
+        \end{tikzpicture}\\[4pt]
         \centering\textit{\tiny Transverse : Spring Security (Filtre JWT) $\cdot$ Spring AOP (\code{LoggingAspect})}
     };
 
     % TIER 3 : DATABASE
-    \node[tierbox, fill=orange!4, draw=orange!80!black, text width=13.0cm] (tier_db) at (0, -1.6) {
-        \textbf{\color{orange!80!black}\normalsize TIER 3 : Base de Données Relationnelle}\\[3pt]
+    \node[tierbox, fill=orange!4, draw=orange!80!black, text width=13.2cm, below=1.2cm of tier_back] (tier_db) {
+        \textbf{\color{orange!80!black}\normalsize TIER 3 : Base de Données Relationnelle}\\[4pt]
+        \centering
         \begin{tikzpicture}
-            \node[compbox, fill=orange!10, draw=orange!70!black, text width=5.5cm] (db1) at (-3.2, 0) {\textbf{Schéma MySQL / H2}\\Tables \code{chapter}, \code{question}, \code{answer}, \code{serie}, \code{user}};
-            \node[compbox, fill=orange!10, draw=orange!70!black, text width=5.5cm] (db2) at (3.2, 0) {\textbf{Index \& Optimisations}\\Index sur \code{parent_path} et suppression logique};
+            \node[compbox, fill=orange!10, draw=orange!70!black, text width=5.8cm] (db1) at (-3.4, 0) {\textbf{Schéma MySQL / H2}\\Tables {\ttfamily\tiny chapter}, {\ttfamily\tiny question}, {\ttfamily\tiny answer}, {\ttfamily\tiny serie}, {\ttfamily\tiny user}};
+            \node[compbox, fill=orange!10, draw=orange!70!black, text width=5.8cm] (db2) at (3.4, 0) {\textbf{Index \& Optimisations}\\Index sur {\ttfamily\tiny parent\_path} et suppression logique};
         \end{tikzpicture}
     };
 
     % Connecteurs
-    \draw[busarrow, draw=teal!80!black] (tier_front) -- node[right, font=\sffamily\tiny\bfseries, text=teal!80!black] {Échanges REST (JSON) / Cookies HttpOnly} (tier_back);
-    \draw[busarrow, draw=orange!80!black] (tier_back) -- node[right, font=\sffamily\tiny\bfseries, text=orange!80!black] {Spring Data JPA / Hibernate} (tier_db);
+    \draw[busarrow, draw=teal!80!black] (tier_front.south) -- node[fill=white, inner sep=3pt, font=\sffamily\tiny\bfseries, text=teal!80!black] {Échanges REST (JSON) / Cookies HttpOnly} (tier_back.north);
+    \draw[busarrow, draw=orange!80!black] (tier_back.south) -- node[fill=white, inner sep=3pt, font=\sffamily\tiny\bfseries, text=orange!80!black] {Spring Data JPA / Hibernate} (tier_db.north);
 
 \end{tikzpicture}
 \caption{Architecture 3-tiers de la plateforme NewroFactory}
@@ -991,13 +998,13 @@ Dans l'usine logicielle d'Oxyl, le point d'entrée universel est le \textbf{tick
 \subsection{Évaluation par SWE-bench et assistants en ligne de commande (CLI)}
 \label{subsec:swebench_cli}
 
-Pour évaluer les agents sur des cas réels, le benchmark \textbf{SWE-bench}~\cite{jimenez2023swebench} s'est imposé comme la référence. Il teste la capacité d'un agent à résoudre de vrais tickets issus de projets open-source en modifiant le code jusqu'à validation de la suite de tests.
+Pour évaluer les agents sur des cas réels, le benchmark \textbf{SWE-bench}~\cite{jimenez2023swebench} et les interfaces agentiques comme \textbf{SWE-agent}~\cite{yang2024sweagent} se sont imposés comme des références. Ils testent la capacité d'un agent à résoudre de vrais tickets issus de projets open-source en modifiant le code jusqu'à validation de la suite de tests.
 
 Pour intégrer ces capacités dans des pipelines automatisés, nous privilégions les outils utilisables en \textbf{ligne de commande (CLI)} :
 \begin{itemize}
     \item \textbf{Google Antigravity SDK :} pour orchestrer des agents spécialisés sur des tâches complexes ;
-    \item \textbf{OpenAI Codex / CLI :} pour l'édition ciblée de fichiers de code ;
-    \item \textbf{Claude Code CLI :} pour son raisonnement sur de larges fenêtres de contexte et son exécution fluide de commandes terminal.
+    \item \textbf{OpenAI Codex / CLI}~\cite{chen2021codex} : pour l'édition ciblée de fichiers de code ;
+    \item \textbf{Claude Code CLI}~\cite{anthropic2024claude} : pour son raisonnement sur de larges fenêtres de contexte et son exécution fluide de commandes terminal.
 \end{itemize}
 
 \subsection{Comparatif des solutions agentiques du marché}
@@ -1027,7 +1034,7 @@ Ce comparatif montre que l'usine d'Oxyl privilégie l'indépendance vis-à-vis d
 
 Chaque fournisseur de LLM (Anthropic, OpenAI, Google) utilise ses propres formats de requêtes, ses conventions d'outils (\textit{tool calling}) et ses méthodes d'authentification.
 
-Pour que l'usine reste pérenne et puisse changer de modèle sans réécrire l'orchestrateur, nous avons structuré le code autour de patrons de conception (\textit{Design Patterns}) classiques.
+Pour que l'usine reste pérenne et puisse changer de modèle sans réécrire l'orchestrateur, nous avons structuré le code autour de patrons de conception (\textit{Design Patterns}~\cite{gamma1994design}) classiques.
 
 \subsection{Choix et rôles des patrons de conception}
 \label{subsec:arbitrage_patterns}
